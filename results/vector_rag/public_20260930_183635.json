@@ -1,0 +1,117 @@
+{
+ "run_id": "vector_rag/public/20260930_183635",
+ "pipeline": "vector_rag",
+ "eval_set": "public",
+ "saved_at": "2026-09-30T18:36:35.461576",
+ "config": {
+  "llm_provider": "gemini",
+  "model": "gemini-3.1-flash-lite"
+ },
+ "summary": {
+  "n_questions": 2,
+  "answer_accuracy": 0.5,
+  "wall_time_s": 134.6,
+  "avg_total_tokens": 2865.5,
+  "avg_context_tokens": 1814.0
+ },
+ "records": [
+  {
+   "qid": "pub-001",
+   "question": "According to the provided corpus, how many biathlon events at the 2018 Winter Olympics had more than 73 competitors?",
+   "qtype": "aggregation",
+   "predicted": "3",
+   "gold": [
+    "5"
+   ],
+   "answer_match": false,
+   "gold_doc_coverage": 0.5454545454545454,
+   "evidence_sufficient": true,
+   "confidence": 1.0,
+   "n_seeds": 0,
+   "n_graph_chunks": 0,
+   "n_dense_topup": 0,
+   "n_final_chunks": 6,
+   "cited_chunk_ids": [
+    "Q47155408_chunk_0",
+    "Q47155555_chunk_0",
+    "Q47155425_chunk_0"
+   ],
+   "metrics": {
+    "counters": {
+     "final_chunks": 6,
+     "citations": 3
+    },
+    "llm": {
+     "calls": 1,
+     "input_tokens": 2356,
+     "output_tokens": 144,
+     "total_tokens": 2500,
+     "latency_total_ms": 41303.49
+    },
+    "timings": {
+     "retrieval": {
+      "count": 1,
+      "total_ms": 44494.31,
+      "avg_ms": 44494.31
+     },
+     "llm_answer": {
+      "count": 1,
+      "total_ms": 41303.5,
+      "avg_ms": 41303.5
+     }
+    }
+   },
+   "context_tokens": 1498,
+   "retrieval_latency_ms": 44494.3,
+   "llm_latency_ms": 41303.5
+  },
+  {
+   "qid": "pub-002",
+   "question": "Who won the gold medal in the men's 20 kilometres walk athletics event at the Summer Olympics held immediately before 2016?",
+   "qtype": "temporal",
+   "predicted": "Chen Ding",
+   "gold": [
+    "Chen Ding"
+   ],
+   "answer_match": true,
+   "gold_doc_coverage": 1.0,
+   "evidence_sufficient": true,
+   "confidence": 1.0,
+   "n_seeds": 0,
+   "n_graph_chunks": 0,
+   "n_dense_topup": 0,
+   "n_final_chunks": 6,
+   "cited_chunk_ids": [
+    "Q1050909_chunk_0"
+   ],
+   "metrics": {
+    "counters": {
+     "final_chunks": 6,
+     "citations": 1
+    },
+    "llm": {
+     "calls": 1,
+     "input_tokens": 3111,
+     "output_tokens": 120,
+     "total_tokens": 3231,
+     "latency_total_ms": 3992.72
+    },
+    "timings": {
+     "retrieval": {
+      "count": 1,
+      "total_ms": 26693.9,
+      "avg_ms": 26693.9
+     },
+     "llm_answer": {
+      "count": 1,
+      "total_ms": 3992.73,
+      "avg_ms": 3992.73
+     }
+    }
+   },
+   "context_tokens": 2130,
+   "retrieval_latency_ms": 26693.9,
+   "llm_latency_ms": 3992.7
+  }
+ ]
+}

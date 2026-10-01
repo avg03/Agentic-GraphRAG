@@ -1,0 +1,27 @@
+# --- secrets (NEVER commit) ---
+.env
+
+# --- virtualenv / runtime ---
+ragvenv/
+__pycache__/
+*.pyc
+.zcode/
+
+# --- databases & generated artifacts (regenerable) ---
+chroma_db/
+graphrag/extracted/
+graphrag/entity_index.json
+graphrag/entity_index.npz
+
+# --- logs ---
+*.log
+
+# --- large corpus (download per README) ---
+Data/corpus.jsonl
+
+# --- hidden eval set (organizer-held; do not publish) ---
+Data/eval_hidden.jsonl
+
+# --- OS noise ---
+Thumbs.db
+.DS_Store

@@ -1,0 +1,24 @@
+# LLM & Embeddings
+google-generativeai>=0.8.5
+langchain-google-genai>=2.0.10
+
+# LangChain Core
+langchain>=0.3.27
+langchain-core>=0.3.76
+langchain-community>=0.3.29
+langchain-text-splitters>=0.3.11
+
+# Vector Database
+chromadb>=1.0.20
+
+# Environment & Utilities
+python-dotenv>=1.1.1
+tqdm>=4.67.1
+tiktoken>=0.7.0
+pydantic>=2.11.9
+
+# PDF Support (if needed later)
+pypdf>=6.0.0
+
+# Graph Database (TigerGraph)
+pyTigerGraph>=1.8.7
