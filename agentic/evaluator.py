@@ -1,4 +1,4 @@
-"""Evidence Evaluator (doc §9): per-slot support matrix, contradictions, gaps."""
+"""Evidence Evaluator (v2 §9/§10.2): per-slot support, coverage, marginal gain."""
 
 from shared.llm_client import generate_structured
 from shared.models import EvidenceEvaluation
@@ -14,10 +14,26 @@ def evaluate_evidence(
     chunks: list,
     unmatched: list,
     metrics=None,
+    question_type: str = "",
+    scope_roots: list | None = None,
+    evidence_stats: dict | None = None,
 ) -> tuple[EvidenceEvaluation, dict]:
-    """Judge each answer slot against the collected evidence (1 Gemini call)."""
+    """Judge each answer slot against the collected evidence (1 LLM call).
+
+    v2 additions: question_type + scope roots + evidence stats feed the
+    collection-question coverage checks (§9) and marginal-gain verdict.
+    """
     evaluation, usage = generate_structured(
-        prompt=build_evaluator_prompt(question, slots, graph_paths, chunks, unmatched),
+        prompt=build_evaluator_prompt(
+            question,
+            slots,
+            graph_paths,
+            chunks,
+            unmatched,
+            question_type=question_type,
+            scope_roots=scope_roots,
+            evidence_stats=evidence_stats,
+        ),
         response_schema=EvidenceEvaluation,
         system=EVALUATOR_SYSTEM_PROMPT,
     )

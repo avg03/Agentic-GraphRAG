@@ -131,9 +131,14 @@ def run_pipeline(
         extraction_records = extract_chunks(chunks, metrics=metrics)
     print(f"Stage 2: {len(extraction_records)} chunks extracted (cached included)")
 
-    # ---- Stage 3: resolve / dedup ----
+    # ---- Stage 3: resolve / dedup (+ deterministic context metadata) ----
+    doc_titles = {
+        c["metadata"].get("doc_id", ""): c["metadata"].get("title", "")
+        for c in chunks
+        if c.get("metadata", {}).get("doc_id")
+    }
     with metrics.timer("stage3_resolve"):
-        resolved = resolve_extractions(extraction_records)
+        resolved = resolve_extractions(extraction_records, titles=doc_titles)
     for vtype, vids in sorted(resolved["vertices"].items()):
         metrics.incr(f"vertices_{vtype}", len(vids))
         print(f"Stage 3: {len(vids):6d} unique {vtype} vertices")

@@ -403,3 +403,114 @@ Runtime metrics only (accuracy not scoreable locally):
 - Wrong-discipline evidence (C-2 for a K-2 question): identity-verification rules
   added to evaluator + answer prompts.
 - Per-seed fan-out caps to prevent broad-seed dilution; partial-answer behavior.
+
+## 13. V2 Architecture Migration (built 2026-10-02)
+
+Implements `graph_agentic_architecture_v2.md` (hierarchy-aware retrieval) with all v1
+entry points preserved. Motivation: seed-local traversal cannot discover sibling events
+("winners across the 2008 Olympics"); v2 adds scope discovery + sibling traversal.
+
+### What was built (per phase)
+
+- **Phase 0 (regression guard):** `Data/eval_v2_classes.jsonl` (17 verified questions
+  across v2 §21 classes A–G), `graphrag/acceptance.py` (per-class pass/fail gate, saved
+  via run_store), `tests/` (pytest, 34 pure-function tests — no TG/LLM), langgraph+
+  pytest added to requirements.
+- **Phase 1 (context metadata, deterministic, zero LLM):** `graphrag/context.py`
+  derives {root_context, context_path, context_keys, context_level} from Wikipedia
+  titles + event names (canonical-title parser + edition-anchored fallback + round-word
+  stripping; 2210/2951 titles canonical). `resolve_extractions(records, titles=...)`
+  attaches them to ActionEvent vertices; `load_graph` strips them until the graph
+  schema declares them (`CONTEXT_ATTRS_IN_GRAPH`, Phase 5). `normalize_name` moved to
+  `graphrag/normalize.py` (circular import; re-exported from resolve for compat).
+- **Phase 2 (context index + scope):** `graphrag/context_index.py` — cached
+  (JSON+npz) key/phrase → ActionEvent index built offline from cached extractions +
+  Chroma titles: **27,868 keys over 32,251 ActionEvents**. Season-qualified subkeys
+  (`olympics:1992_winter`) disambiguate shared years. `graphrag/scope.py` —
+  specificity ranks (event>sport>edition), `resolve_scope`, expansion ladder
+  (event→sport→olympics, stops at edition).
+- **Phase 3 (GraphRAG v2):** `traverse_scope` (Mode B sibling traversal, capped),
+  `QueryAnalysis` schema (superset of QueryEntities — same 1 LLM call), 
+  `graphrag/retrieve.py` `graph_search(query, seeds, context_keys, mode, top_k)` 
+  orchestrator (v2 §17 API), scope-aware `rank_chunks` (rerank + support + 
+  context_match − per-event duplication penalty; query-aware gate emits 
+  scope_coverage partial/substantial/high), `retrieval_pipeline.answer_question` 
+  delegates with auto mode (return keys additive), `agentic/tools.graph_search` 
+  delegates, `vector_search` gained `filters`.
+- **Phase 4 (Agentic v2):** PlanOutput + context_resolver node (deterministic), 
+  GRAPH_SCOPE action + `scope_search` tool, investigated_contexts dedupe guard, 
+  supervisor GRAPH_SCOPE budget (AGENT_MAX_SCOPE_CALLS=2) + stop-reason taxonomy 
+  (sufficient_evidence | diminishing_returns | budget_exhausted | no_useful_path), 
+  evaluator coverage/marginal-gain checks, evidence_stats bookkeeping. COMMUNITY_SEARCH
+  retained (v1 functionality preserved).
+- **Phase 5 (metrics + backfill + docs):** METRICS_CONTRACT += graphrag_extras +
+  agentic v2 extras (additive; old runs stay valid); eval records carry the new
+  fields; `graphrag/backfill_context.py` (optional, idempotent SCHEMA_CHANGE job +
+  attribute-only upserts); README updated.
+
+### Verification (TG instance paused during build)
+
+- 34/34 pytest green; all modules import-clean; agent graph compiles with the new
+  context_resolver + scope_search nodes.
+- Offline end-to-end discovery verified (no TG): collection question → 
+  question_type=collection_aggregation → roots [sport:rowing (662 events), 
+  olympics:2008]; local question → event:mens_k2_1000_metres (5 events). Query
+  analysis = 1 LLM call, unchanged from v1 call budget.
+- **PENDING:** live acceptance gate (`python -m graphrag.acceptance`) blocked by the
+  hibernating TG instance (token endpoint 500). Run it — plus the optional
+  `graphrag.backfill_context` — once the instance is resumed.
+
+### Compatibility contract verification
+
+- `retrieval.main_pipeline` untouched; `answer_question`/`run_agentic` return keys
+  additive only; `eval_all.py` and the 3 eval_run CLIs unchanged; extraction cache
+  format untouched (no re-extraction); ontology unchanged (attributes additive,
+  gated); results/ documents self-describing as before.
+
+### Live verification (2026-10-02/03, TG instance resumed, gpt-5-mini via Azure)
+
+Bugs found & fixed during the live acceptance gate:
+1. `answer_question` passed graph paths to `graphrag.answer.generate_answer` (which
+   takes only question/chunks/metrics) — TypeError on every question. Call fixed.
+2. `normalize_name` kept en/em-dashes (Wikipedia titles use "–") → exact-match misses;
+   also LLMs sometimes emit the dash as "<tab>6". Fixed: dash+underscore added to the
+   punct table; `match_entities` strips standalone single digits from QUERY mentions.
+3. The en-dash fix invalidated cached `norm_index` keys — recomputed in place
+   (no re-embedding); context index rebuilt.
+4. Long canonical event names (>12 tokens) were dropped by the v1 phrase guard →
+   strict superset path added: long mentions match only when the candidate's tokens
+   are fully covered (overlap==1.0) with sim>=0.85. This kills the near-duplicate
+   trap ("Women's 57 kg" matching the 52 kg vertices) that v1 dodged by accident.
+5. E/F regression mechanism: graph seeds satisfied the 3-chunk gate so dense top-up
+   never fired, but the infobox fact lived elsewhere → local questions now get a
+   dense companion fill up to top_n (v2 §15.7: the chunk is the primary grounding
+   for exact table values); collections still top up only on (near-)complete miss.
+6. TG backfill: `BEGIN SCHEMA_CHANGE` blocks fail to parse via the REST gsql
+   endpoint on TG 4.x — the working form is `CREATE SCHEMA_CHANGE JOB <name> FOR
+   GRAPH <g> { ALTER VERTEX ActionEvent ADD ATTRIBUTE (a STRING, ...); }` +
+   `RUN SCHEMA_CHANGE JOB <name>`, followed by a poll until the live schema reports
+   the attributes (the job applies asynchronously).
+
+Gate results (Data/eval_v2_classes.jsonl, 17 questions, classes A-G):
+
+| Class | v1 Pipeline 2 (Sept 30 run) | v2 Pipeline 2 | v1 Agentic | v2 Agentic |
+|---|---|---|---|---|
+| A single-hop | 1/2 | 1/2 | 2/2 | 2/2 |
+| B multi-hop | 2/2 | 2/2 | 1/2 | 2/2 |
+| C sibling/collection | 0/3 | 0/3 | 0/3 | 0/3 |
+| D filtered collection | 0/3 | 0/3 | 0/3 | 0/3 |
+| E exact table fact | 3/3 | 3/3 | 3/3 | 2/3 |
+| F graph-miss | 2/2 | 2/2 | 2/2 | 2/2 |
+| G ambiguous | 2/2 | 2/2 | 1/2 | 2/2 |
+| **Total** | **10/17 (59%)** | **10/17 (59%)** | **9/17 (53%)** | **10/17 (59%)** |
+
+Reading:
+- No regressions vs v1 anywhere; Agentic +1 overall (B and G now 2/2).
+- Scope mode fires on all 6 collection questions: 47-68 sibling ActionEvents
+  discovered, infobox-first chunks collected, scope_coverage=high reported — but
+  exact counts still land low (context window cannot hold ~60 events' facts).
+  v1 refused these outright; v2 answers with scoped partial counts + coverage
+  flags. KNOWN OPEN ITEM: a per-event fact rollup in the context builder
+  (event -> key infobox line) is the next step for exact collection counting.
+- TG backfill live: 32,235 ActionEvents carry root_context/context_path/
+  context_keys/context_level (verified on a sample vertex).

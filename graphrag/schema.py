@@ -15,6 +15,8 @@ Env: TIGERGRAPH_HOST, TIGERGRAPH_GRAPHNAME, TIGERGRAPH_USERNAME,
      TIGERGRAPH_PASSWORD, TIGERGRAPH_SECRET / TIGERGRAPH_TOKEN.
 """
 
+import time
+
 from pyTigerGraph import TigerGraphConnection
 
 from graphrag import config
@@ -192,6 +194,75 @@ def create_schema(conn: TigerGraphConnection, dry_run: bool = False) -> dict:
     conn.graphname = config.TG_GRAPHNAME
     print(f"Schema ready: {len(created)} created, {len(skipped)} already present.")
     return {"created": created, "skipped": skipped, "graph": config.TG_GRAPHNAME}
+
+
+def _existing_vertex_attrs(conn: TigerGraphConnection, vtype: str) -> set[str]:
+    """Attribute names declared on a vertex type in the live graph."""
+    try:
+        schema = conn.getSchema()
+    except Exception:
+        return set()
+    for vt in schema.get("VertexTypes", []):
+        if vt.get("Name") == vtype:
+            return {a.get("AttributeName", a.get("name", "")) for a in vt.get("Attributes", [])}
+    return set()
+
+
+def ensure_context_attributes(conn: TigerGraphConnection, dry_run: bool = False) -> dict:
+    """Add the v2 context attributes to ActionEvent via a SCHEMA_CHANGE job.
+
+    Idempotent: introspects the live schema and alters only missing
+    attributes. TG 4.x via the REST gsql endpoint requires the job form
+    (the interactive `BEGIN SCHEMA_CHANGE` block fails to parse there):
+
+        CREATE SCHEMA_CHANGE JOB <name> FOR GRAPH <g> {
+          ALTER VERTEX ActionEvent ADD ATTRIBUTE (a STRING, b STRING);
+        }
+        RUN SCHEMA_CHANGE JOB <name>
+
+    Waits until the live schema reports the attributes (the job applies
+    asynchronously) before returning.
+
+    Returns {"added": [...], "present": [...], "job": "..."}.
+    """
+    vtype = config.EVENT_VERTEX
+    present = _existing_vertex_attrs(conn, vtype)
+    missing = [a for a in config.CONTEXT_ATTRS if a not in present]
+    have = [a for a in config.CONTEXT_ATTRS if a in present]
+
+    if dry_run:
+        return {"added": missing, "present": have, "job": "(dry-run)"}
+    if not missing:
+        print(f"Context attributes already declared on {vtype}.")
+        return {"added": [], "present": have, "job": "none"}
+
+    attr_sql = ", ".join(f"{n} {t}" for n, t in config.CONTEXT_ATTRS.items() if n in missing)
+    job_name = f"add_context_attrs_{int(time.time())}"
+    statement = (
+        f"USE GRAPH {config.TG_GRAPHNAME}\n"
+        f"CREATE SCHEMA_CHANGE JOB {job_name} FOR GRAPH {config.TG_GRAPHNAME} {{\n"
+        f"ALTER VERTEX {vtype} ADD ATTRIBUTE ({attr_sql});\n"
+        "}\n"
+        f"RUN SCHEMA_CHANGE JOB {job_name}"
+    )
+    result = conn.gsql(statement)
+    print(f"Schema change on {vtype}: added {missing}")
+
+    # wait for the async job to reach the live schema (up to 120s)
+    deadline = time.time() + 120
+    still_missing = missing
+    while time.time() < deadline:
+        applied = _existing_vertex_attrs(conn, vtype)
+        still_missing = [a for a in missing if a not in applied]
+        if not still_missing:
+            break
+        time.sleep(3)
+    if still_missing:
+        raise RuntimeError(
+            f"SCHEMA_CHANGE job did not apply within 120s; missing {still_missing}. "
+            f"Job output: {str(result)[:300]}"
+        )
+    return {"added": missing, "present": have, "job": str(result)[:200]}
 
 
 if __name__ == "__main__":

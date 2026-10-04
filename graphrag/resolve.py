@@ -14,30 +14,28 @@ This runs after extraction (cached JSONL) and before the TigerGraph load.
 from collections import Counter, defaultdict
 
 from graphrag import config
+from graphrag.context import (
+    context_to_attrs,
+    derive_context,
+    merge_contexts,
+    sports_vocab_from_titles,
+)
+# canonical home of normalize_name; re-exported here for backwards compat
+from graphrag.normalize import normalize_name
 
 __all__ = ["normalize_name", "resolve_extractions"]
 
-_STOP_PREFIXES = ("the ", "a ", "an ")
-_PUNCT = str.maketrans({c: " " for c in "\"'`.,;:!?()[]{}<>-/&*"})
 
-
-def normalize_name(name: str) -> str:
-    """Canonicalize an entity/event name for dedup keys."""
-    lowered = (name or "").strip().lower().translate(_PUNCT)
-    lowered = " ".join(lowered.split())
-    for prefix in _STOP_PREFIXES:
-        if lowered.startswith(prefix) and len(lowered) > len(prefix):
-            lowered = lowered[len(prefix) :]
-            break
-    return lowered
-
-
-def resolve_extractions(records: list[dict]) -> dict:
+def resolve_extractions(records: list[dict], titles: dict[str, str] | None = None) -> dict:
     """Merge extraction records into resolved graph data.
 
     Args:
         records: Extraction records (from extract_chunks or the cached JSONL);
             each has entities[], action_events[], chunk_id, doc_id.
+        titles: Optional {doc_id: title} map (from Chroma metadata). When
+            given, ActionEvents get structured context attributes derived
+            deterministically from event names + doc titles (v2 §3.2) —
+            no LLM calls.
 
     Returns:
         {
@@ -51,6 +49,8 @@ def resolve_extractions(records: list[dict]) -> dict:
     """
     # ---------------- entities ----------------
     # key: (type, normalized) -> accumulation
+    titles = titles or {}
+    sports_vocab = sports_vocab_from_titles(titles)
     entity_acc: dict[tuple[str, str], dict] = {}
     aliases: dict[str, tuple[str, str]] = {}
 
@@ -131,13 +131,16 @@ def resolve_extractions(records: list[dict]) -> dict:
                     acc["relations"][edge_name].add((target_type, target_id))
 
     for norm, acc in event_acc.items():
+        attrs = {
+            "name": acc["names"].most_common(1)[0][0],
+            "action_type": acc["action_types"].most_common(1)[0][0] if acc["action_types"] else "",
+            "description": acc["descriptions"][0] if acc["descriptions"] else "",
+            "impact_summary": acc["impacts"][0] if acc["impacts"] else "",
+        }
+        if titles:
+            attrs.update(_event_context_attrs(acc, titles, sports_vocab))
         vertices["ActionEvent"][norm] = {
-            "attributes": {
-                "name": acc["names"].most_common(1)[0][0],
-                "action_type": acc["action_types"].most_common(1)[0][0] if acc["action_types"] else "",
-                "description": acc["descriptions"][0] if acc["descriptions"] else "",
-                "impact_summary": acc["impacts"][0] if acc["impacts"] else "",
-            },
+            "attributes": attrs,
             "mentioned_in": sorted(acc["mentioned_in"]),
         }
 
@@ -173,3 +176,25 @@ def resolve_extractions(records: list[dict]) -> dict:
                     )
 
     return {"vertices": dict(vertices), "edges": edges, "aliases": aliases}
+
+
+def _event_context_attrs(
+    acc: dict, titles: dict[str, str], sports_vocab: set[str]
+) -> dict[str, str]:
+    """Structured context attributes for one ActionEvent accumulation.
+
+    Deterministic (v2 §3.2): derive from the event's display name, then fill
+    gaps from the doc title it was extracted from (titles carry the clean
+    "Sport at the YYYY Season Olympics" split).
+    """
+    display = acc["names"].most_common(1)[0][0]
+    event_ctx = derive_context(display, sports_vocab)
+
+    title_ctx = None
+    for chunk_id in sorted(acc["mentioned_in"]):
+        doc_id = chunk_id.rsplit("_chunk_", 1)[0] if "_chunk_" in chunk_id else ""
+        title = titles.get(doc_id, "")
+        if title:
+            title_ctx = derive_context(title, sports_vocab)
+            break
+    return context_to_attrs(merge_contexts(event_ctx, title_ctx))

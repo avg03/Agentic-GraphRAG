@@ -17,7 +17,10 @@ __all__ = [
     "ExtractedEntity",
     "ExtractedActionEvent",
     "ChunkExtraction",
+    "QueryEntity",
     "QueryEntities",
+    "QueryScope",
+    "QueryAnalysis",
     "GroundedAnswer",
     "AnswerSlot",
     "PlanOutput",
@@ -121,6 +124,42 @@ class QueryEntities(BaseModel):
     entities: List[QueryEntity] = Field(default_factory=list)
 
 
+class QueryScope(BaseModel):
+    """The higher-level scope a question asks inside (architecture v2 §4.2)."""
+
+    root: str = Field(
+        default="",
+        description="The collection root the question ranges over, e.g. '2008 Summer Olympics'. Empty for single-entity questions.",
+    )
+    breadth: str = Field(
+        default="single_event",
+        description="'single_event' | 'sport' | 'edition' | 'all_events' — how wide the requested scope is.",
+    )
+    target: str = Field(
+        default="",
+        description="What to collect across the scope, e.g. 'winner', 'medal', 'time'. Empty when not a collection question.",
+    )
+
+
+class QueryAnalysis(BaseModel):
+    """Query entity + scope extraction (v2 §4.2) — superset of QueryEntities.
+
+    The `entities` field keeps the exact QueryEntities shape so the entity
+    matching path is unchanged; the added fields steer scope retrieval.
+    """
+
+    entities: List[QueryEntity] = Field(default_factory=list)
+    question_type: str = Field(
+        default="local_fact",
+        description="'local_fact' | 'multi_hop' | 'collection_aggregation' | 'overview'.",
+    )
+    scope: QueryScope = Field(default_factory=QueryScope)
+    candidate_context_keys: List[str] = Field(
+        default_factory=list,
+        description="Structured scope keys the question implies, e.g. 'olympics:2008', 'sport:canoeing', 'event:mens_k2_1000_metres'. Empty when none.",
+    )
+
+
 class GroundedAnswer(BaseModel):
     """Final structured answer - validated JSON, not free text."""
 
@@ -155,12 +194,24 @@ class AnswerSlot(BaseModel):
 
 
 class PlanOutput(BaseModel):
-    """Planner output: decomposition into answer slots."""
+    """Planner output: decomposition into answer slots + scope analysis (v2 §10.2)."""
 
     complexity: str = Field(description="'low' | 'medium' | 'high'.")
     answer_slots: List[AnswerSlot] = Field(
         default_factory=list,
         description="1 slot for simple questions; more only when independently answerable.",
+    )
+    question_type: str = Field(
+        default="local_fact",
+        description="'local_fact' | 'multi_hop' | 'collection_aggregation' | 'overview'.",
+    )
+    scope_root: str = Field(
+        default="",
+        description="Canonical collection root the question ranges over ('2008 Summer Olympics'); '' for local questions.",
+    )
+    candidate_context_keys: List[str] = Field(
+        default_factory=list,
+        description="Structured scope keys, e.g. 'olympics:2008', 'sport:canoeing'. Empty when none.",
     )
 
 
@@ -185,7 +236,15 @@ class EvidenceEvaluation(BaseModel):
     missing: List[str] = Field(default_factory=list, description="Missing facts, e.g. 'exact medal time'.")
     recommended_action: str = Field(
         default="",
-        description="Suggestion for the supervisor: GRAPH_SEARCH | VECTOR_SEARCH | COMMUNITY_SEARCH | STOP.",
+        description="Suggestion for the supervisor: GRAPH_SEARCH | GRAPH_SCOPE | VECTOR_SEARCH | COMMUNITY_SEARCH | STOP.",
+    )
+    scope_coverage: str = Field(
+        default="",
+        description="For collection questions: 'none' | 'partial' | 'substantial' | 'high' — how much of the requested scope the evidence covers.",
+    )
+    marginal_gain: str = Field(
+        default="",
+        description="'increasing' | 'flat' | 'diminishing' — whether the latest retrieval step still added useful new evidence.",
     )
 
 
@@ -193,15 +252,20 @@ class SupervisorDecision(BaseModel):
     """Supervisor output: what to do next (also does the initial routing)."""
 
     action: str = Field(
-        description="GRAPH_SEARCH | VECTOR_SEARCH | COMMUNITY_SEARCH | REFORMULATE | STOP"
+        description="GRAPH_SEARCH | GRAPH_SCOPE | VECTOR_SEARCH | COMMUNITY_SEARCH | REFORMULATE | STOP"
     )
     target_slot: str = Field(default="", description="Slot id the action targets, '' if all/none.")
+    target_context: str = Field(
+        default="",
+        description="For GRAPH_SCOPE: the context root to investigate next, e.g. 'olympics:2008'. '' otherwise.",
+    )
     subquery: str = Field(
         default="",
         description="The (possibly reformulated) query to execute; required unless STOP.",
     )
     reason_code: str = Field(
-        description="e.g. initial_routing, missing_required_fact, wrong_relation_semantics, "
-        "entity_not_found, contradiction, budget_exhausted, all_slots_supported."
+        description="Stop reasons: sufficient_evidence | diminishing_returns | budget_exhausted | no_useful_path. "
+        "Continue reasons: initial_routing, missing_required_fact, wrong_relation_semantics, "
+        "entity_not_found, contradiction, duplicate_retrieval, scope_incomplete, evidence_insufficient."
     )
     note: str = Field(default="")

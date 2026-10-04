@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GraphRAG Hackathon &mdash; Pipeline Comparison Dashboard</title>
+<style>
+  :root { --bg:#14171c; --card:#1d222a; --line:#2c333e; --fg:#e6e9ee; --muted:#9aa4b2; --accent:#4e9aef; }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:32px 20px 60px; background:var(--bg); color:var(--fg);
+         font:15px/1.55 "Segoe UI", system-ui, -apple-system, sans-serif; }
+  .wrap { max-width:1080px; margin:0 auto; }
+  h1 { font-size:26px; margin:0 0 4px; }
+  h2 { font-size:19px; margin:36px 0 10px; border-bottom:1px solid var(--line); padding-bottom:6px; }
+  .meta { color:var(--muted); font-size:14px; }
+  .meta b { color:var(--fg); font-weight:600; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:18px 20px; margin-top:14px; }
+  table { border-collapse:collapse; width:100%; font-size:14px; }
+  th, td { padding:9px 12px; text-align:left; border-bottom:1px solid var(--line); white-space:nowrap; }
+  th { color:var(--muted); font-weight:600; font-size:12.5px; text-transform:uppercase; letter-spacing:.04em; }
+  td.pl { font-weight:600; white-space:normal; min-width:190px; }
+  tr:last-child td { border-bottom:none; }
+  .note { font-weight:400; font-size:12.5px; color:#e0a13a; margin-top:3px; }
+  ul.notes { color:var(--muted); font-size:13.5px; margin:10px 0 0; }
+  .qtype-group { margin:14px 0; }
+  .qtype-name { font-weight:600; margin-bottom:5px; }
+  .bar-row { display:flex; align-items:center; margin:3px 0; }
+  .bar-label { width:170px; flex:none; color:var(--muted); font-size:13px; }
+  .bar-track { flex:1; background:#242b35; border-radius:4px; height:14px; overflow:hidden; }
+  .bar { height:100%; border-radius:4px; }
+  .bar-val { width:52px; flex:none; text-align:right; font-size:13px; }
+  table.qt td, table.qt th { white-space:normal; }
+  .v2-list { margin:8px 0 0; padding-left:22px; }
+  .v2-list li { margin:6px 0; }
+  code { background:#242b35; padding:1px 6px; border-radius:4px; font-size:13px; }
+  .footer { margin-top:44px; color:var(--muted); font-size:13px; border-top:1px solid var(--line); padding-top:14px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>GraphRAG Hackathon &mdash; Pipeline Comparison Dashboard</h1>
+  <div class="meta">
+    Model: <b>gpt-5-mini (Azure OpenAI)</b> &nbsp;&middot;&nbsp;
+    Corpus: <b>2,951 documents / ~17k chunks</b> &nbsp;&middot;&nbsp;
+    Generated: <b>2026-10-04 12:42 UTC</b> &nbsp;&middot;&nbsp;
+    Branch: <b>version_2.0</b>
+  </div>
+
+  <h2>Public eval set &mdash; 100 questions (ground truth available)</h2>
+  <div class="card">
+    <table class="cmp"><thead><tr><th>Pipeline</th><th>Questions</th><th>Accuracy</th><th>Avg tokens / q</th><th>Avg latency</th><th>p50 latency</th><th>Retrieval / LLM split</th><th>Steps / q</th><th>Strategy-change rate</th></tr></thead><tbody><tr><td class="pl">Vector RAG (final)</td><td>100</td><td>63%</td><td>3328</td><td>22.2s</td><td>22.0s</td><td>17.9s / 4.3s</td><td>&mdash;</td><td>&mdash;</td></tr><tr><td class="pl">GraphRAG (final)</td><td>100</td><td>54%</td><td>6098</td><td>67.3s</td><td>45.3s</td><td>54.0s / 13.3s</td><td>&mdash;</td><td>&mdash;</td></tr><tr><td class="pl">Agentic GraphRAG v2</td><td>100</td><td>66%</td><td>20394</td><td>170.2s</td><td>100.6s</td><td>129.5s / 40.8s</td><td>2.23</td><td>35%</td></tr></tbody></table>
+  </div>
+
+  <h2>Hidden eval set &mdash; 50 questions (runtime metrics; scoring done separately)</h2>
+  <div class="card">
+    <table class="cmp"><thead><tr><th>Pipeline</th><th>Questions</th><th>Avg tokens / q</th><th>Avg latency</th><th>p50 latency</th><th>Retrieval / LLM split</th><th>Steps / q</th><th>Strategy-change rate</th></tr></thead><tbody><tr><td class="pl">Vector RAG (final)</td><td>50</td><td>3348</td><td>21.1s</td><td>21.2s</td><td>16.3s / 4.8s</td><td>&mdash;</td><td>&mdash;</td></tr><tr><td class="pl">GraphRAG (final)</td><td>50</td><td>6976</td><td>74.8s</td><td>76.5s</td><td>60.3s / 14.5s</td><td>&mdash;</td><td>&mdash;</td></tr><tr><td class="pl">Agentic GraphRAG v2</td><td>50</td><td>15265</td><td>74.6s</td><td>51.6s</td><td>41.6s / 33.0s</td><td>2.46</td><td>44%</td></tr></tbody></table>
+    <ul class="notes"><li>Agentic GraphRAG hidden run on disk is the v1 agent (run agentic_graphrag/hidden/20260930_233839); the v2 hidden run is still in flight. Re-run scripts/build_dashboard.py after it finishes.</li></ul>
+  </div>
+
+  <h2>Per-question-type accuracy &mdash; public set</h2>
+  <div class="card">
+    <div class="qtype-group"><div class="qtype-name">aggregation</div><div class="bar-row"><span class="bar-label">Vector RAG (final)</span><div class="bar-track"><div class="bar" style="width:5%;background:#4e9aef"></div></div><span class="bar-val">5%</span></div><div class="bar-row"><span class="bar-label">GraphRAG (final)</span><div class="bar-track"><div class="bar" style="width:10%;background:#3fb98c"></div></div><span class="bar-val">10%</span></div><div class="bar-row"><span class="bar-label">Agentic GraphRAG v2</span><div class="bar-track"><div class="bar" style="width:10%;background:#e0a13a"></div></div><span class="bar-val">10%</span></div></div><div class="qtype-group"><div class="qtype-name">lookup</div><div class="bar-row"><span class="bar-label">Vector RAG (final)</span><div class="bar-track"><div class="bar" style="width:100%;background:#4e9aef"></div></div><span class="bar-val">100%</span></div><div class="bar-row"><span class="bar-label">GraphRAG (final)</span><div class="bar-track"><div class="bar" style="width:84%;background:#3fb98c"></div></div><span class="bar-val">84%</span></div><div class="bar-row"><span class="bar-label">Agentic GraphRAG v2</span><div class="bar-track"><div class="bar" style="width:100%;background:#e0a13a"></div></div><span class="bar-val">100%</span></div></div><div class="qtype-group"><div class="qtype-name">multi_hop</div><div class="bar-row"><span class="bar-label">Vector RAG (final)</span><div class="bar-track"><div class="bar" style="width:89%;background:#4e9aef"></div></div><span class="bar-val">89%</span></div><div class="bar-row"><span class="bar-label">GraphRAG (final)</span><div class="bar-track"><div class="bar" style="width:89%;background:#3fb98c"></div></div><span class="bar-val">89%</span></div><div class="bar-row"><span class="bar-label">Agentic GraphRAG v2</span><div class="bar-track"><div class="bar" style="width:82%;background:#e0a13a"></div></div><span class="bar-val">82%</span></div></div><div class="qtype-group"><div class="qtype-name">superlative</div><div class="bar-row"><span class="bar-label">Vector RAG (final)</span><div class="bar-track"><div class="bar" style="width:2%;background:#4e9aef"></div></div><span class="bar-val">0%</span></div><div class="bar-row"><span class="bar-label">GraphRAG (final)</span><div class="bar-track"><div class="bar" style="width:2%;background:#3fb98c"></div></div><span class="bar-val">0%</span></div><div class="bar-row"><span class="bar-label">Agentic GraphRAG v2</span><div class="bar-track"><div class="bar" style="width:2%;background:#e0a13a"></div></div><span class="bar-val">0%</span></div></div><div class="qtype-group"><div class="qtype-name">temporal</div><div class="bar-row"><span class="bar-label">Vector RAG (final)</span><div class="bar-track"><div class="bar" style="width:82%;background:#4e9aef"></div></div><span class="bar-val">82%</span></div><div class="bar-row"><span class="bar-label">GraphRAG (final)</span><div class="bar-track"><div class="bar" style="width:50%;background:#3fb98c"></div></div><span class="bar-val">50%</span></div><div class="bar-row"><span class="bar-label">Agentic GraphRAG v2</span><div class="bar-track"><div class="bar" style="width:100%;background:#e0a13a"></div></div><span class="bar-val">100%</span></div></div>
+    <table class="qt" style="margin-top:18px">
+      <thead><tr><th>Question type</th><th>Vector RAG (final)</th><th>GraphRAG (final)</th><th>Agentic GraphRAG v2</th></tr></thead>
+      <tbody><tr><td>aggregation</td><td>5%</td><td>10%</td><td>10%</td></tr><tr><td>lookup</td><td>100%</td><td>84%</td><td>100%</td></tr><tr><td>multi_hop</td><td>89%</td><td>89%</td><td>82%</td></tr><tr><td>superlative</td><td>0%</td><td>0%</td><td>0%</td></tr><tr><td>temporal</td><td>82%</td><td>50%</td><td>100%</td></tr></tbody>
+    </table>
+    <div class="meta" style="margin-top:10px">Question types joined from <code>Data/eval_public.jsonl</code> by <code>qid</code>
+    (agentic v2 also records its own finer-grained <code>question_type</code> used by the scope router).</div>
+  </div>
+
+  <h2>What changed in v2</h2>
+  <div class="card">
+    <ul class="v2-list">
+      <li><b>Hierarchy-aware context index</b> (<code>graphrag/context_index.py</code>): entity contexts are indexed along the
+      graph hierarchy so lookups resolve which subgraph a phrase belongs to, not just that it exists.</li>
+      <li><b>Scope traversal</b> (<code>graphrag/scope.py</code> + <code>traverse.py</code>): for set/aggregation questions the
+      traversal identifies the full scope of matching entities (e.g. all events of a discipline) instead of a handful of seeds,
+      and pulls the union of their chunks.</li>
+      <li><b>New agent action <code>GRAPH_SCOPE</code></b> (Pipeline 3): the agent can request a scope expansion when it detects
+      an under-covered collection question; a coverage gate decides whether collected evidence is sufficient before answering.</li>
+      <li><b>Pipeline 2 (GraphRAG) ships with the v2 scope-capable code path</b> &mdash; the same retrieval engine powers both
+      the fixed pipeline and the agent's <code>GRAPH_SCOPE</code> tool.</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    Regenerate with <code>python scripts/build_dashboard.py</code> after new runs land under <code>results/</code>.
+    Hidden-set predictions: <code>results/hidden_predictions/</code> (built by <code>scripts/build_hidden_predictions.py</code>).
+  </div>
+</div>
+<script type="application/json" id="dashboard-data">{"generated_at": "2026-10-04 12:42 UTC", "model": "gpt-5-mini (Azure OpenAI)", "corpus": "2,951 documents / ~17k chunks", "public": [{"pipeline": "vector_rag", "label": "Vector RAG (final)", "run_id": "vector_rag/public/20260930_192005", "source_file": "results/vector_rag/public_20260930_192005.json", "n_questions": 100, "v2_run": true, "accuracy": 0.63, "avg_tokens": 3327.8, "avg_latency_s": 22.187284, "p50_latency_s": 21.952900000000003, "avg_retrieval_s": 17.892004, "avg_llm_s": 4.29528, "avg_steps": null, "strategy_change_rate": null}, {"pipeline": "graph_rag", "label": "GraphRAG (final)", "run_id": "graph_rag/public/20261003_201151", "source_file": "results/graph_rag/public_20261003_201151.json", "n_questions": 100, "v2_run": true, "accuracy": 0.54, "avg_tokens": 6097.8, "avg_latency_s": 67.3125967, "p50_latency_s": 45.281735, "avg_retrieval_s": 54.022325, "avg_llm_s": 13.2902717, "avg_steps": null, "strategy_change_rate": null}, {"pipeline": "agentic_graphrag", "label": "Agentic GraphRAG v2", "run_id": "agentic_graphrag/public/20261004_174040", "source_file": "results/agentic_graphrag/public_20261004_174040.json", "n_questions": 100, "v2_run": true, "accuracy": 0.66, "avg_tokens": 20394.1, "avg_latency_s": 170.2476835, "p50_latency_s": 100.579165, "avg_retrieval_s": 129.4784752, "avg_llm_s": 40.769208299999995, "avg_steps": 2.23, "strategy_change_rate": 0.35}], "hidden": [{"pipeline": "vector_rag", "label": "Vector RAG (final)", "run_id": "vector_rag/hidden/20260930_221012", "source_file": "results/vector_rag/hidden_20260930_221012.json", "n_questions": 50, "v2_run": true, "accuracy": 0.0, "avg_tokens": 3348.3, "avg_latency_s": 21.070552, "p50_latency_s": 21.2025, "avg_retrieval_s": 16.306712, "avg_llm_s": 4.76384, "avg_steps": null, "strategy_change_rate": null}, {"pipeline": "graph_rag", "label": "GraphRAG (final)", "run_id": "graph_rag/hidden/20261003_211419", "source_file": "results/graph_rag/hidden_20261003_211419.json", "n_questions": 50, "v2_run": true, "accuracy": 0.0, "avg_tokens": 6975.7, "avg_latency_s": 74.793848, "p50_latency_s": 76.53420999999999, "avg_retrieval_s": 60.2905142, "avg_llm_s": 14.5033338, "avg_steps": null, "strategy_change_rate": null}, {"pipeline": "agentic_graphrag", "label": "Agentic GraphRAG v2", "run_id": "agentic_graphrag/hidden/20260930_233839", "source_file": "results/agentic_graphrag/hidden_20260930_233839.json", "n_questions": 50, "v2_run": false, "accuracy": 0.0, "avg_tokens": 15264.9, "avg_latency_s": 74.5881826, "p50_latency_s": 51.588865, "avg_retrieval_s": 41.558456, "avg_llm_s": 33.029726600000004, "avg_steps": 2.46, "strategy_change_rate": 0.44}], "qtype_accuracy_public": {"vector_rag": {"aggregation": 0.048, "lookup": 1.0, "multi_hop": 0.893, "superlative": 0.0, "temporal": 0.818}, "graph_rag": {"aggregation": 0.095, "lookup": 0.842, "multi_hop": 0.893, "superlative": 0.0, "temporal": 0.5}, "agentic_graphrag": {"aggregation": 0.095, "lookup": 1.0, "multi_hop": 0.821, "superlative": 0.0, "temporal": 1.0}}}</script>
+</body>
+</html>

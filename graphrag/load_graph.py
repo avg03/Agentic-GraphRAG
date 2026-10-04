@@ -25,6 +25,15 @@ def _vattrs(attrs: dict) -> dict:
     return {k: {"value": v} for k, v in (attrs or {}).items()}
 
 
+def _loadable_attrs(attrs: dict) -> dict:
+    """Drop context attributes until the graph schema declares them —
+    TigerGraph rejects unknown vertex attributes on upsert (v2 migration:
+    flipped on by the Phase-5 backfill via CONTEXT_ATTRS_IN_GRAPH)."""
+    if config.CONTEXT_ATTRS_IN_GRAPH:
+        return attrs or {}
+    return {k: v for k, v in (attrs or {}).items() if k not in config.CONTEXT_ATTRS}
+
+
 def resolved_to_upserts(resolved: dict, chunk_records: list[dict] | None = None) -> list[dict]:
     """Convert resolve_extractions() output into per-batch upsert payloads.
 
@@ -61,7 +70,7 @@ def resolved_to_upserts(resolved: dict, chunk_records: list[dict] | None = None)
 
     for vtype, vids in vertices.items():
         for vid, data in vids.items():
-            operations.append(("v", vtype, vid, data["attributes"]))
+            operations.append(("v", vtype, vid, _loadable_attrs(data["attributes"])))
 
     for edge in resolved["edges"]:
         from_vtype = edge["from_type"] if edge["edge"] == "MENTIONED_IN" else config.EVENT_VERTEX

@@ -1,0 +1,50 @@
+{"qid": "eval-001", "question": "Who won the gold medal in the event held at Olympic Tennis Centre on 15 to 22 August 2004?", "qtype": "multi_hop"}
+{"qid": "eval-002", "question": "How many nations competed in Fencing at the 1988 Summer Olympics – Men's foil?", "qtype": "lookup"}
+{"qid": "eval-003", "question": "According to the provided corpus, how many cycling events at the 2008 Summer Olympics had more than 30 competitors?", "qtype": "aggregation"}
+{"qid": "eval-004", "question": "Who won the gold medal in the event held at Sydney International Shooting Centre on 22 September 2000?", "qtype": "multi_hop"}
+{"qid": "eval-005", "question": "According to the provided corpus, which sailing event at the 2016 Summer Olympics had the highest number of competitors?", "qtype": "superlative"}
+{"qid": "eval-006", "question": "According to the provided corpus, how many cross-country skiing events at the 2010 Winter Olympics had more than 62 competitors?", "qtype": "aggregation"}
+{"qid": "eval-007", "question": "Who won the gold medal in the men's heavyweight boxing event at the Summer Olympics held immediately before 2016?", "qtype": "temporal"}
+{"qid": "eval-008", "question": "According to the provided corpus, how many sailing events at the 1996 Summer Olympics had more than 46 competitors?", "qtype": "aggregation"}
+{"qid": "eval-009", "question": "According to the provided corpus, which sailing event at the 2004 Summer Olympics had the highest number of competitors?", "qtype": "superlative"}
+{"qid": "eval-010", "question": "How many nations competed in Boxing at the 1996 Summer Olympics – Flyweight?", "qtype": "lookup"}
+{"qid": "eval-011", "question": "According to the provided corpus, how many weightlifting events at the 1992 Summer Olympics had more than 24 competitors?", "qtype": "aggregation"}
+{"qid": "eval-012", "question": "How many nations competed in Swimming at the 2016 Summer Olympics – Men's 100 metre butterfly?", "qtype": "lookup"}
+{"qid": "eval-013", "question": "According to the provided corpus, how many cycling events at the 2016 Summer Olympics had more than 27 competitors?", "qtype": "aggregation"}
+{"qid": "eval-014", "question": "Who won the gold medal in the event held at San Sicario on February 15, 2006?", "qtype": "multi_hop"}
+{"qid": "eval-015", "question": "How many nations competed in Athletics at the 2016 Summer Olympics – Men's 400 metres?", "qtype": "lookup"}
+{"qid": "eval-016", "question": "How many nations competed in Athletics at the 2008 Summer Olympics – Women's shot put?", "qtype": "lookup"}
+{"qid": "eval-017", "question": "Who won the gold medal in the event held at Eton Dorney on 28 July – 4 August 2012?", "qtype": "multi_hop"}
+{"qid": "eval-018", "question": "Who won the gold medal in the event held at Olympic Stadium on 16–18 August 2016?", "qtype": "multi_hop"}
+{"qid": "eval-019", "question": "According to the provided corpus, how many alpine skiing events at the 1998 Winter Olympics had more than 45 competitors?", "qtype": "aggregation"}
+{"qid": "eval-020", "question": "Who won the gold medal in the event held at Royal Artillery Barracks on 5 August 2012?", "qtype": "multi_hop"}
+{"qid": "eval-021", "question": "Who won the gold medal in the men's 200 metre backstroke swimming event at the Summer Olympics held immediately before 2016?", "qtype": "temporal"}
+{"qid": "eval-022", "question": "How many nations competed in Cross-country skiing at the 2014 Winter Olympics – Men's sprint?", "qtype": "lookup"}
+{"qid": "eval-023", "question": "According to the provided corpus, how many shooting events at the 2000 Summer Olympics had more than 42 competitors?", "qtype": "aggregation"}
+{"qid": "eval-024", "question": "According to the provided corpus, which cross-country skiing event at the 1998 Winter Olympics had the highest number of competitors?", "qtype": "superlative"}
+{"qid": "eval-025", "question": "According to the provided corpus, which rowing event at the 2016 Summer Olympics had the highest number of competitors?", "qtype": "superlative"}
+{"qid": "eval-026", "question": "How many nations competed in Fencing at the 2000 Summer Olympics – Men's foil?", "qtype": "lookup"}
+{"qid": "eval-027", "question": "According to the provided corpus, which cycling event at the 2012 Summer Olympics had the highest number of competitors?", "qtype": "superlative"}
+{"qid": "eval-028", "question": "According to the provided corpus, how many wrestling events at the 2012 Summer Olympics had more than 19 competitors?", "qtype": "aggregation"}
+{"qid": "eval-029", "question": "According to the provided corpus, how many boxing events at the 2012 Summer Olympics had more than 26 competitors?", "qtype": "aggregation"}
+{"qid": "eval-030", "question": "According to the provided corpus, which alpine skiing event at the 1994 Winter Olympics had the highest number of competitors?", "qtype": "superlative"}
+{"qid": "eval-031", "question": "Who won the gold medal in the men's 62 kg weightlifting event at the Summer Olympics held immediately before 2016?", "qtype": "temporal"}
+{"qid": "eval-032", "question": "Who won the gold medal in the event held at Pacific Coliseum on February 20, 2010?", "qtype": "multi_hop"}
+{"qid": "eval-033", "question": "According to the provided corpus, how many alpine skiing events at the 1988 Winter Olympics had more than 57 competitors?", "qtype": "aggregation"}
+{"qid": "eval-034", "question": "Who won the gold medal in the men's freestyle 120 kg wrestling event at the Summer Olympics held immediately before 2012?", "qtype": "temporal"}
+{"qid": "eval-035", "question": "According to the provided corpus, which rowing event at the 2012 Summer Olympics had the highest number of competitors?", "qtype": "superlative"}
+{"qid": "eval-036", "question": "According to the provided corpus, how many short-track speed skating events at the 2018 Winter Olympics had more than 34 competitors?", "qtype": "aggregation"}
+{"qid": "eval-037", "question": "According to the provided corpus, which sailing event at the 1996 Summer Olympics had the highest number of competitors?", "qtype": "superlative"}
+{"qid": "eval-038", "question": "According to the provided corpus, how many athletics events at the 2008 Summer Olympics had more than 40 competitors?", "qtype": "aggregation"}
+{"qid": "eval-039", "question": "According to the provided corpus, how many boxing events at the 1992 Summer Olympics had more than 30 competitors?", "qtype": "aggregation"}
+{"qid": "eval-040", "question": "Who won the gold medal in the event held at Stadium Australia on 27 September 2000 (heats)29 September 2000 (semi-finals)30 September 2000 (final)?", "qtype": "multi_hop"}
+{"qid": "eval-041", "question": "According to the provided corpus, how many alpine skiing events at the 2006 Winter Olympics had more than 63 competitors?", "qtype": "aggregation"}
+{"qid": "eval-042", "question": "Who won the gold medal in the mixed trap shooting event at the Summer Olympics held immediately before 1992?", "qtype": "temporal"}
+{"qid": "eval-043", "question": "Who won the gold medal in the event held at Carioca Arena 3 on 11 August 2016?", "qtype": "multi_hop"}
+{"qid": "eval-044", "question": "Who won the gold medal in the women's 75 kg weightlifting event at the Summer Olympics held immediately before 2016?", "qtype": "temporal"}
+{"qid": "eval-045", "question": "Who won the gold medal in the women's moguls freestyle skiing event at the Winter Olympics held immediately before 2014?", "qtype": "temporal"}
+{"qid": "eval-046", "question": "Who won the gold medal in the light flyweight boxing event at the Summer Olympics held immediately before 2004?", "qtype": "temporal"}
+{"qid": "eval-047", "question": "According to the provided corpus, which cycling event at the 2004 Summer Olympics had the highest number of competitors?", "qtype": "superlative"}
+{"qid": "eval-048", "question": "According to the provided corpus, how many cycling events at the 2012 Summer Olympics had more than 30 competitors?", "qtype": "aggregation"}
+{"qid": "eval-049", "question": "According to the provided corpus, which shooting event at the 1988 Summer Olympics had the highest number of competitors?", "qtype": "superlative"}
+{"qid": "eval-050", "question": "Who won the gold medal in the event held at Olympic Stadium on 6–9 August at the 2012 Summer Olympics?", "qtype": "multi_hop"}

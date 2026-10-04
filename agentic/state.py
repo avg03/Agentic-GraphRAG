@@ -16,13 +16,20 @@ class AgentState(TypedDict, total=False):
     # input
     question: str
 
-    # plan
+    # plan (v2: planner also classifies the question + proposes scope)
     plan: dict                      # PlanOutput dict
     slots: list                     # answer_slots (list of dicts)
+    question_type: str              # local_fact | multi_hop | collection_aggregation | overview
+
+    # scope/context (v2 §11)
+    candidate_contexts: list        # [{key, display, level, n_events}] ranked roots
+    investigated_contexts: list     # context keys already explored (dedupe guard)
+    analysis: dict                  # QueryAnalysis dict reused by graph tools
 
     # supervision
-    next_action: str                # GRAPH_SEARCH | VECTOR_SEARCH | COMMUNITY_SEARCH | REFORMULATE | STOP
+    next_action: str                # GRAPH_SEARCH | GRAPH_SCOPE | VECTOR_SEARCH | COMMUNITY_SEARCH | REFORMULATE | STOP
     target_slot: str
+    target_context: str             # context key the scope action investigates
     subquery: str                   # current (possibly reformulated) query
     reason_code: str
 
@@ -33,11 +40,14 @@ class AgentState(TypedDict, total=False):
     unmatched_mentions: Annotated[list, add]
     slot_statuses: dict             # slot_id -> latest SlotStatus dict
     evidence_round: int
+    evidence_stats: dict            # total_chunks, distinct_events, new_chunks_last_step, marginal_gain
+    scope_coverage: str             # latest coverage verdict from the evaluator
 
     # bookkeeping
     trace: Annotated[list, add]     # step dicts
     step_count: int
     graph_calls: int
+    scope_calls: int
     vector_calls: int
     community_calls: int
     seen_queries: list              # (action, subquery) pairs already executed

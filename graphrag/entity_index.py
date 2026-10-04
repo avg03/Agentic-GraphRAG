@@ -13,6 +13,7 @@ or forced with refresh=True.
 """
 
 import json
+import re
 from pathlib import Path
 
 import numpy as np
@@ -25,10 +26,19 @@ __all__ = [
     "build_entity_index",
     "load_entity_index",
     "match_entities",
+    "fuzzy_accept",
     "SIM_THRESHOLD",
 ]
 
 SIM_THRESHOLD = 0.75
+
+
+def fuzzy_accept(sim: float, overlap: float) -> bool:
+    """Accept a fuzzy match only when near-identical, or high cosine + strong
+    token overlap. At 180k vertices something ALWAYS clears a bare 0.75
+    cosine; this rule rejects e.g. "men's K-2 1000m canoeing" matching a
+    Women's 50km race-walk event that shares a few tokens."""
+    return sim >= 0.90 or (overlap >= 0.6 and sim >= 0.80)
 _INDEX_DIR = Path(__file__).resolve().parent
 _CATALOG_FILE = _INDEX_DIR / "entity_index.json"
 _EMBED_FILE = _INDEX_DIR / "entity_index.npz"
@@ -143,6 +153,10 @@ def match_entities(mentions: list[dict], index: dict, model=None) -> dict:
         name = (mention.get("name") or "").strip()
         if not name:
             continue
+        # LLMs occasionally mangle the en-dash of canonical Wikipedia event
+        # names into a stray "<tab>6" — drop standalone single digits from
+        # the QUERY side only (dedup/index keys are untouched).
+        name = re.sub(r"(?<=\s)\d(?=\s)", " ", name)
         norm = normalize_name(name)
 
         # 1. exact normalized match
@@ -157,10 +171,12 @@ def match_entities(mentions: list[dict], index: dict, model=None) -> dict:
 
         q_tokens = set(norm.split())
         q_len = len(q_tokens)
-        if q_len > 12:
-            unmatched.append(name)
-            resolved.append({"mention": name, "matched": None, "vtype": None, "vid": None, "how": "phrase_not_entity"})
-            continue
+        # Long canonical event names (v2: LLMs emit full Wikipedia names)
+        # bypass the phrase-length guard but must be token SUPERSETS of the
+        # candidate (overlap == 1.0). This rejects near-duplicate traps
+        # ("Women's 57 kg" vs "Women's 52 kg" share 90% of tokens) while
+        # still matching wordier event names to their core event vertex.
+        strict_long = q_len > 12
 
         # 2. embedding similarity, boosted by token overlap (word order and
         #    near-duplicate names make raw cosine unreliable at 180k scale:
@@ -172,11 +188,10 @@ def match_entities(mentions: list[dict], index: dict, model=None) -> dict:
         for i in cand_idx:
             cand_tokens = set(normalize_name(vertices[i]["name"]).split())
             overlap = len(q_tokens & cand_tokens) / max(len(cand_tokens), 1)
-            # At 180k vertices something ALWAYS clears a bare 0.75 cosine.
-            # Accept only: near-identical names, or high cosine + strong
-            # token overlap (rejects "men's K-2 1000m canoeing" matching a
-            # Women's 50km race-walk athletics event that shares a few tokens).
-            if sims[i] >= 0.90 or (overlap >= 0.6 and sims[i] >= 0.80):
+            if strict_long:
+                if overlap >= 0.999 and sims[i] >= 0.85:
+                    scored.append((0.7 * float(sims[i]) + 0.3 * overlap, i))
+            elif fuzzy_accept(float(sims[i]), overlap):
                 scored.append((0.7 * float(sims[i]) + 0.3 * overlap, i))
         scored.sort(reverse=True)
         # Only the BEST fuzzy candidate: 2nd/3rd near-duplicates (K-1, C-2...)

@@ -2,71 +2,90 @@
  "summary": {
   "n_questions": 50,
   "answer_accuracy": 0.0,
-  "wall_time_s": 1574.4,
-  "avg_total_tokens": 3521.1,
-  "avg_latency_ms": 30572.4
+  "wall_time_s": 3741.5,
+  "avg_total_tokens": 6975.7,
+  "avg_latency_ms": 74793.8
  },
  "records": [
   {
    "qid": "eval-001",
    "question": "Who won the gold medal in the event held at Olympic Tennis Centre on 15 to 22 August 2004?",
    "qtype": "multi_hop",
-   "predicted": "Li Ting and Sun Tiantian",
+   "predicted": "Nicolás Massú",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": true,
-   "confidence": 0.86,
+   "confidence": 0.87,
    "n_seeds": 2,
-   "n_graph_chunks": 10,
-   "n_dense_topup": 0,
+   "n_graph_chunks": 4,
+   "n_dense_topup": 1,
    "n_final_chunks": 5,
    "cited_chunk_ids": [
-    "Q942805_chunk_0"
+    "Q734997_chunk_0"
    ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 3,
+   "unique_action_events": 3,
+   "unique_chunks": 4,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 2,
      "seed_entities": 2,
-     "unmatched_mentions": 0,
-     "graph_chunks": 10,
-     "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
+     "context_roots": 3,
+     "unmatched_context_phrases": 1,
+     "retrieval_mode": "local",
+     "graph_chunks": 4,
+     "dense_topup_chunks": 1,
      "final_chunks": 5,
      "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3415,
-     "output_tokens": 731,
-     "total_tokens": 4146,
-     "latency_total_ms": 6721.2
+     "input_tokens": 3803,
+     "output_tokens": 789,
+     "total_tokens": 4592,
+     "latency_total_ms": 11637.62
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 5982.74,
-      "avg_ms": 5982.74
+      "total_ms": 7378.1,
+      "avg_ms": 7378.1
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1802.18,
-      "avg_ms": 1802.18
+      "total_ms": 35827.02,
+      "avg_ms": 35827.02
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 3511.65,
-      "avg_ms": 3511.65
+      "total_ms": 374.06,
+      "avg_ms": 374.06
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 4404.79,
-      "avg_ms": 4404.79
+      "total_ms": 3144.73,
+      "avg_ms": 3144.73
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 955.15,
+      "avg_ms": 955.15
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 14834.26,
+      "avg_ms": 14834.26
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 6727.77,
-      "avg_ms": 6727.77
+      "total_ms": 4471.23,
+      "avg_ms": 4471.23
      }
     }
    }
@@ -80,57 +99,76 @@
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": true,
-   "confidence": 0.87,
-   "n_seeds": 1,
-   "n_graph_chunks": 1,
-   "n_dense_topup": 2,
-   "n_final_chunks": 3,
+   "confidence": 0.92,
+   "n_seeds": 2,
+   "n_graph_chunks": 2,
+   "n_dense_topup": 3,
+   "n_final_chunks": 5,
    "cited_chunk_ids": [
     "Q5443136_chunk_0"
    ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "partial",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 3,
+   "unique_action_events": 0,
+   "unique_chunks": 2,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 1,
-     "seed_entities": 1,
-     "unmatched_mentions": 0,
-     "graph_chunks": 1,
-     "dense_topup_chunks": 2,
-     "rank_gate": "insufficient_graph",
-     "final_chunks": 3,
+     "seed_entities": 2,
+     "context_roots": 3,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "local",
+     "graph_chunks": 2,
+     "dense_topup_chunks": 3,
+     "final_chunks": 5,
      "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 2525,
-     "output_tokens": 239,
-     "total_tokens": 2764,
-     "latency_total_ms": 3747.6
+     "input_tokens": 4024,
+     "output_tokens": 657,
+     "total_tokens": 4681,
+     "latency_total_ms": 10282.18
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 3348.45,
-      "avg_ms": 3348.45
+      "total_ms": 5398.63,
+      "avg_ms": 5398.63
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1235.74,
-      "avg_ms": 1235.74
+      "total_ms": 7620.63,
+      "avg_ms": 7620.63
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 653.08,
-      "avg_ms": 653.08
+      "total_ms": 555.67,
+      "avg_ms": 555.67
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 4711.41,
-      "avg_ms": 4711.41
+      "total_ms": 1383.16,
+      "avg_ms": 1383.16
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 587.71,
+      "avg_ms": 587.71
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 5306.54,
+      "avg_ms": 5306.54
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 3752.88,
-      "avg_ms": 3752.88
+      "total_ms": 4896.44,
+      "avg_ms": 4896.44
      }
     }
    }
@@ -139,63 +177,83 @@
    "qid": "eval-003",
    "question": "According to the provided corpus, how many cycling events at the 2008 Summer Olympics had more than 30 competitors?",
    "qtype": "aggregation",
-   "predicted": "At least 1 cycling event (the Women's individual road race with 66 competitors) had more than 30 competitors. The Men's points race (23 competitors) did not. The corpus does not provide competitor counts for all cycling events at the 2008 Olympics, so a complete count is not available from these documents.",
+   "predicted": "The provided corpus does not state the number of competitors for any cycling events at the 2008 Summer Olympics, so this question cannot be answered from the given documents.",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": false,
-   "confidence": 0.78,
+   "confidence": 0.9,
    "n_seeds": 1,
-   "n_graph_chunks": 1,
-   "n_dense_topup": 2,
-   "n_final_chunks": 3,
+   "n_graph_chunks": 69,
+   "n_dense_topup": 0,
+   "n_final_chunks": 16,
    "cited_chunk_ids": [
-    "Q1064728_chunk_0",
-    "Q1203058_chunk_0"
+    "Q1005363_chunk_3",
+    "Q1005363_chunk_2"
    ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 1,
+   "unique_context_roots": 2,
+   "unique_action_events": 63,
+   "unique_chunks": 69,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 1,
      "seed_entities": 1,
-     "unmatched_mentions": 0,
-     "graph_chunks": 1,
-     "dense_topup_chunks": 2,
-     "rank_gate": "insufficient_graph",
-     "final_chunks": 3,
+     "context_roots": 2,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 78,
+     "graph_chunks": 69,
+     "dense_topup_chunks": 0,
+     "final_chunks": 16,
      "citations": 2
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 2455,
-     "output_tokens": 537,
-     "total_tokens": 2992,
-     "latency_total_ms": 5041.73
+     "input_tokens": 8529,
+     "output_tokens": 882,
+     "total_tokens": 9411,
+     "latency_total_ms": 16092.43
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 2944.84,
-      "avg_ms": 2944.84
+      "total_ms": 7202.98,
+      "avg_ms": 7202.98
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1434.69,
-      "avg_ms": 1434.69
+      "total_ms": 6914.66,
+      "avg_ms": 6914.66
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 766.02,
-      "avg_ms": 766.02
+      "total_ms": 366.37,
+      "avg_ms": 366.37
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 4689.94,
-      "avg_ms": 4689.94
+      "total_ms": 32191.28,
+      "avg_ms": 32191.28
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 2758.12,
+      "avg_ms": 2758.12
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 29592.68,
+      "avg_ms": 29592.68
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 5048.27,
-      "avg_ms": 5048.27
+      "total_ms": 8903.52,
+      "avg_ms": 8903.52
      }
     }
    }
@@ -204,14 +262,14 @@
    "qid": "eval-004",
    "question": "Who won the gold medal in the event held at Sydney International Shooting Centre on 22 September 2000?",
    "qtype": "multi_hop",
-   "predicted": "Multiple shooting events at the Sydney International Shooting Centre on 22 September 2000: Mykola Milchev (gold, Men's skeet), Yang Ling (gold, Men's 10 metre running target), Mariya Grozdeva (gold, Women's 25 metre pistol). The question is ambiguous about which event is meant.",
+   "predicted": "Multiple shooting events at the Sydney International Shooting Centre occurred on 22 September 2000:\n- Men's skeet: Mykola Milchev\n- Men's 10 metre running target (fast runs on 22 Sept): Yang Ling\n- Women's 25 metre pistol: Mariya Grozdeva",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
-   "evidence_sufficient": false,
+   "evidence_sufficient": true,
    "confidence": 0.9,
-   "n_seeds": 2,
-   "n_graph_chunks": 21,
+   "n_seeds": 1,
+   "n_graph_chunks": 20,
    "n_dense_topup": 0,
    "n_final_chunks": 5,
    "cited_chunk_ids": [
@@ -219,49 +277,68 @@
     "Q7500807_chunk_0",
     "Q7500817_chunk_0"
    ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 1,
+   "unique_context_roots": 3,
+   "unique_action_events": 17,
+   "unique_chunks": 20,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
-     "query_entities": 2,
-     "seed_entities": 2,
-     "unmatched_mentions": 0,
-     "graph_chunks": 21,
+     "query_entities": 1,
+     "seed_entities": 1,
+     "context_roots": 3,
+     "unmatched_context_phrases": 1,
+     "retrieval_mode": "local",
+     "graph_chunks": 20,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
      "final_chunks": 5,
      "citations": 3
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3015,
-     "output_tokens": 743,
-     "total_tokens": 3758,
-     "latency_total_ms": 6553.37
+     "input_tokens": 3478,
+     "output_tokens": 916,
+     "total_tokens": 4394,
+     "latency_total_ms": 15419.09
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 4752.35,
-      "avg_ms": 4752.35
+      "total_ms": 7080.36,
+      "avg_ms": 7080.36
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 2647.46,
-      "avg_ms": 2647.46
+      "total_ms": 22554.86,
+      "avg_ms": 22554.86
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 10873.05,
-      "avg_ms": 10873.05
+      "total_ms": 402.97,
+      "avg_ms": 402.97
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 9165.66,
-      "avg_ms": 9165.66
+      "total_ms": 36050.25,
+      "avg_ms": 36050.25
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 2255.78,
+      "avg_ms": 2255.78
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 8494.75,
+      "avg_ms": 8494.75
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 6559.32,
-      "avg_ms": 6559.32
+      "total_ms": 8351.31,
+      "avg_ms": 8351.31
      }
     }
    }
@@ -270,62 +347,82 @@
    "qid": "eval-005",
    "question": "According to the provided corpus, which sailing event at the 2016 Summer Olympics had the highest number of competitors?",
    "qtype": "superlative",
-   "predicted": "The Women's RS:X event had 26 competitors; the corpus does not include competitor counts for other sailing events so it cannot determine which sailing event had the highest number overall.",
+   "predicted": "The provided corpus includes only the Women's RS:X sailing event, which had 26 competitors; the documents do not include competitor counts for other sailing events so it is impossible to determine which sailing event had the highest number of competitors.",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": false,
-   "confidence": 0.62,
+   "confidence": 0.78,
    "n_seeds": 2,
-   "n_graph_chunks": 26,
+   "n_graph_chunks": 88,
    "n_dense_topup": 0,
-   "n_final_chunks": 5,
+   "n_final_chunks": 16,
    "cited_chunk_ids": [
     "Q26254891_chunk_0"
    ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 2,
+   "unique_action_events": 62,
+   "unique_chunks": 88,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 2,
      "seed_entities": 2,
-     "unmatched_mentions": 0,
-     "graph_chunks": 26,
+     "context_roots": 2,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 80,
+     "graph_chunks": 88,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
-     "final_chunks": 5,
+     "final_chunks": 16,
      "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3485,
-     "output_tokens": 511,
-     "total_tokens": 3996,
-     "latency_total_ms": 4321.93
+     "input_tokens": 8927,
+     "output_tokens": 740,
+     "total_tokens": 9667,
+     "latency_total_ms": 22837.22
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 5317.58,
-      "avg_ms": 5317.58
+      "total_ms": 10052.69,
+      "avg_ms": 10052.69
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1289.6,
-      "avg_ms": 1289.6
+      "total_ms": 11604.33,
+      "avg_ms": 11604.33
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 1373.29,
-      "avg_ms": 1373.29
+      "total_ms": 367.04,
+      "avg_ms": 367.04
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 11291.06,
-      "avg_ms": 11291.06
+      "total_ms": 41597.81,
+      "avg_ms": 41597.81
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 7993.31,
+      "avg_ms": 7993.31
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 36182.32,
+      "avg_ms": 36182.32
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 4329.92,
-      "avg_ms": 4329.92
+      "total_ms": 26189.49,
+      "avg_ms": 26189.49
      }
     }
    }
@@ -334,62 +431,85 @@
    "qid": "eval-006",
    "question": "According to the provided corpus, how many cross-country skiing events at the 2010 Winter Olympics had more than 62 competitors?",
    "qtype": "aggregation",
-   "predicted": "0",
+   "predicted": "The provided corpus does not include information on cross-country skiing events at the 2010 Winter Olympics, so the number cannot be determined from these documents.",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
-   "evidence_sufficient": true,
-   "confidence": 0.78,
+   "evidence_sufficient": false,
+   "confidence": 0.9,
    "n_seeds": 1,
-   "n_graph_chunks": 2,
-   "n_dense_topup": 1,
-   "n_final_chunks": 3,
+   "n_graph_chunks": 40,
+   "n_dense_topup": 0,
+   "n_final_chunks": 16,
    "cited_chunk_ids": [
-    "Q843851_chunk_0"
+    "Q221335_chunk_0",
+    "Q824803_chunk_0",
+    "Q825731_chunk_0",
+    "Q478542_chunk_0"
    ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 1,
+   "unique_context_roots": 2,
+   "unique_action_events": 36,
+   "unique_chunks": 40,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 1,
      "seed_entities": 1,
-     "unmatched_mentions": 0,
-     "graph_chunks": 2,
-     "dense_topup_chunks": 1,
-     "rank_gate": "insufficient_graph",
-     "final_chunks": 3,
-     "citations": 1
+     "context_roots": 2,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 41,
+     "graph_chunks": 40,
+     "dense_topup_chunks": 0,
+     "final_chunks": 16,
+     "citations": 4
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 2553,
-     "output_tokens": 510,
-     "total_tokens": 3063,
-     "latency_total_ms": 4752.16
+     "input_tokens": 9207,
+     "output_tokens": 1224,
+     "total_tokens": 10431,
+     "latency_total_ms": 41924.96
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 5178.12,
-      "avg_ms": 5178.12
+      "total_ms": 11894.62,
+      "avg_ms": 11894.62
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1294.96,
-      "avg_ms": 1294.96
+      "total_ms": 19311.27,
+      "avg_ms": 19311.27
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 669.06,
-      "avg_ms": 669.06
+      "total_ms": 458.19,
+      "avg_ms": 458.19
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 5291.76,
-      "avg_ms": 5291.76
+      "total_ms": 22098.16,
+      "avg_ms": 22098.16
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 11231.74,
+      "avg_ms": 11231.74
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 16976.9,
+      "avg_ms": 16976.9
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 4758.88,
-      "avg_ms": 4758.88
+      "total_ms": 30044.42,
+      "avg_ms": 30044.42
      }
     }
    }
@@ -403,57 +523,76 @@
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": true,
-   "confidence": 0.86,
+   "confidence": 0.9,
    "n_seeds": 2,
-   "n_graph_chunks": 26,
-   "n_dense_topup": 0,
+   "n_graph_chunks": 2,
+   "n_dense_topup": 3,
    "n_final_chunks": 5,
    "cited_chunk_ids": [
     "Q326384_chunk_0"
    ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "partial",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 3,
+   "unique_action_events": 0,
+   "unique_chunks": 2,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
-     "query_entities": 2,
+     "query_entities": 1,
      "seed_entities": 2,
-     "unmatched_mentions": 0,
-     "graph_chunks": 26,
-     "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
+     "context_roots": 3,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "local",
+     "graph_chunks": 2,
+     "dense_topup_chunks": 3,
      "final_chunks": 5,
      "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3426,
-     "output_tokens": 454,
-     "total_tokens": 3880,
-     "latency_total_ms": 4012.0
+     "input_tokens": 3481,
+     "output_tokens": 601,
+     "total_tokens": 4082,
+     "latency_total_ms": 25230.07
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 4640.41,
-      "avg_ms": 4640.41
+      "total_ms": 16967.22,
+      "avg_ms": 16967.22
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1252.41,
-      "avg_ms": 1252.41
+      "total_ms": 18110.28,
+      "avg_ms": 18110.28
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 1279.3,
-      "avg_ms": 1279.3
+      "total_ms": 364.7,
+      "avg_ms": 364.7
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 11201.71,
-      "avg_ms": 11201.71
+      "total_ms": 3348.96,
+      "avg_ms": 3348.96
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 1091.69,
+      "avg_ms": 1091.69
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 3783.8,
+      "avg_ms": 3783.8
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 4018.67,
-      "avg_ms": 4018.67
+      "total_ms": 8274.34,
+      "avg_ms": 8274.34
      }
     }
    }
@@ -467,58 +606,78 @@
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": true,
-   "confidence": 0.9,
-   "n_seeds": 1,
-   "n_graph_chunks": 1,
-   "n_dense_topup": 2,
-   "n_final_chunks": 3,
+   "confidence": 0.87,
+   "n_seeds": 2,
+   "n_graph_chunks": 82,
+   "n_dense_topup": 0,
+   "n_final_chunks": 16,
    "cited_chunk_ids": [
-    "Q7400323_chunk_0",
-    "Q7400322_chunk_0"
+    "Q7400322_chunk_0",
+    "Q7400318_chunk_0"
    ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 2,
+   "unique_action_events": 67,
+   "unique_chunks": 82,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
-     "query_entities": 1,
-     "seed_entities": 1,
-     "unmatched_mentions": 0,
-     "graph_chunks": 1,
-     "dense_topup_chunks": 2,
-     "rank_gate": "insufficient_graph",
-     "final_chunks": 3,
+     "query_entities": 2,
+     "seed_entities": 2,
+     "context_roots": 2,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 78,
+     "graph_chunks": 82,
+     "dense_topup_chunks": 0,
+     "final_chunks": 16,
      "citations": 2
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 2100,
-     "output_tokens": 398,
-     "total_tokens": 2498,
-     "latency_total_ms": 5013.49
+     "input_tokens": 8285,
+     "output_tokens": 1094,
+     "total_tokens": 9379,
+     "latency_total_ms": 15230.56
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 3982.33,
-      "avg_ms": 3982.33
+      "total_ms": 9264.52,
+      "avg_ms": 9264.52
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1227.87,
-      "avg_ms": 1227.87
+      "total_ms": 6465.9,
+      "avg_ms": 6465.9
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 965.28,
-      "avg_ms": 965.28
+      "total_ms": 412.89,
+      "avg_ms": 412.89
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 3534.55,
-      "avg_ms": 3534.55
+      "total_ms": 28163.34,
+      "avg_ms": 28163.34
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 3357.58,
+      "avg_ms": 3357.58
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 33741.69,
+      "avg_ms": 33741.69
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 5019.77,
-      "avg_ms": 5019.77
+      "total_ms": 5982.95,
+      "avg_ms": 5982.95
      }
     }
    }
@@ -527,62 +686,84 @@
    "qid": "eval-009",
    "question": "According to the provided corpus, which sailing event at the 2004 Summer Olympics had the highest number of competitors?",
    "qtype": "superlative",
-   "predicted": "The provided corpus does not contain any information about sailing events at the 2004 Summer Olympics, so the event with the highest number of sailing competitors cannot be determined from these documents.",
+   "predicted": "Woman's Yngling (48 competitors)",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
-   "evidence_sufficient": false,
-   "confidence": 0.9,
+   "evidence_sufficient": true,
+   "confidence": 0.88,
    "n_seeds": 2,
-   "n_graph_chunks": 26,
+   "n_graph_chunks": 101,
    "n_dense_topup": 0,
-   "n_final_chunks": 5,
+   "n_final_chunks": 16,
    "cited_chunk_ids": [
-    "Q2198226_chunk_0"
+    "Q7400350_chunk_0",
+    "Q10609400_chunk_0",
+    "Q7400339_chunk_0"
    ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 2,
+   "unique_action_events": 67,
+   "unique_chunks": 101,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 2,
      "seed_entities": 2,
-     "unmatched_mentions": 0,
-     "graph_chunks": 26,
+     "context_roots": 2,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 80,
+     "graph_chunks": 101,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
-     "final_chunks": 5,
-     "citations": 1
+     "final_chunks": 16,
+     "citations": 3
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3275,
-     "output_tokens": 621,
-     "total_tokens": 3896,
-     "latency_total_ms": 5166.42
+     "input_tokens": 8497,
+     "output_tokens": 614,
+     "total_tokens": 9111,
+     "latency_total_ms": 11279.34
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 3544.5,
-      "avg_ms": 3544.5
+      "total_ms": 6510.65,
+      "avg_ms": 6510.65
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1259.12,
-      "avg_ms": 1259.12
+      "total_ms": 5705.64,
+      "avg_ms": 5705.64
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 1687.75,
-      "avg_ms": 1687.75
+      "total_ms": 391.08,
+      "avg_ms": 391.08
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 11244.13,
-      "avg_ms": 11244.13
+      "total_ms": 31191.97,
+      "avg_ms": 31191.97
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 4951.48,
+      "avg_ms": 4951.48
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 41789.34,
+      "avg_ms": 41789.34
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 5172.97,
-      "avg_ms": 5172.97
+      "total_ms": 4784.77,
+      "avg_ms": 4784.77
      }
     }
    }
@@ -596,57 +777,76 @@
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": true,
-   "confidence": 0.96,
-   "n_seeds": 1,
+   "confidence": 0.86,
+   "n_seeds": 2,
    "n_graph_chunks": 1,
-   "n_dense_topup": 2,
-   "n_final_chunks": 3,
+   "n_dense_topup": 4,
+   "n_final_chunks": 5,
    "cited_chunk_ids": [
     "Q10497009_chunk_0"
    ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "partial",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 3,
+   "unique_action_events": 1,
+   "unique_chunks": 1,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 1,
-     "seed_entities": 1,
-     "unmatched_mentions": 0,
+     "seed_entities": 2,
+     "context_roots": 3,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "local",
      "graph_chunks": 1,
-     "dense_topup_chunks": 2,
-     "rank_gate": "insufficient_graph",
-     "final_chunks": 3,
+     "dense_topup_chunks": 4,
+     "final_chunks": 5,
      "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 1930,
-     "output_tokens": 252,
-     "total_tokens": 2182,
-     "latency_total_ms": 3167.16
+     "input_tokens": 3112,
+     "output_tokens": 544,
+     "total_tokens": 3656,
+     "latency_total_ms": 8076.32
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 4218.39,
-      "avg_ms": 4218.39
+      "total_ms": 4860.08,
+      "avg_ms": 4860.08
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1334.45,
-      "avg_ms": 1334.45
+      "total_ms": 5994.66,
+      "avg_ms": 5994.66
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 600.38,
-      "avg_ms": 600.38
+      "total_ms": 465.28,
+      "avg_ms": 465.28
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 3789.79,
-      "avg_ms": 3789.79
+      "total_ms": 1810.08,
+      "avg_ms": 1810.08
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 750.45,
+      "avg_ms": 750.45
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 3614.64,
+      "avg_ms": 3614.64
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 3173.83,
-      "avg_ms": 3173.83
+      "total_ms": 3229.96,
+      "avg_ms": 3229.96
      }
     }
    }
@@ -655,66 +855,84 @@
    "qid": "eval-011",
    "question": "According to the provided corpus, how many weightlifting events at the 1992 Summer Olympics had more than 24 competitors?",
    "qtype": "aggregation",
-   "predicted": "The provided corpus contains no information about weightlifting events at the 1992 Summer Olympics, so the number of weightlifting events with more than 24 competitors cannot be determined from these documents.",
+   "predicted": "3",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
-   "evidence_sufficient": false,
-   "confidence": 0.6,
+   "evidence_sufficient": true,
+   "confidence": 0.92,
    "n_seeds": 1,
-   "n_graph_chunks": 6,
+   "n_graph_chunks": 80,
    "n_dense_topup": 0,
-   "n_final_chunks": 5,
+   "n_final_chunks": 16,
    "cited_chunk_ids": [
-    "Q22964434_chunk_2",
-    "Q31843476_chunk_1",
-    "Q38605_chunk_1",
-    "Q1027135_chunk_1",
-    "Q10426127_chunk_3"
+    "Q7979973_chunk_0",
+    "Q7979968_chunk_0",
+    "Q7979977_chunk_0"
    ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 1,
+   "unique_context_roots": 2,
+   "unique_action_events": 68,
+   "unique_chunks": 80,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 1,
      "seed_entities": 1,
-     "unmatched_mentions": 0,
-     "graph_chunks": 6,
+     "context_roots": 2,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 79,
+     "graph_chunks": 80,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
-     "final_chunks": 5,
-     "citations": 5
+     "final_chunks": 16,
+     "citations": 3
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3321,
-     "output_tokens": 578,
-     "total_tokens": 3899,
-     "latency_total_ms": 4868.5
+     "input_tokens": 7725,
+     "output_tokens": 986,
+     "total_tokens": 8711,
+     "latency_total_ms": 13466.26
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 3376.16,
-      "avg_ms": 3376.16
+      "total_ms": 7127.91,
+      "avg_ms": 7127.91
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1275.26,
-      "avg_ms": 1275.26
+      "total_ms": 11285.61,
+      "avg_ms": 11285.61
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 625.6,
-      "avg_ms": 625.6
+      "total_ms": 370.75,
+      "avg_ms": 370.75
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 2693.06,
-      "avg_ms": 2693.06
+      "total_ms": 23986.04,
+      "avg_ms": 23986.04
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 2469.33,
+      "avg_ms": 2469.33
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 31846.9,
+      "avg_ms": 31846.9
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 4875.15,
-      "avg_ms": 4875.15
+      "total_ms": 6352.57,
+      "avg_ms": 6352.57
      }
     }
    }
@@ -728,57 +946,76 @@
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": true,
-   "confidence": 0.81,
+   "confidence": 0.86,
    "n_seeds": 1,
    "n_graph_chunks": 1,
-   "n_dense_topup": 2,
-   "n_final_chunks": 3,
+   "n_dense_topup": 4,
+   "n_final_chunks": 5,
    "cited_chunk_ids": [
     "Q25991452_chunk_0"
    ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "partial",
+   "unique_seed_vertices": 1,
+   "unique_context_roots": 3,
+   "unique_action_events": 0,
+   "unique_chunks": 1,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 1,
      "seed_entities": 1,
-     "unmatched_mentions": 0,
+     "context_roots": 3,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "local",
      "graph_chunks": 1,
-     "dense_topup_chunks": 2,
-     "rank_gate": "insufficient_graph",
-     "final_chunks": 3,
+     "dense_topup_chunks": 4,
+     "final_chunks": 5,
      "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 2488,
-     "output_tokens": 248,
-     "total_tokens": 2736,
-     "latency_total_ms": 3813.82
+     "input_tokens": 3776,
+     "output_tokens": 538,
+     "total_tokens": 4314,
+     "latency_total_ms": 10368.18
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 2561.48,
-      "avg_ms": 2561.48
+      "total_ms": 6793.5,
+      "avg_ms": 6793.5
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1223.41,
-      "avg_ms": 1223.41
+      "total_ms": 7401.84,
+      "avg_ms": 7401.84
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 634.87,
-      "avg_ms": 634.87
+      "total_ms": 342.65,
+      "avg_ms": 342.65
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 4457.3,
-      "avg_ms": 4457.3
+      "total_ms": 592.4,
+      "avg_ms": 592.4
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 408.88,
+      "avg_ms": 408.88
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 4803.51,
+      "avg_ms": 4803.51
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 3820.02,
-      "avg_ms": 3820.02
+      "total_ms": 3587.5,
+      "avg_ms": 3587.5
      }
     }
    }
@@ -787,66 +1024,83 @@
    "qid": "eval-013",
    "question": "According to the provided corpus, how many cycling events at the 2016 Summer Olympics had more than 27 competitors?",
    "qtype": "aggregation",
-   "predicted": "The provided corpus does not contain any cycling events, so this cannot be determined from the given documents.",
+   "predicted": "2",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
-   "evidence_sufficient": false,
-   "confidence": 0.82,
-   "n_seeds": 2,
-   "n_graph_chunks": 26,
+   "evidence_sufficient": true,
+   "confidence": 0.87,
+   "n_seeds": 1,
+   "n_graph_chunks": 62,
    "n_dense_topup": 0,
-   "n_final_chunks": 5,
+   "n_final_chunks": 16,
    "cited_chunk_ids": [
-    "Q25386274_chunk_1",
-    "Q26218320_chunk_2",
-    "Q26233297_chunk_1",
-    "Q26219842_chunk_2",
-    "Q26254891_chunk_0"
+    "Q24761058_chunk_0",
+    "Q25476845_chunk_0"
    ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 1,
+   "unique_context_roots": 2,
+   "unique_action_events": 54,
+   "unique_chunks": 62,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
-     "query_entities": 2,
-     "seed_entities": 2,
-     "unmatched_mentions": 0,
-     "graph_chunks": 26,
+     "query_entities": 1,
+     "seed_entities": 1,
+     "context_roots": 2,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 80,
+     "graph_chunks": 62,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
-     "final_chunks": 5,
-     "citations": 5
+     "final_chunks": 16,
+     "citations": 2
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3554,
-     "output_tokens": 519,
-     "total_tokens": 4073,
-     "latency_total_ms": 6014.83
+     "input_tokens": 8973,
+     "output_tokens": 705,
+     "total_tokens": 9678,
+     "latency_total_ms": 12887.17
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 4809.19,
-      "avg_ms": 4809.19
+      "total_ms": 7974.23,
+      "avg_ms": 7974.23
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1265.15,
-      "avg_ms": 1265.15
+      "total_ms": 9502.77,
+      "avg_ms": 9502.77
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 1291.5,
-      "avg_ms": 1291.5
+      "total_ms": 373.57,
+      "avg_ms": 373.57
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 11224.99,
-      "avg_ms": 11224.99
+      "total_ms": 30009.33,
+      "avg_ms": 30009.33
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 3452.49,
+      "avg_ms": 3452.49
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 26975.44,
+      "avg_ms": 26975.44
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 6022.55,
-      "avg_ms": 6022.55
+      "total_ms": 4929.85,
+      "avg_ms": 4929.85
      }
     }
    }
@@ -860,57 +1114,76 @@
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": true,
-   "confidence": 0.86,
+   "confidence": 0.96,
    "n_seeds": 2,
-   "n_graph_chunks": 281,
+   "n_graph_chunks": 18,
    "n_dense_topup": 0,
    "n_final_chunks": 5,
    "cited_chunk_ids": [
     "Q771123_chunk_0"
    ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 2,
+   "unique_action_events": 3,
+   "unique_chunks": 18,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 2,
      "seed_entities": 2,
-     "unmatched_mentions": 0,
-     "graph_chunks": 281,
+     "context_roots": 2,
+     "unmatched_context_phrases": 2,
+     "retrieval_mode": "local",
+     "graph_chunks": 18,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
      "final_chunks": 5,
      "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3351,
-     "output_tokens": 511,
-     "total_tokens": 3862,
-     "latency_total_ms": 4871.38
+     "input_tokens": 3821,
+     "output_tokens": 622,
+     "total_tokens": 4443,
+     "latency_total_ms": 13376.77
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 5573.64,
-      "avg_ms": 5573.64
+      "total_ms": 7968.78,
+      "avg_ms": 7968.78
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1271.6,
-      "avg_ms": 1271.6
+      "total_ms": 5946.81,
+      "avg_ms": 5946.81
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 57235.56,
-      "avg_ms": 57235.56
+      "total_ms": 389.21,
+      "avg_ms": 389.21
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 108993.23,
-      "avg_ms": 108993.23
+      "total_ms": 3325.34,
+      "avg_ms": 3325.34
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 1289.63,
+      "avg_ms": 1289.63
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 7788.5,
+      "avg_ms": 7788.5
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 4878.41,
-      "avg_ms": 4878.41
+      "total_ms": 5422.17,
+      "avg_ms": 5422.17
      }
     }
    }
@@ -925,56 +1198,75 @@
    "gold_doc_coverage": null,
    "evidence_sufficient": true,
    "confidence": 0.86,
-   "n_seeds": 1,
-   "n_graph_chunks": 3,
-   "n_dense_topup": 0,
-   "n_final_chunks": 3,
+   "n_seeds": 2,
+   "n_graph_chunks": 4,
+   "n_dense_topup": 1,
+   "n_final_chunks": 5,
    "cited_chunk_ids": [
     "Q26219858_chunk_0"
    ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 3,
+   "unique_action_events": 0,
+   "unique_chunks": 4,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 1,
-     "seed_entities": 1,
-     "unmatched_mentions": 0,
-     "graph_chunks": 3,
-     "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
-     "final_chunks": 3,
+     "seed_entities": 2,
+     "context_roots": 3,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "local",
+     "graph_chunks": 4,
+     "dense_topup_chunks": 1,
+     "final_chunks": 5,
      "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 2600,
-     "output_tokens": 246,
-     "total_tokens": 2846,
-     "latency_total_ms": 2620.54
+     "input_tokens": 3861,
+     "output_tokens": 595,
+     "total_tokens": 4456,
+     "latency_total_ms": 11111.59
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 2967.21,
-      "avg_ms": 2967.21
+      "total_ms": 5897.43,
+      "avg_ms": 5897.43
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1231.72,
-      "avg_ms": 1231.72
+      "total_ms": 5902.52,
+      "avg_ms": 5902.52
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 665.02,
-      "avg_ms": 665.02
+      "total_ms": 362.49,
+      "avg_ms": 362.49
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 1319.21,
-      "avg_ms": 1319.21
+      "total_ms": 1414.44,
+      "avg_ms": 1414.44
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 748.96,
+      "avg_ms": 748.96
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 5332.7,
+      "avg_ms": 5332.7
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 2627.19,
-      "avg_ms": 2627.19
+      "total_ms": 5228.1,
+      "avg_ms": 5228.1
      }
     }
    }
@@ -988,57 +1280,76 @@
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": true,
-   "confidence": 0.78,
-   "n_seeds": 1,
-   "n_graph_chunks": 1,
-   "n_dense_topup": 2,
-   "n_final_chunks": 3,
+   "confidence": 0.86,
+   "n_seeds": 2,
+   "n_graph_chunks": 2,
+   "n_dense_topup": 3,
+   "n_final_chunks": 5,
    "cited_chunk_ids": [
     "Q848278_chunk_0"
    ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "partial",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 4,
+   "unique_action_events": 0,
+   "unique_chunks": 2,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 1,
-     "seed_entities": 1,
-     "unmatched_mentions": 0,
-     "graph_chunks": 1,
-     "dense_topup_chunks": 2,
-     "rank_gate": "insufficient_graph",
-     "final_chunks": 3,
+     "seed_entities": 2,
+     "context_roots": 4,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "local",
+     "graph_chunks": 2,
+     "dense_topup_chunks": 3,
+     "final_chunks": 5,
      "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 2557,
-     "output_tokens": 249,
-     "total_tokens": 2806,
-     "latency_total_ms": 3744.52
+     "input_tokens": 4036,
+     "output_tokens": 478,
+     "total_tokens": 4514,
+     "latency_total_ms": 10631.42
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 3169.55,
-      "avg_ms": 3169.55
+      "total_ms": 4909.56,
+      "avg_ms": 4909.56
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1217.02,
-      "avg_ms": 1217.02
+      "total_ms": 10528.55,
+      "avg_ms": 10528.55
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 674.27,
-      "avg_ms": 674.27
+      "total_ms": 328.8,
+      "avg_ms": 328.8
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 4794.04,
-      "avg_ms": 4794.04
+      "total_ms": 3533.85,
+      "avg_ms": 3533.85
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 1108.89,
+      "avg_ms": 1108.89
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 5339.82,
+      "avg_ms": 5339.82
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 3750.89,
-      "avg_ms": 3750.89
+      "total_ms": 5734.95,
+      "avg_ms": 5734.95
      }
     }
    }
@@ -1052,7 +1363,7 @@
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": true,
-   "confidence": 0.99,
+   "confidence": 0.86,
    "n_seeds": 2,
    "n_graph_chunks": 35,
    "n_dense_topup": 0,
@@ -1060,49 +1371,68 @@
    "cited_chunk_ids": [
     "Q1222270_chunk_0"
    ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 2,
+   "unique_action_events": 25,
+   "unique_chunks": 35,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 2,
      "seed_entities": 2,
-     "unmatched_mentions": 0,
+     "context_roots": 2,
+     "unmatched_context_phrases": 2,
+     "retrieval_mode": "local",
      "graph_chunks": 35,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
      "final_chunks": 5,
      "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3417,
-     "output_tokens": 479,
-     "total_tokens": 3896,
-     "latency_total_ms": 4010.19
+     "input_tokens": 3880,
+     "output_tokens": 773,
+     "total_tokens": 4653,
+     "latency_total_ms": 12684.69
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 3590.85,
-      "avg_ms": 3590.85
+      "total_ms": 7907.43,
+      "avg_ms": 7907.43
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1274.05,
-      "avg_ms": 1274.05
+      "total_ms": 6488.39,
+      "avg_ms": 6488.39
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 12594.28,
-      "avg_ms": 12594.28
+      "total_ms": 367.57,
+      "avg_ms": 367.57
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 14288.07,
-      "avg_ms": 14288.07
+      "total_ms": 13552.28,
+      "avg_ms": 13552.28
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 1179.03,
+      "avg_ms": 1179.03
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 14802.86,
+      "avg_ms": 14802.86
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 4016.78,
-      "avg_ms": 4016.78
+      "total_ms": 4789.02,
+      "avg_ms": 4789.02
      }
     }
    }
@@ -1111,59 +1441,81 @@
    "qid": "eval-018",
    "question": "Who won the gold medal in the event held at Olympic Stadium on 16–18 August 2016?",
    "qtype": "multi_hop",
-   "predicted": "The provided documents do not contain an event held at the Olympic Stadium on 16–18 August 2016, so the gold medallist for that specific event cannot be determined from these blocks.",
+   "predicted": "Usain Bolt",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
-   "evidence_sufficient": false,
-   "confidence": 0.8,
-   "n_seeds": 0,
-   "n_graph_chunks": 0,
-   "n_dense_topup": 3,
-   "n_final_chunks": 3,
+   "evidence_sufficient": true,
+   "confidence": 0.86,
+   "n_seeds": 2,
+   "n_graph_chunks": 32,
+   "n_dense_topup": 0,
+   "n_final_chunks": 5,
    "cited_chunk_ids": [
-    "Q26215191_chunk_0",
-    "Q26219861_chunk_0",
-    "Q26219862_chunk_0"
+    "Q26219856_chunk_0"
    ],
+   "question_type": "multi_hop",
+   "retrieval_mode": "local",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 1,
+   "unique_action_events": 5,
+   "unique_chunks": 32,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
-     "query_entities": 0,
-     "seed_entities": 0,
-     "unmatched_mentions": 0,
-     "graph_chunks": 0,
-     "dense_topup_chunks": 3,
-     "rank_gate": "insufficient_graph",
-     "final_chunks": 3,
-     "citations": 3
+     "query_entities": 2,
+     "seed_entities": 2,
+     "context_roots": 1,
+     "unmatched_context_phrases": 2,
+     "retrieval_mode": "local",
+     "graph_chunks": 32,
+     "dense_topup_chunks": 0,
+     "final_chunks": 5,
+     "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 2181,
-     "output_tokens": 719,
-     "total_tokens": 2900,
-     "latency_total_ms": 5439.8
+     "input_tokens": 3881,
+     "output_tokens": 906,
+     "total_tokens": 4787,
+     "latency_total_ms": 13088.19
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 6148.49,
-      "avg_ms": 6148.49
+      "total_ms": 8314.3,
+      "avg_ms": 8314.3
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1217.27,
-      "avg_ms": 1217.27
+      "total_ms": 5242.81,
+      "avg_ms": 5242.81
      },
-     "stage45_rank": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 4066.45,
-      "avg_ms": 4066.45
+      "total_ms": 345.81,
+      "avg_ms": 345.81
+     },
+     "stage4_traverse": {
+      "count": 1,
+      "total_ms": 5187.51,
+      "avg_ms": 5187.51
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 816.16,
+      "avg_ms": 816.16
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 11335.03,
+      "avg_ms": 11335.03
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 5445.79,
-      "avg_ms": 5445.79
+      "total_ms": 4783.23,
+      "avg_ms": 4783.23
      }
     }
    }
@@ -1172,63 +1524,83 @@
    "qid": "eval-019",
    "question": "According to the provided corpus, how many alpine skiing events at the 1998 Winter Olympics had more than 45 competitors?",
    "qtype": "aggregation",
-   "predicted": "The provided documents do not state how many alpine skiing events at the 1998 Winter Olympics had more than 45 competitors.",
+   "predicted": "0 (based on the provided alpine skiing event blocks: Men's super-G had 45 competitors, Women's super-G had 43; no other alpine events are included in the corpus)",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": false,
-   "confidence": 0.85,
+   "confidence": 0.6,
    "n_seeds": 2,
-   "n_graph_chunks": 9,
+   "n_graph_chunks": 94,
    "n_dense_topup": 0,
-   "n_final_chunks": 5,
+   "n_final_chunks": 16,
    "cited_chunk_ids": [
-    "Q1222646_chunk_2",
-    "Q1005576_chunk_1"
+    "Q1005749_chunk_0",
+    "Q1222646_chunk_0"
    ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 3,
+   "unique_action_events": 81,
+   "unique_chunks": 94,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 2,
      "seed_entities": 2,
-     "unmatched_mentions": 0,
-     "graph_chunks": 9,
+     "context_roots": 3,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 120,
+     "graph_chunks": 94,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
-     "final_chunks": 5,
+     "final_chunks": 16,
      "citations": 2
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3236,
-     "output_tokens": 430,
-     "total_tokens": 3666,
-     "latency_total_ms": 5788.56
+     "input_tokens": 8278,
+     "output_tokens": 1035,
+     "total_tokens": 9313,
+     "latency_total_ms": 18251.43
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 5111.13,
-      "avg_ms": 5111.13
+      "total_ms": 8150.76,
+      "avg_ms": 8150.76
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1490.65,
-      "avg_ms": 1490.65
+      "total_ms": 6724.35,
+      "avg_ms": 6724.35
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 1364.59,
-      "avg_ms": 1364.59
+      "total_ms": 339.42,
+      "avg_ms": 339.42
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 3990.54,
-      "avg_ms": 3990.54
+      "total_ms": 33549.5,
+      "avg_ms": 33549.5
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 3456.62,
+      "avg_ms": 3456.62
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 33671.53,
+      "avg_ms": 33671.53
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 5795.65,
-      "avg_ms": 5795.65
+      "total_ms": 10114.44,
+      "avg_ms": 10114.44
      }
     }
    }
@@ -1237,63 +1609,81 @@
    "qid": "eval-020",
    "question": "Who won the gold medal in the event held at Royal Artillery Barracks on 5 August 2012?",
    "qtype": "multi_hop",
-   "predicted": "Ambiguous — there were at least two events at Royal Artillery Barracks on 5 August 2012: Jin Jong-oh (gold, Men's 50 metre pistol) and Giovanni Cernogoraz (gold, Men's trap).",
+   "predicted": "Jin Jong-oh",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": true,
-   "confidence": 0.85,
+   "confidence": 0.86,
    "n_seeds": 2,
    "n_graph_chunks": 40,
    "n_dense_topup": 0,
    "n_final_chunks": 5,
    "cited_chunk_ids": [
-    "Q2353475_chunk_0",
-    "Q681571_chunk_0"
+    "Q2353475_chunk_0"
    ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 1,
+   "unique_action_events": 12,
+   "unique_chunks": 40,
+   "duplicate_chunk_count": 2,
    "metrics": {
     "counters": {
      "query_entities": 2,
      "seed_entities": 2,
-     "unmatched_mentions": 0,
+     "context_roots": 1,
+     "unmatched_context_phrases": 2,
+     "retrieval_mode": "local",
      "graph_chunks": 40,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
      "final_chunks": 5,
-     "citations": 2
+     "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3440,
-     "output_tokens": 805,
-     "total_tokens": 4245,
-     "latency_total_ms": 8581.59
+     "input_tokens": 3903,
+     "output_tokens": 1133,
+     "total_tokens": 5036,
+     "latency_total_ms": 18716.84
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 3471.17,
-      "avg_ms": 3471.17
+      "total_ms": 10368.76,
+      "avg_ms": 10368.76
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1308.59,
-      "avg_ms": 1308.59
+      "total_ms": 17232.75,
+      "avg_ms": 17232.75
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 5220.98,
-      "avg_ms": 5220.98
+      "total_ms": 351.35,
+      "avg_ms": 351.35
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 14969.7,
-      "avg_ms": 14969.7
+      "total_ms": 10779.04,
+      "avg_ms": 10779.04
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 1209.22,
+      "avg_ms": 1209.22
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 14807.01,
+      "avg_ms": 14807.01
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 8588.93,
-      "avg_ms": 8588.93
+      "total_ms": 8362.59,
+      "avg_ms": 8362.59
      }
     }
    }
@@ -1307,57 +1697,76 @@
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": true,
-   "confidence": 0.86,
-   "n_seeds": 1,
-   "n_graph_chunks": 2,
-   "n_dense_topup": 1,
-   "n_final_chunks": 3,
+   "confidence": 0.88,
+   "n_seeds": 2,
+   "n_graph_chunks": 3,
+   "n_dense_topup": 2,
+   "n_final_chunks": 5,
    "cited_chunk_ids": [
     "Q2071160_chunk_3"
    ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 4,
+   "unique_action_events": 1,
+   "unique_chunks": 3,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 1,
-     "seed_entities": 1,
-     "unmatched_mentions": 0,
-     "graph_chunks": 2,
-     "dense_topup_chunks": 1,
-     "rank_gate": "insufficient_graph",
-     "final_chunks": 3,
+     "seed_entities": 2,
+     "context_roots": 4,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "local",
+     "graph_chunks": 3,
+     "dense_topup_chunks": 2,
+     "final_chunks": 5,
      "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 2230,
-     "output_tokens": 455,
-     "total_tokens": 2685,
-     "latency_total_ms": 3765.68
+     "input_tokens": 3485,
+     "output_tokens": 685,
+     "total_tokens": 4170,
+     "latency_total_ms": 11150.99
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 3583.16,
-      "avg_ms": 3583.16
+      "total_ms": 5181.98,
+      "avg_ms": 5181.98
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1213.88,
-      "avg_ms": 1213.88
+      "total_ms": 6294.99,
+      "avg_ms": 6294.99
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 877.64,
-      "avg_ms": 877.64
+      "total_ms": 342.27,
+      "avg_ms": 342.27
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 5374.92,
-      "avg_ms": 5374.92
+      "total_ms": 2691.53,
+      "avg_ms": 2691.53
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 694.69,
+      "avg_ms": 694.69
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 5205.88,
+      "avg_ms": 5205.88
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 3771.76,
-      "avg_ms": 3771.76
+      "total_ms": 5981.67,
+      "avg_ms": 5981.67
      }
     }
    }
@@ -1374,54 +1783,73 @@
    "confidence": 0.86,
    "n_seeds": 1,
    "n_graph_chunks": 1,
-   "n_dense_topup": 2,
-   "n_final_chunks": 3,
+   "n_dense_topup": 4,
+   "n_final_chunks": 5,
    "cited_chunk_ids": [
     "Q15055036_chunk_0"
    ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "partial",
+   "unique_seed_vertices": 1,
+   "unique_context_roots": 4,
+   "unique_action_events": 0,
+   "unique_chunks": 1,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 1,
      "seed_entities": 1,
-     "unmatched_mentions": 0,
+     "context_roots": 4,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "local",
      "graph_chunks": 1,
-     "dense_topup_chunks": 2,
-     "rank_gate": "insufficient_graph",
-     "final_chunks": 3,
+     "dense_topup_chunks": 4,
+     "final_chunks": 5,
      "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 2590,
-     "output_tokens": 246,
-     "total_tokens": 2836,
-     "latency_total_ms": 3764.31
+     "input_tokens": 3810,
+     "output_tokens": 472,
+     "total_tokens": 4282,
+     "latency_total_ms": 12322.21
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 3654.07,
-      "avg_ms": 3654.07
+      "total_ms": 4837.31,
+      "avg_ms": 4837.31
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1227.19,
-      "avg_ms": 1227.19
+      "total_ms": 8947.55,
+      "avg_ms": 8947.55
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 664.73,
-      "avg_ms": 664.73
+      "total_ms": 376.52,
+      "avg_ms": 376.52
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 4377.89,
-      "avg_ms": 4377.89
+      "total_ms": 691.17,
+      "avg_ms": 691.17
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 348.13,
+      "avg_ms": 348.13
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 4235.67,
+      "avg_ms": 4235.67
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 3771.49,
-      "avg_ms": 3771.49
+      "total_ms": 7497.28,
+      "avg_ms": 7497.28
      }
     }
    }
@@ -1430,63 +1858,84 @@
    "qid": "eval-023",
    "question": "According to the provided corpus, how many shooting events at the 2000 Summer Olympics had more than 42 competitors?",
    "qtype": "aggregation",
-   "predicted": "0",
+   "predicted": "1",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": true,
-   "confidence": 0.86,
+   "confidence": 0.7,
    "n_seeds": 1,
-   "n_graph_chunks": 1,
-   "n_dense_topup": 2,
-   "n_final_chunks": 3,
+   "n_graph_chunks": 82,
+   "n_dense_topup": 0,
+   "n_final_chunks": 16,
    "cited_chunk_ids": [
-    "Q7500810_chunk_0",
-    "Q7500809_chunk_0"
+    "Q4443765_chunk_0",
+    "Q7500810_chunk_1",
+    "Q7500807_chunk_1"
    ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 1,
+   "unique_context_roots": 3,
+   "unique_action_events": 73,
+   "unique_chunks": 82,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 1,
      "seed_entities": 1,
-     "unmatched_mentions": 0,
-     "graph_chunks": 1,
-     "dense_topup_chunks": 2,
-     "rank_gate": "insufficient_graph",
-     "final_chunks": 3,
-     "citations": 2
+     "context_roots": 3,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 78,
+     "graph_chunks": 82,
+     "dense_topup_chunks": 0,
+     "final_chunks": 16,
+     "citations": 3
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 2363,
-     "output_tokens": 347,
-     "total_tokens": 2710,
-     "latency_total_ms": 4509.56
+     "input_tokens": 9019,
+     "output_tokens": 970,
+     "total_tokens": 9989,
+     "latency_total_ms": 18745.02
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 2861.13,
-      "avg_ms": 2861.13
+      "total_ms": 7983.07,
+      "avg_ms": 7983.07
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1240.55,
-      "avg_ms": 1240.55
+      "total_ms": 9321.7,
+      "avg_ms": 9321.7
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 666.64,
-      "avg_ms": 666.64
+      "total_ms": 412.02,
+      "avg_ms": 412.02
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 4647.41,
-      "avg_ms": 4647.41
+      "total_ms": 83229.97,
+      "avg_ms": 83229.97
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 12786.44,
+      "avg_ms": 12786.44
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 34143.29,
+      "avg_ms": 34143.29
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 4516.94,
-      "avg_ms": 4516.94
+      "total_ms": 10776.98,
+      "avg_ms": 10776.98
      }
     }
    }
@@ -1495,63 +1944,82 @@
    "qid": "eval-024",
    "question": "According to the provided corpus, which cross-country skiing event at the 1998 Winter Olympics had the highest number of competitors?",
    "qtype": "superlative",
-   "predicted": "Insufficient information to determine which cross-country event had the most competitors. The Men's 4 × 10 kilometre relay results show 13 teams, but the Men's 30 kilometre classical block does not state the total number of competitors.",
+   "predicted": "Men's 10 kilometre classical (competitors: 97)",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
-   "evidence_sufficient": false,
-   "confidence": 0.65,
+   "evidence_sufficient": true,
+   "confidence": 0.95,
    "n_seeds": 2,
-   "n_graph_chunks": 9,
+   "n_graph_chunks": 94,
    "n_dense_topup": 0,
-   "n_final_chunks": 5,
+   "n_final_chunks": 16,
    "cited_chunk_ids": [
-    "Q1005069_chunk_4",
-    "Q1005103_chunk_2"
+    "Q1004937_chunk_0"
    ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 3,
+   "unique_action_events": 84,
+   "unique_chunks": 94,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 2,
      "seed_entities": 2,
-     "unmatched_mentions": 0,
-     "graph_chunks": 9,
+     "context_roots": 3,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 117,
+     "graph_chunks": 94,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
-     "final_chunks": 5,
-     "citations": 2
+     "final_chunks": 16,
+     "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3599,
-     "output_tokens": 683,
-     "total_tokens": 4282,
-     "latency_total_ms": 5700.63
+     "input_tokens": 8187,
+     "output_tokens": 704,
+     "total_tokens": 8891,
+     "latency_total_ms": 15086.91
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 5222.56,
-      "avg_ms": 5222.56
+      "total_ms": 5173.37,
+      "avg_ms": 5173.37
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1330.71,
-      "avg_ms": 1330.71
+      "total_ms": 7810.87,
+      "avg_ms": 7810.87
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 1141.31,
-      "avg_ms": 1141.31
+      "total_ms": 378.77,
+      "avg_ms": 378.77
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 3946.45,
-      "avg_ms": 3946.45
+      "total_ms": 35424.92,
+      "avg_ms": 35424.92
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 3454.42,
+      "avg_ms": 3454.42
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 38940.07,
+      "avg_ms": 38940.07
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 5707.22,
-      "avg_ms": 5707.22
+      "total_ms": 9927.57,
+      "avg_ms": 9927.57
      }
     }
    }
@@ -1560,60 +2028,80 @@
    "qid": "eval-025",
    "question": "According to the provided corpus, which rowing event at the 2016 Summer Olympics had the highest number of competitors?",
    "qtype": "superlative",
-   "predicted": "The provided corpus contains no information about any rowing events at the 2016 Summer Olympics, so the event with the highest number of competitors cannot be determined from these documents.",
+   "predicted": "The provided corpus does not include any rowing event data for the 2016 Summer Olympics, so the event with the highest number of rowing competitors cannot be determined from these documents.",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": false,
-   "confidence": 0.9,
+   "confidence": 0.44,
    "n_seeds": 2,
-   "n_graph_chunks": 26,
+   "n_graph_chunks": 84,
    "n_dense_topup": 0,
-   "n_final_chunks": 5,
+   "n_final_chunks": 16,
    "cited_chunk_ids": [],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 2,
+   "unique_action_events": 58,
+   "unique_chunks": 84,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 2,
      "seed_entities": 2,
-     "unmatched_mentions": 0,
-     "graph_chunks": 26,
+     "context_roots": 2,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 80,
+     "graph_chunks": 84,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
-     "final_chunks": 5,
+     "final_chunks": 16,
      "citations": 0
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3555,
-     "output_tokens": 474,
-     "total_tokens": 4029,
-     "latency_total_ms": 4124.6
+     "input_tokens": 9088,
+     "output_tokens": 668,
+     "total_tokens": 9756,
+     "latency_total_ms": 30754.57
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 5224.0,
-      "avg_ms": 5224.0
+      "total_ms": 7087.32,
+      "avg_ms": 7087.32
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1284.69,
-      "avg_ms": 1284.69
+      "total_ms": 6137.58,
+      "avg_ms": 6137.58
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 1384.17,
-      "avg_ms": 1384.17
+      "total_ms": 364.59,
+      "avg_ms": 364.59
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 11155.21,
-      "avg_ms": 11155.21
+      "total_ms": 70315.57,
+      "avg_ms": 70315.57
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 5281.42,
+      "avg_ms": 5281.42
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 35184.3,
+      "avg_ms": 35184.3
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 4131.65,
-      "avg_ms": 4131.65
+      "total_ms": 23680.8,
+      "avg_ms": 23680.8
      }
     }
    }
@@ -1627,57 +2115,76 @@
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": true,
-   "confidence": 0.86,
-   "n_seeds": 1,
-   "n_graph_chunks": 2,
-   "n_dense_topup": 1,
-   "n_final_chunks": 3,
+   "confidence": 0.91,
+   "n_seeds": 2,
+   "n_graph_chunks": 3,
+   "n_dense_topup": 2,
+   "n_final_chunks": 5,
    "cited_chunk_ids": [
     "Q632472_chunk_0"
    ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 4,
+   "unique_action_events": 1,
+   "unique_chunks": 3,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 1,
-     "seed_entities": 1,
-     "unmatched_mentions": 0,
-     "graph_chunks": 2,
-     "dense_topup_chunks": 1,
-     "rank_gate": "insufficient_graph",
-     "final_chunks": 3,
+     "seed_entities": 2,
+     "context_roots": 4,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "local",
+     "graph_chunks": 3,
+     "dense_topup_chunks": 2,
+     "final_chunks": 5,
      "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 2387,
-     "output_tokens": 373,
-     "total_tokens": 2760,
-     "latency_total_ms": 3652.46
+     "input_tokens": 3638,
+     "output_tokens": 596,
+     "total_tokens": 4234,
+     "latency_total_ms": 10264.28
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 4318.91,
-      "avg_ms": 4318.91
+      "total_ms": 6500.15,
+      "avg_ms": 6500.15
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1257.07,
-      "avg_ms": 1257.07
+      "total_ms": 5344.19,
+      "avg_ms": 5344.19
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 645.06,
-      "avg_ms": 645.06
+      "total_ms": 359.48,
+      "avg_ms": 359.48
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 4176.53,
-      "avg_ms": 4176.53
+      "total_ms": 1433.4,
+      "avg_ms": 1433.4
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 523.8,
+      "avg_ms": 523.8
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 4296.43,
+      "avg_ms": 4296.43
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 3659.53,
-      "avg_ms": 3659.53
+      "total_ms": 3774.69,
+      "avg_ms": 3774.69
      }
     }
    }
@@ -1686,65 +2193,82 @@
    "qid": "eval-027",
    "question": "According to the provided corpus, which cycling event at the 2012 Summer Olympics had the highest number of competitors?",
    "qtype": "superlative",
-   "predicted": "The provided corpus contains no cycling events from the 2012 Summer Olympics, so the question cannot be answered from these documents.",
+   "predicted": "The provided corpus does not contain the competitor counts needed to determine which cycling event had the most competitors. The only cycling-related block is about the Men's sprint (Q2718015_chunk_2) but it does not list a competitors field or number.",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": false,
-   "confidence": 0.8,
+   "confidence": 0.2,
    "n_seeds": 1,
-   "n_graph_chunks": 4,
+   "n_graph_chunks": 71,
    "n_dense_topup": 0,
-   "n_final_chunks": 4,
+   "n_final_chunks": 16,
    "cited_chunk_ids": [
-    "Q1337042_chunk_0",
-    "Q4496_chunk_37",
-    "Q25396697_chunk_2",
-    "Q1372090_chunk_1"
+    "Q2718015_chunk_2"
    ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 1,
+   "unique_context_roots": 2,
+   "unique_action_events": 59,
+   "unique_chunks": 71,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 1,
      "seed_entities": 1,
-     "unmatched_mentions": 0,
-     "graph_chunks": 4,
+     "context_roots": 2,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 80,
+     "graph_chunks": 71,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
-     "final_chunks": 4,
-     "citations": 4
+     "final_chunks": 16,
+     "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 2767,
-     "output_tokens": 530,
-     "total_tokens": 3297,
-     "latency_total_ms": 4912.51
+     "input_tokens": 8624,
+     "output_tokens": 863,
+     "total_tokens": 9487,
+     "latency_total_ms": 14172.02
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 4301.93,
-      "avg_ms": 4301.93
+      "total_ms": 7080.92,
+      "avg_ms": 7080.92
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1275.05,
-      "avg_ms": 1275.05
+      "total_ms": 5707.8,
+      "avg_ms": 5707.8
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 666.86,
-      "avg_ms": 666.86
+      "total_ms": 338.21,
+      "avg_ms": 338.21
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 1789.6,
-      "avg_ms": 1789.6
+      "total_ms": 24069.11,
+      "avg_ms": 24069.11
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 3180.4,
+      "avg_ms": 3180.4
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 29802.14,
+      "avg_ms": 29802.14
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 4918.94,
-      "avg_ms": 4918.94
+      "total_ms": 7108.14,
+      "avg_ms": 7108.14
      }
     }
    }
@@ -1753,65 +2277,80 @@
    "qid": "eval-028",
    "question": "According to the provided corpus, how many wrestling events at the 2012 Summer Olympics had more than 19 competitors?",
    "qtype": "aggregation",
-   "predicted": "The provided corpus contains no information about wrestling events at the 2012 Summer Olympics; the number cannot be determined from these blocks.",
+   "predicted": "The provided corpus contains no wrestling event pages or competitor counts for wrestling at the 2012 Summer Olympics, so this cannot be determined from the given documents.",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": false,
-   "confidence": 0.83,
+   "confidence": 0.0,
    "n_seeds": 1,
-   "n_graph_chunks": 4,
+   "n_graph_chunks": 69,
    "n_dense_topup": 0,
-   "n_final_chunks": 4,
-   "cited_chunk_ids": [
-    "Q4496_chunk_37",
-    "Q1337042_chunk_0",
-    "Q25396697_chunk_2",
-    "Q1372090_chunk_1"
-   ],
+   "n_final_chunks": 16,
+   "cited_chunk_ids": [],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 1,
+   "unique_context_roots": 2,
+   "unique_action_events": 60,
+   "unique_chunks": 69,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 1,
      "seed_entities": 1,
-     "unmatched_mentions": 0,
-     "graph_chunks": 4,
+     "context_roots": 2,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 80,
+     "graph_chunks": 69,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
-     "final_chunks": 4,
-     "citations": 4
+     "final_chunks": 16,
+     "citations": 0
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 2769,
-     "output_tokens": 638,
-     "total_tokens": 3407,
-     "latency_total_ms": 6082.96
+     "input_tokens": 8843,
+     "output_tokens": 622,
+     "total_tokens": 9465,
+     "latency_total_ms": 11143.23
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 3896.94,
-      "avg_ms": 3896.94
+      "total_ms": 5819.97,
+      "avg_ms": 5819.97
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1322.23,
-      "avg_ms": 1322.23
+      "total_ms": 6353.74,
+      "avg_ms": 6353.74
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 663.85,
-      "avg_ms": 663.85
+      "total_ms": 316.87,
+      "avg_ms": 316.87
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 1746.63,
-      "avg_ms": 1746.63
+      "total_ms": 25786.1,
+      "avg_ms": 25786.1
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 2990.8,
+      "avg_ms": 2990.8
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 28463.91,
+      "avg_ms": 28463.91
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 6089.48,
-      "avg_ms": 6089.48
+      "total_ms": 5337.39,
+      "avg_ms": 5337.39
      }
     }
    }
@@ -1820,62 +2359,87 @@
    "qid": "eval-029",
    "question": "According to the provided corpus, how many boxing events at the 2012 Summer Olympics had more than 26 competitors?",
    "qtype": "aggregation",
-   "predicted": "0",
+   "predicted": "1",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": true,
-   "confidence": 0.8,
+   "confidence": 0.95,
    "n_seeds": 2,
-   "n_graph_chunks": 37,
+   "n_graph_chunks": 110,
    "n_dense_topup": 0,
-   "n_final_chunks": 5,
+   "n_final_chunks": 16,
    "cited_chunk_ids": [
-    "Q2000524_chunk_0"
+    "Q332673_chunk_0",
+    "Q2000524_chunk_0",
+    "Q348720_chunk_0",
+    "Q326384_chunk_0",
+    "Q2070048_chunk_0",
+    "Q31844_chunk_0"
    ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 3,
+   "unique_action_events": 70,
+   "unique_chunks": 110,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 2,
      "seed_entities": 2,
-     "unmatched_mentions": 0,
-     "graph_chunks": 37,
+     "context_roots": 3,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 81,
+     "graph_chunks": 110,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
-     "final_chunks": 5,
-     "citations": 1
+     "final_chunks": 16,
+     "citations": 6
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3200,
-     "output_tokens": 393,
-     "total_tokens": 3593,
-     "latency_total_ms": 4158.7
+     "input_tokens": 8575,
+     "output_tokens": 1043,
+     "total_tokens": 9618,
+     "latency_total_ms": 14304.18
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 4300.75,
-      "avg_ms": 4300.75
+      "total_ms": 8050.57,
+      "avg_ms": 8050.57
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1312.46,
-      "avg_ms": 1312.46
+      "total_ms": 6192.08,
+      "avg_ms": 6192.08
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 1375.53,
-      "avg_ms": 1375.53
+      "total_ms": 360.45,
+      "avg_ms": 360.45
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 14630.62,
-      "avg_ms": 14630.62
+      "total_ms": 26509.0,
+      "avg_ms": 26509.0
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 3326.87,
+      "avg_ms": 3326.87
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 42668.81,
+      "avg_ms": 42668.81
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 4164.97,
-      "avg_ms": 4164.97
+      "total_ms": 6268.81,
+      "avg_ms": 6268.81
      }
     }
    }
@@ -1884,64 +2448,84 @@
    "qid": "eval-030",
    "question": "According to the provided corpus, which alpine skiing event at the 1994 Winter Olympics had the highest number of competitors?",
    "qtype": "superlative",
-   "predicted": "Men's downhill",
+   "predicted": "Men's slalom (57 competitors)",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": true,
-   "confidence": 0.75,
-   "n_seeds": 1,
-   "n_graph_chunks": 49,
+   "confidence": 0.9,
+   "n_seeds": 2,
+   "n_graph_chunks": 95,
    "n_dense_topup": 0,
-   "n_final_chunks": 5,
+   "n_final_chunks": 16,
    "cited_chunk_ids": [
-    "Q1005575_chunk_3",
-    "Q1005808_chunk_3",
-    "Q1222529_chunk_2"
+    "Q1005640_chunk_0",
+    "Q1222715_chunk_0",
+    "Q1222212_chunk_0"
    ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 3,
+   "unique_action_events": 82,
+   "unique_chunks": 95,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
-     "query_entities": 1,
-     "seed_entities": 1,
-     "unmatched_mentions": 0,
-     "graph_chunks": 49,
+     "query_entities": 2,
+     "seed_entities": 2,
+     "context_roots": 3,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 116,
+     "graph_chunks": 95,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
-     "final_chunks": 5,
+     "final_chunks": 16,
      "citations": 3
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3784,
-     "output_tokens": 753,
-     "total_tokens": 4537,
-     "latency_total_ms": 7760.34
+     "input_tokens": 8966,
+     "output_tokens": 819,
+     "total_tokens": 9785,
+     "latency_total_ms": 11941.9
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 3578.37,
-      "avg_ms": 3578.37
+      "total_ms": 6130.72,
+      "avg_ms": 6130.72
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1278.08,
-      "avg_ms": 1278.08
+      "total_ms": 6103.7,
+      "avg_ms": 6103.7
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 5795.65,
-      "avg_ms": 5795.65
+      "total_ms": 365.82,
+      "avg_ms": 365.82
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 20263.37,
-      "avg_ms": 20263.37
+      "total_ms": 50202.84,
+      "avg_ms": 50202.84
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 3222.9,
+      "avg_ms": 3222.9
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 38936.61,
+      "avg_ms": 38936.61
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 7766.32,
-      "avg_ms": 7766.32
+      "total_ms": 5826.43,
+      "avg_ms": 5826.43
      }
     }
    }
@@ -1950,63 +2534,81 @@
    "qid": "eval-031",
    "question": "Who won the gold medal in the men's 62 kg weightlifting event at the Summer Olympics held immediately before 2016?",
    "qtype": "temporal",
-   "predicted": "The provided documents do not state the name of the gold medalist in the men's 62 kg weightlifting at the 2012 Summer Olympics.",
+   "predicted": "The provided documents do not state who won the gold medal in the men's 62 kg weightlifting event at the 2012 Summer Olympics.",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": false,
-   "confidence": 0.15,
+   "confidence": 0.3,
    "n_seeds": 2,
-   "n_graph_chunks": 27,
+   "n_graph_chunks": 6,
    "n_dense_topup": 0,
    "n_final_chunks": 5,
    "cited_chunk_ids": [
-    "Q1139399_chunk_1",
-    "Q1139399_chunk_2"
+    "Q26212149_chunk_0"
    ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 4,
+   "unique_action_events": 0,
+   "unique_chunks": 6,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
-     "query_entities": 2,
+     "query_entities": 1,
      "seed_entities": 2,
-     "unmatched_mentions": 0,
-     "graph_chunks": 27,
+     "context_roots": 4,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "local",
+     "graph_chunks": 6,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
      "final_chunks": 5,
-     "citations": 2
+     "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3395,
-     "output_tokens": 635,
-     "total_tokens": 4030,
-     "latency_total_ms": 4940.21
+     "input_tokens": 3648,
+     "output_tokens": 2404,
+     "total_tokens": 6052,
+     "latency_total_ms": 22911.54
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 4471.43,
-      "avg_ms": 4471.43
+      "total_ms": 17413.98,
+      "avg_ms": 17413.98
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1253.63,
-      "avg_ms": 1253.63
+      "total_ms": 6371.76,
+      "avg_ms": 6371.76
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 1275.24,
-      "avg_ms": 1275.24
+      "total_ms": 333.53,
+      "avg_ms": 333.53
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 11582.78,
-      "avg_ms": 11582.78
+      "total_ms": 1368.72,
+      "avg_ms": 1368.72
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 590.94,
+      "avg_ms": 590.94
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 2675.83,
+      "avg_ms": 2675.83
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 4946.76,
-      "avg_ms": 4946.76
+      "total_ms": 5509.58,
+      "avg_ms": 5509.58
      }
     }
    }
@@ -2015,63 +2617,82 @@
    "qid": "eval-032",
    "question": "Who won the gold medal in the event held at Pacific Coliseum on February 20, 2010?",
    "qtype": "multi_hop",
-   "predicted": "There are at least two events at the Pacific Coliseum on February 20, 2010:\n- Men's 1000 metres (short-track speed skating) — gold: Lee Jung-su\n- Women's 1500 metres (short-track speed skating) — gold: Zhou Yang",
+   "predicted": "Men's 1000 metres — Lee Jung-su; Women's 1500 metres — Zhou Yang.",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": true,
-   "confidence": 0.85,
+   "confidence": 0.76,
    "n_seeds": 2,
-   "n_graph_chunks": 47,
+   "n_graph_chunks": 301,
    "n_dense_topup": 0,
    "n_final_chunks": 5,
    "cited_chunk_ids": [
     "Q938791_chunk_0",
     "Q916747_chunk_0"
    ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 0,
+   "unique_action_events": 204,
+   "unique_chunks": 301,
+   "duplicate_chunk_count": 6,
    "metrics": {
     "counters": {
      "query_entities": 2,
      "seed_entities": 2,
-     "unmatched_mentions": 0,
-     "graph_chunks": 47,
+     "context_roots": 0,
+     "unmatched_context_phrases": 2,
+     "retrieval_mode": "local",
+     "graph_chunks": 301,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
      "final_chunks": 5,
      "citations": 2
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3156,
-     "output_tokens": 671,
-     "total_tokens": 3827,
-     "latency_total_ms": 4997.29
+     "input_tokens": 3619,
+     "output_tokens": 981,
+     "total_tokens": 4600,
+     "latency_total_ms": 14336.26
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 4399.8,
-      "avg_ms": 4399.8
+      "total_ms": 7062.58,
+      "avg_ms": 7062.58
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1282.03,
-      "avg_ms": 1282.03
+      "total_ms": 10840.95,
+      "avg_ms": 10840.95
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 6871.79,
-      "avg_ms": 6871.79
+      "total_ms": 344.91,
+      "avg_ms": 344.91
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 20206.36,
-      "avg_ms": 20206.36
+      "total_ms": 79176.9,
+      "avg_ms": 79176.9
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 1398.58,
+      "avg_ms": 1398.58
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 111340.28,
+      "avg_ms": 111340.28
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 5009.15,
-      "avg_ms": 5009.15
+      "total_ms": 7287.04,
+      "avg_ms": 7287.04
      }
     }
    }
@@ -2080,65 +2701,83 @@
    "qid": "eval-033",
    "question": "According to the provided corpus, how many alpine skiing events at the 1988 Winter Olympics had more than 57 competitors?",
    "qtype": "aggregation",
-   "predicted": "1",
+   "predicted": "2",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": true,
-   "confidence": 0.81,
+   "confidence": 0.9,
    "n_seeds": 1,
-   "n_graph_chunks": 34,
+   "n_graph_chunks": 114,
    "n_dense_topup": 0,
-   "n_final_chunks": 5,
+   "n_final_chunks": 16,
    "cited_chunk_ids": [
-    "Q1005804_chunk_5",
-    "Q1005744_chunk_3",
-    "Q1005639_chunk_3",
-    "Q1005284_chunk_2"
+    "Q1005744_chunk_0",
+    "Q1005804_chunk_5"
    ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 1,
+   "unique_context_roots": 3,
+   "unique_action_events": 88,
+   "unique_chunks": 114,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 1,
      "seed_entities": 1,
-     "unmatched_mentions": 0,
-     "graph_chunks": 34,
+     "context_roots": 3,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 112,
+     "graph_chunks": 114,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
-     "final_chunks": 5,
-     "citations": 4
+     "final_chunks": 16,
+     "citations": 2
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3377,
-     "output_tokens": 661,
-     "total_tokens": 4038,
-     "latency_total_ms": 7801.95
+     "input_tokens": 8575,
+     "output_tokens": 1209,
+     "total_tokens": 9784,
+     "latency_total_ms": 16010.6
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 4806.66,
-      "avg_ms": 4806.66
+      "total_ms": 8159.66,
+      "avg_ms": 8159.66
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1308.28,
-      "avg_ms": 1308.28
+      "total_ms": 5871.04,
+      "avg_ms": 5871.04
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 5178.6,
-      "avg_ms": 5178.6
+      "total_ms": 342.8,
+      "avg_ms": 342.8
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 14149.86,
-      "avg_ms": 14149.86
+      "total_ms": 37208.13,
+      "avg_ms": 37208.13
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 3764.36,
+      "avg_ms": 3764.36
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 48647.07,
+      "avg_ms": 48647.07
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 7809.57,
-      "avg_ms": 7809.57
+      "total_ms": 7867.06,
+      "avg_ms": 7867.06
      }
     }
    }
@@ -2154,55 +2793,74 @@
    "evidence_sufficient": true,
    "confidence": 0.9,
    "n_seeds": 2,
-   "n_graph_chunks": 28,
-   "n_dense_topup": 0,
+   "n_graph_chunks": 4,
+   "n_dense_topup": 1,
    "n_final_chunks": 5,
    "cited_chunk_ids": [
     "Q581364_chunk_0"
    ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 4,
+   "unique_action_events": 0,
+   "unique_chunks": 4,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
-     "query_entities": 2,
+     "query_entities": 1,
      "seed_entities": 2,
-     "unmatched_mentions": 0,
-     "graph_chunks": 28,
-     "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
+     "context_roots": 4,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "local",
+     "graph_chunks": 4,
+     "dense_topup_chunks": 1,
      "final_chunks": 5,
      "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3625,
-     "output_tokens": 598,
-     "total_tokens": 4223,
-     "latency_total_ms": 4936.83
+     "input_tokens": 3758,
+     "output_tokens": 627,
+     "total_tokens": 4385,
+     "latency_total_ms": 9881.19
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 5939.39,
-      "avg_ms": 5939.39
+      "total_ms": 4706.53,
+      "avg_ms": 4706.53
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1351.57,
-      "avg_ms": 1351.57
+      "total_ms": 6116.97,
+      "avg_ms": 6116.97
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 1378.51,
-      "avg_ms": 1378.51
+      "total_ms": 470.37,
+      "avg_ms": 470.37
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 11890.11,
-      "avg_ms": 11890.11
+      "total_ms": 1115.65,
+      "avg_ms": 1115.65
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 513.86,
+      "avg_ms": 513.86
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 4216.12,
+      "avg_ms": 4216.12
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 4943.55,
-      "avg_ms": 4943.55
+      "total_ms": 5188.33,
+      "avg_ms": 5188.33
      }
     }
    }
@@ -2211,65 +2869,80 @@
    "qid": "eval-035",
    "question": "According to the provided corpus, which rowing event at the 2012 Summer Olympics had the highest number of competitors?",
    "qtype": "superlative",
-   "predicted": "The provided corpus contains no information about rowing events at the 2012 Summer Olympics, so the event with the highest number of competitors cannot be determined from these documents.",
+   "predicted": "The provided corpus does not include any rowing event blocks, so it does not state which rowing event had the highest number of competitors.",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": false,
-   "confidence": 0.15,
-   "n_seeds": 1,
-   "n_graph_chunks": 4,
+   "confidence": 0.12,
+   "n_seeds": 2,
+   "n_graph_chunks": 93,
    "n_dense_topup": 0,
-   "n_final_chunks": 4,
-   "cited_chunk_ids": [
-    "Q1337042_chunk_0",
-    "Q4496_chunk_37",
-    "Q25396697_chunk_2",
-    "Q1372090_chunk_1"
-   ],
+   "n_final_chunks": 16,
+   "cited_chunk_ids": [],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 2,
+   "unique_action_events": 63,
+   "unique_chunks": 93,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
-     "query_entities": 1,
-     "seed_entities": 1,
-     "unmatched_mentions": 0,
-     "graph_chunks": 4,
+     "query_entities": 2,
+     "seed_entities": 2,
+     "context_roots": 2,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 80,
+     "graph_chunks": 93,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
-     "final_chunks": 4,
-     "citations": 4
+     "final_chunks": 16,
+     "citations": 0
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 2767,
-     "output_tokens": 530,
-     "total_tokens": 3297,
-     "latency_total_ms": 5456.74
+     "input_tokens": 8921,
+     "output_tokens": 847,
+     "total_tokens": 9768,
+     "latency_total_ms": 12425.59
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 3391.77,
-      "avg_ms": 3391.77
+      "total_ms": 6190.31,
+      "avg_ms": 6190.31
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1298.92,
-      "avg_ms": 1298.92
+      "total_ms": 6464.0,
+      "avg_ms": 6464.0
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 846.23,
-      "avg_ms": 846.23
+      "total_ms": 464.2,
+      "avg_ms": 464.2
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 1781.52,
-      "avg_ms": 1781.52
+      "total_ms": 28458.97,
+      "avg_ms": 28458.97
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 2655.06,
+      "avg_ms": 2655.06
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 41165.44,
+      "avg_ms": 41165.44
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 5464.39,
-      "avg_ms": 5464.39
+      "total_ms": 6249.81,
+      "avg_ms": 6249.81
      }
     }
    }
@@ -2278,62 +2951,83 @@
    "qid": "eval-036",
    "question": "According to the provided corpus, how many short-track speed skating events at the 2018 Winter Olympics had more than 34 competitors?",
    "qtype": "aggregation",
-   "predicted": "1 event (Women’s 3000 metre relay had 37 competitors). The corpus does not provide competitor counts for other short-track events, so no further events can be confirmed as having more than 34 competitors.",
+   "predicted": "2",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
-   "evidence_sufficient": false,
-   "confidence": 0.45,
-   "n_seeds": 1,
-   "n_graph_chunks": 25,
+   "evidence_sufficient": true,
+   "confidence": 0.9,
+   "n_seeds": 2,
+   "n_graph_chunks": 97,
    "n_dense_topup": 0,
-   "n_final_chunks": 5,
+   "n_final_chunks": 16,
    "cited_chunk_ids": [
-    "Q47309958_chunk_0"
+    "Q47309958_chunk_0",
+    "Q47309900_chunk_0"
    ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 2,
+   "unique_action_events": 65,
+   "unique_chunks": 97,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
-     "query_entities": 1,
-     "seed_entities": 1,
-     "unmatched_mentions": 0,
-     "graph_chunks": 25,
+     "query_entities": 2,
+     "seed_entities": 2,
+     "context_roots": 2,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 80,
+     "graph_chunks": 97,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
-     "final_chunks": 5,
-     "citations": 1
+     "final_chunks": 16,
+     "citations": 2
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 2481,
-     "output_tokens": 496,
-     "total_tokens": 2977,
-     "latency_total_ms": 4930.74
+     "input_tokens": 8279,
+     "output_tokens": 971,
+     "total_tokens": 9250,
+     "latency_total_ms": 15108.28
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 3071.12,
-      "avg_ms": 3071.12
+      "total_ms": 8523.43,
+      "avg_ms": 8523.43
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1335.51,
-      "avg_ms": 1335.51
+      "total_ms": 6042.6,
+      "avg_ms": 6042.6
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 549.6,
-      "avg_ms": 549.6
+      "total_ms": 493.17,
+      "avg_ms": 493.17
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 10782.83,
-      "avg_ms": 10782.83
+      "total_ms": 26785.41,
+      "avg_ms": 26785.41
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 3014.15,
+      "avg_ms": 3014.15
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 40166.97,
+      "avg_ms": 40166.97
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 4936.58,
-      "avg_ms": 4936.58
+      "total_ms": 6602.47,
+      "avg_ms": 6602.47
      }
     }
    }
@@ -2342,62 +3036,82 @@
    "qid": "eval-037",
    "question": "According to the provided corpus, which sailing event at the 1996 Summer Olympics had the highest number of competitors?",
    "qtype": "superlative",
-   "predicted": "Women's 470 (44 competitors) — highest among sailing events in the provided corpus",
+   "predicted": "Soling (66 competitors)",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": true,
-   "confidence": 0.77,
-   "n_seeds": 2,
-   "n_graph_chunks": 12,
+   "confidence": 0.88,
+   "n_seeds": 1,
+   "n_graph_chunks": 72,
    "n_dense_topup": 0,
-   "n_final_chunks": 5,
+   "n_final_chunks": 16,
    "cited_chunk_ids": [
-    "Q7400325_chunk_0"
+    "Q7400322_chunk_0"
    ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 1,
+   "unique_context_roots": 2,
+   "unique_action_events": 67,
+   "unique_chunks": 72,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
-     "query_entities": 2,
-     "seed_entities": 2,
-     "unmatched_mentions": 0,
-     "graph_chunks": 12,
+     "query_entities": 1,
+     "seed_entities": 1,
+     "context_roots": 2,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 78,
+     "graph_chunks": 72,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
-     "final_chunks": 5,
+     "final_chunks": 16,
      "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3330,
-     "output_tokens": 622,
-     "total_tokens": 3952,
-     "latency_total_ms": 5312.72
+     "input_tokens": 8188,
+     "output_tokens": 597,
+     "total_tokens": 8785,
+     "latency_total_ms": 10987.48
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 4702.19,
-      "avg_ms": 4702.19
+      "total_ms": 6168.47,
+      "avg_ms": 6168.47
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1341.69,
-      "avg_ms": 1341.69
+      "total_ms": 6207.27,
+      "avg_ms": 6207.27
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 1521.34,
-      "avg_ms": 1521.34
+      "total_ms": 381.02,
+      "avg_ms": 381.02
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 5273.85,
-      "avg_ms": 5273.85
+      "total_ms": 24994.08,
+      "avg_ms": 24994.08
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 2819.2,
+      "avg_ms": 2819.2
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 29776.76,
+      "avg_ms": 29776.76
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 5319.32,
-      "avg_ms": 5319.32
+      "total_ms": 4837.78,
+      "avg_ms": 4837.78
      }
     }
    }
@@ -2406,64 +3120,86 @@
    "qid": "eval-038",
    "question": "According to the provided corpus, how many athletics events at the 2008 Summer Olympics had more than 40 competitors?",
    "qtype": "aggregation",
-   "predicted": "0 (based on the athletics blocks that include competitor counts in the provided corpus)",
+   "predicted": "0",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
-   "evidence_sufficient": false,
-   "confidence": 0.84,
-   "n_seeds": 2,
-   "n_graph_chunks": 26,
+   "evidence_sufficient": true,
+   "confidence": 0.76,
+   "n_seeds": 1,
+   "n_graph_chunks": 91,
    "n_dense_topup": 0,
-   "n_final_chunks": 5,
+   "n_final_chunks": 16,
    "cited_chunk_ids": [
+    "Q656634_chunk_0",
+    "Q544177_chunk_0",
+    "Q917323_chunk_0",
     "Q899312_chunk_0",
-    "Q517035_chunk_0",
-    "Q853072_chunk_2"
+    "Q848278_chunk_0"
    ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 1,
+   "unique_context_roots": 3,
+   "unique_action_events": 80,
+   "unique_chunks": 91,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
-     "query_entities": 2,
-     "seed_entities": 2,
-     "unmatched_mentions": 0,
-     "graph_chunks": 26,
+     "query_entities": 1,
+     "seed_entities": 1,
+     "context_roots": 3,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 116,
+     "graph_chunks": 91,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
-     "final_chunks": 5,
-     "citations": 3
+     "final_chunks": 16,
+     "citations": 5
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3510,
-     "output_tokens": 889,
-     "total_tokens": 4399,
-     "latency_total_ms": 7495.93
+     "input_tokens": 8570,
+     "output_tokens": 872,
+     "total_tokens": 9442,
+     "latency_total_ms": 11329.11
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 4198.97,
-      "avg_ms": 4198.97
+      "total_ms": 4620.35,
+      "avg_ms": 4620.35
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1277.35,
-      "avg_ms": 1277.35
+      "total_ms": 5826.06,
+      "avg_ms": 5826.06
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 1472.71,
-      "avg_ms": 1472.71
+      "total_ms": 343.65,
+      "avg_ms": 343.65
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 11048.07,
-      "avg_ms": 11048.07
+      "total_ms": 26850.11,
+      "avg_ms": 26850.11
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 3812.64,
+      "avg_ms": 3812.64
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 41569.6,
+      "avg_ms": 41569.6
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 7502.78,
-      "avg_ms": 7502.78
+      "total_ms": 6745.41,
+      "avg_ms": 6745.41
      }
     }
    }
@@ -2472,62 +3208,83 @@
    "qid": "eval-039",
    "question": "According to the provided corpus, how many boxing events at the 1992 Summer Olympics had more than 30 competitors?",
    "qtype": "aggregation",
-   "predicted": "0",
+   "predicted": "2",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": true,
    "confidence": 0.86,
    "n_seeds": 1,
-   "n_graph_chunks": 6,
+   "n_graph_chunks": 94,
    "n_dense_topup": 0,
-   "n_final_chunks": 5,
+   "n_final_chunks": 16,
    "cited_chunk_ids": [
-    "Q10426127_chunk_3"
+    "Q10426127_chunk_0",
+    "Q10497008_chunk_0"
    ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 1,
+   "unique_context_roots": 3,
+   "unique_action_events": 83,
+   "unique_chunks": 94,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 1,
      "seed_entities": 1,
-     "unmatched_mentions": 0,
-     "graph_chunks": 6,
+     "context_roots": 3,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 114,
+     "graph_chunks": 94,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
-     "final_chunks": 5,
-     "citations": 1
+     "final_chunks": 16,
+     "citations": 2
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3319,
-     "output_tokens": 1039,
-     "total_tokens": 4358,
-     "latency_total_ms": 8893.9
+     "input_tokens": 6845,
+     "output_tokens": 702,
+     "total_tokens": 7547,
+     "latency_total_ms": 11162.74
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 5217.15,
-      "avg_ms": 5217.15
+      "total_ms": 7109.92,
+      "avg_ms": 7109.92
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1283.37,
-      "avg_ms": 1283.37
+      "total_ms": 7881.04,
+      "avg_ms": 7881.04
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 795.09,
-      "avg_ms": 795.09
+      "total_ms": 471.55,
+      "avg_ms": 471.55
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 2672.84,
-      "avg_ms": 2672.84
+      "total_ms": 31708.81,
+      "avg_ms": 31708.81
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 2970.78,
+      "avg_ms": 2970.78
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 35578.01,
+      "avg_ms": 35578.01
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 8901.15,
-      "avg_ms": 8901.15
+      "total_ms": 4071.59,
+      "avg_ms": 4071.59
      }
     }
    }
@@ -2549,49 +3306,68 @@
    "cited_chunk_ids": [
     "Q3628760_chunk_0"
    ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 3,
+   "unique_context_roots": 2,
+   "unique_action_events": 38,
+   "unique_chunks": 79,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 3,
      "seed_entities": 3,
-     "unmatched_mentions": 0,
+     "context_roots": 2,
+     "unmatched_context_phrases": 2,
+     "retrieval_mode": "local",
      "graph_chunks": 79,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
      "final_chunks": 5,
      "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3068,
-     "output_tokens": 549,
-     "total_tokens": 3617,
-     "latency_total_ms": 3933.05
+     "input_tokens": 3531,
+     "output_tokens": 767,
+     "total_tokens": 4298,
+     "latency_total_ms": 10872.47
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 5248.33,
-      "avg_ms": 5248.33
+      "total_ms": 6094.31,
+      "avg_ms": 6094.31
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1307.09,
-      "avg_ms": 1307.09
+      "total_ms": 5419.44,
+      "avg_ms": 5419.44
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 19401.51,
-      "avg_ms": 19401.51
+      "total_ms": 373.72,
+      "avg_ms": 373.72
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 33638.72,
-      "avg_ms": 33638.72
+      "total_ms": 23103.68,
+      "avg_ms": 23103.68
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 1159.28,
+      "avg_ms": 1159.28
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 32940.22,
+      "avg_ms": 32940.22
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 3939.13,
-      "avg_ms": 3939.13
+      "total_ms": 4793.32,
+      "avg_ms": 4793.32
      }
     }
    }
@@ -2600,65 +3376,84 @@
    "qid": "eval-041",
    "question": "According to the provided corpus, how many alpine skiing events at the 2006 Winter Olympics had more than 63 competitors?",
    "qtype": "aggregation",
-   "predicted": "The provided corpus does not contain information about alpine skiing events at the 2006 Winter Olympics, so this question cannot be answered from the given documents.",
+   "predicted": "0",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
-   "evidence_sufficient": false,
-   "confidence": 0.32,
-   "n_seeds": 1,
-   "n_graph_chunks": 4,
+   "evidence_sufficient": true,
+   "confidence": 0.9,
+   "n_seeds": 2,
+   "n_graph_chunks": 101,
    "n_dense_topup": 0,
-   "n_final_chunks": 4,
+   "n_final_chunks": 16,
    "cited_chunk_ids": [
-    "Q658077_chunk_0",
-    "Q658077_chunk_1",
-    "Q15292539_chunk_1",
-    "Q15620726_chunk_1"
+    "Q917747_chunk_0",
+    "Q917752_chunk_0",
+    "Q917760_chunk_0"
    ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 2,
+   "unique_action_events": 72,
+   "unique_chunks": 101,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
-     "query_entities": 1,
-     "seed_entities": 1,
-     "unmatched_mentions": 0,
-     "graph_chunks": 4,
+     "query_entities": 2,
+     "seed_entities": 2,
+     "context_roots": 2,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 77,
+     "graph_chunks": 101,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
-     "final_chunks": 4,
-     "citations": 4
+     "final_chunks": 16,
+     "citations": 3
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3077,
-     "output_tokens": 527,
-     "total_tokens": 3604,
-     "latency_total_ms": 7497.29
+     "input_tokens": 9231,
+     "output_tokens": 866,
+     "total_tokens": 10097,
+     "latency_total_ms": 14097.24
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 3329.8,
-      "avg_ms": 3329.8
+      "total_ms": 7395.67,
+      "avg_ms": 7395.67
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1323.47,
-      "avg_ms": 1323.47
+      "total_ms": 5810.64,
+      "avg_ms": 5810.64
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 660.58,
-      "avg_ms": 660.58
+      "total_ms": 357.58,
+      "avg_ms": 357.58
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 1770.04,
-      "avg_ms": 1770.04
+      "total_ms": 25195.15,
+      "avg_ms": 25195.15
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 3022.96,
+      "avg_ms": 3022.96
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 40743.4,
+      "avg_ms": 40743.4
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 7503.83,
-      "avg_ms": 7503.83
+      "total_ms": 6723.1,
+      "avg_ms": 6723.1
      }
     }
    }
@@ -2672,58 +3467,76 @@
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": true,
-   "confidence": 0.93,
+   "confidence": 0.86,
    "n_seeds": 2,
-   "n_graph_chunks": 24,
-   "n_dense_topup": 0,
+   "n_graph_chunks": 3,
+   "n_dense_topup": 2,
    "n_final_chunks": 5,
    "cited_chunk_ids": [
-    "Q7500750_chunk_2",
-    "Q7500750_chunk_1"
+    "Q7500750_chunk_2"
    ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 4,
+   "unique_action_events": 0,
+   "unique_chunks": 3,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
-     "query_entities": 2,
+     "query_entities": 1,
      "seed_entities": 2,
-     "unmatched_mentions": 0,
-     "graph_chunks": 24,
-     "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
+     "context_roots": 4,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "local",
+     "graph_chunks": 3,
+     "dense_topup_chunks": 2,
      "final_chunks": 5,
-     "citations": 2
+     "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3321,
-     "output_tokens": 573,
-     "total_tokens": 3894,
-     "latency_total_ms": 4163.33
+     "input_tokens": 3305,
+     "output_tokens": 607,
+     "total_tokens": 3912,
+     "latency_total_ms": 10192.93
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 3994.74,
-      "avg_ms": 3994.74
+      "total_ms": 5614.24,
+      "avg_ms": 5614.24
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1280.05,
-      "avg_ms": 1280.05
+      "total_ms": 6017.25,
+      "avg_ms": 6017.25
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 1207.78,
-      "avg_ms": 1207.78
+      "total_ms": 319.94,
+      "avg_ms": 319.94
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 10271.16,
-      "avg_ms": 10271.16
+      "total_ms": 1411.4,
+      "avg_ms": 1411.4
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 651.95,
+      "avg_ms": 651.95
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 5259.37,
+      "avg_ms": 5259.37
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 4170.25,
-      "avg_ms": 4170.25
+      "total_ms": 4597.97,
+      "avg_ms": 4597.97
      }
     }
    }
@@ -2732,62 +3545,81 @@
    "qid": "eval-043",
    "question": "Who won the gold medal in the event held at Carioca Arena 3 on 11 August 2016?",
    "qtype": "multi_hop",
-   "predicted": "Loredana DinuSimona GhermanSimona PopAna Maria Popescu",
+   "predicted": "Loredana Dinu; Simona Gherman; Simona Pop; Ana Maria Popescu (team ROM)",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": true,
-   "confidence": 0.9,
-   "n_seeds": 3,
-   "n_graph_chunks": 304,
+   "confidence": 0.86,
+   "n_seeds": 2,
+   "n_graph_chunks": 42,
    "n_dense_topup": 0,
    "n_final_chunks": 5,
    "cited_chunk_ids": [
     "Q25384917_chunk_0"
    ],
+   "question_type": "multi_hop",
+   "retrieval_mode": "local",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 1,
+   "unique_action_events": 17,
+   "unique_chunks": 42,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
-     "query_entities": 3,
-     "seed_entities": 3,
-     "unmatched_mentions": 0,
-     "graph_chunks": 304,
+     "query_entities": 2,
+     "seed_entities": 2,
+     "context_roots": 1,
+     "unmatched_context_phrases": 2,
+     "retrieval_mode": "local",
+     "graph_chunks": 42,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
      "final_chunks": 5,
      "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3351,
-     "output_tokens": 494,
-     "total_tokens": 3845,
-     "latency_total_ms": 3973.96
+     "input_tokens": 3795,
+     "output_tokens": 790,
+     "total_tokens": 4585,
+     "latency_total_ms": 12471.12
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 4029.63,
-      "avg_ms": 4029.63
+      "total_ms": 6808.04,
+      "avg_ms": 6808.04
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1238.34,
-      "avg_ms": 1238.34
+      "total_ms": 6717.55,
+      "avg_ms": 6717.55
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 59499.18,
-      "avg_ms": 59499.18
+      "total_ms": 352.41,
+      "avg_ms": 352.41
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 117807.66,
-      "avg_ms": 117807.66
+      "total_ms": 10304.39,
+      "avg_ms": 10304.39
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 1338.34,
+      "avg_ms": 1338.34
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 17212.03,
+      "avg_ms": 17212.03
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 3981.01,
-      "avg_ms": 3981.01
+      "total_ms": 5675.91,
+      "avg_ms": 5675.91
      }
     }
    }
@@ -2796,63 +3628,82 @@
    "qid": "eval-044",
    "question": "Who won the gold medal in the women's 75 kg weightlifting event at the Summer Olympics held immediately before 2016?",
    "qtype": "temporal",
-   "predicted": "The provided documents do not state who won the gold medal in the women's 75 kg event at the 2012 Summer Olympics.",
+   "predicted": "The provided documents do not state who won the gold medal in the women's 75 kg weightlifting event at the Summer Olympics immediately before 2016 (the 2012 Games).",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": false,
-   "confidence": 0.32,
-   "n_seeds": 1,
-   "n_graph_chunks": 1,
-   "n_dense_topup": 2,
-   "n_final_chunks": 3,
+   "confidence": 0.21,
+   "n_seeds": 2,
+   "n_graph_chunks": 5,
+   "n_dense_topup": 0,
+   "n_final_chunks": 5,
    "cited_chunk_ids": [
-    "Q1997032_chunk_4",
-    "Q26212188_chunk_0"
+    "Q26212188_chunk_2",
+    "Q1372090_chunk_1"
    ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 3,
+   "unique_action_events": 0,
+   "unique_chunks": 5,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 1,
-     "seed_entities": 1,
-     "unmatched_mentions": 0,
-     "graph_chunks": 1,
-     "dense_topup_chunks": 2,
-     "rank_gate": "insufficient_graph",
-     "final_chunks": 3,
+     "seed_entities": 2,
+     "context_roots": 3,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "local",
+     "graph_chunks": 5,
+     "dense_topup_chunks": 0,
+     "final_chunks": 5,
      "citations": 2
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 2185,
-     "output_tokens": 559,
-     "total_tokens": 2744,
-     "latency_total_ms": 6882.36
+     "input_tokens": 3423,
+     "output_tokens": 1477,
+     "total_tokens": 4900,
+     "latency_total_ms": 17070.82
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 5542.08,
-      "avg_ms": 5542.08
+      "total_ms": 10722.33,
+      "avg_ms": 10722.33
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1248.58,
-      "avg_ms": 1248.58
+      "total_ms": 6225.58,
+      "avg_ms": 6225.58
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 924.03,
-      "avg_ms": 924.03
+      "total_ms": 350.74,
+      "avg_ms": 350.74
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 4048.76,
-      "avg_ms": 4048.76
+      "total_ms": 1121.32,
+      "avg_ms": 1121.32
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 1248.45,
+      "avg_ms": 1248.45
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 2218.38,
+      "avg_ms": 2218.38
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 6888.12,
-      "avg_ms": 6888.12
+      "total_ms": 6360.13,
+      "avg_ms": 6360.13
      }
     }
    }
@@ -2866,57 +3717,76 @@
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": true,
-   "confidence": 0.9,
+   "confidence": 0.95,
    "n_seeds": 2,
-   "n_graph_chunks": 280,
+   "n_graph_chunks": 6,
    "n_dense_topup": 0,
    "n_final_chunks": 5,
    "cited_chunk_ids": [
     "Q905561_chunk_0"
    ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 4,
+   "unique_action_events": 0,
+   "unique_chunks": 6,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
-     "query_entities": 2,
+     "query_entities": 1,
      "seed_entities": 2,
-     "unmatched_mentions": 0,
-     "graph_chunks": 280,
+     "context_roots": 4,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "local",
+     "graph_chunks": 6,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
      "final_chunks": 5,
      "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 2957,
-     "output_tokens": 425,
-     "total_tokens": 3382,
-     "latency_total_ms": 3950.76
+     "input_tokens": 3336,
+     "output_tokens": 626,
+     "total_tokens": 3962,
+     "latency_total_ms": 9952.81
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 5103.79,
-      "avg_ms": 5103.79
+      "total_ms": 5459.4,
+      "avg_ms": 5459.4
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1265.16,
-      "avg_ms": 1265.16
+      "total_ms": 7061.96,
+      "avg_ms": 7061.96
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 51487.62,
-      "avg_ms": 51487.62
+      "total_ms": 361.81,
+      "avg_ms": 361.81
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 108597.44,
-      "avg_ms": 108597.44
+      "total_ms": 2603.39,
+      "avg_ms": 2603.39
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 665.14,
+      "avg_ms": 665.14
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 2348.8,
+      "avg_ms": 2348.8
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 3958.67,
-      "avg_ms": 3958.67
+      "total_ms": 4505.67,
+      "avg_ms": 4505.67
      }
     }
    }
@@ -2925,63 +3795,81 @@
    "qid": "eval-046",
    "question": "Who won the gold medal in the light flyweight boxing event at the Summer Olympics held immediately before 2004?",
    "qtype": "temporal",
-   "predicted": "The provided documents do not state who won the gold medal in the light flyweight boxing event at the 2000 Summer Olympics (the Games immediately before 2004).",
+   "predicted": "The provided documents do not state who won the light flyweight gold medal at the 2000 Summer Olympics.",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": false,
-   "confidence": 0.26,
-   "n_seeds": 1,
-   "n_graph_chunks": 1,
-   "n_dense_topup": 2,
-   "n_final_chunks": 3,
+   "confidence": 0.32,
+   "n_seeds": 2,
+   "n_graph_chunks": 2,
+   "n_dense_topup": 3,
+   "n_final_chunks": 5,
    "cited_chunk_ids": [
-    "Q3925468_chunk_0",
-    "Q4951839_chunk_1"
+    "Q3925468_chunk_0"
    ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "partial",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 3,
+   "unique_action_events": 0,
+   "unique_chunks": 2,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 1,
-     "seed_entities": 1,
-     "unmatched_mentions": 0,
-     "graph_chunks": 1,
-     "dense_topup_chunks": 2,
-     "rank_gate": "insufficient_graph",
-     "final_chunks": 3,
-     "citations": 2
+     "seed_entities": 2,
+     "context_roots": 3,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "local",
+     "graph_chunks": 2,
+     "dense_topup_chunks": 3,
+     "final_chunks": 5,
+     "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 2444,
-     "output_tokens": 798,
-     "total_tokens": 3242,
-     "latency_total_ms": 8208.42
+     "input_tokens": 3788,
+     "output_tokens": 831,
+     "total_tokens": 4619,
+     "latency_total_ms": 11681.69
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 4609.65,
-      "avg_ms": 4609.65
+      "total_ms": 5438.96,
+      "avg_ms": 5438.96
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1269.71,
-      "avg_ms": 1269.71
+      "total_ms": 6641.25,
+      "avg_ms": 6641.25
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 658.24,
-      "avg_ms": 658.24
+      "total_ms": 375.87,
+      "avg_ms": 375.87
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 4441.58,
-      "avg_ms": 4441.58
+      "total_ms": 1500.27,
+      "avg_ms": 1500.27
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 1253.5,
+      "avg_ms": 1253.5
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 4616.37,
+      "avg_ms": 4616.37
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 8215.82,
-      "avg_ms": 8215.82
+      "total_ms": 6254.98,
+      "avg_ms": 6254.98
      }
     }
    }
@@ -2990,60 +3878,85 @@
    "qid": "eval-047",
    "question": "According to the provided corpus, which cycling event at the 2004 Summer Olympics had the highest number of competitors?",
    "qtype": "superlative",
-   "predicted": "The provided corpus does not contain information listing cycling events or competitor counts at the 2004 Summer Olympics, so I cannot determine which cycling event had the highest number of competitors.",
+   "predicted": "Women's individual road race (67 competitors)",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
-   "evidence_sufficient": false,
-   "confidence": 0.75,
+   "evidence_sufficient": true,
+   "confidence": 0.9,
    "n_seeds": 1,
-   "n_graph_chunks": 6,
+   "n_graph_chunks": 69,
    "n_dense_topup": 0,
-   "n_final_chunks": 5,
-   "cited_chunk_ids": [],
+   "n_final_chunks": 16,
+   "cited_chunk_ids": [
+    "Q2065523_chunk_0",
+    "Q1421727_chunk_0",
+    "Q1421581_chunk_0",
+    "Q1415848_chunk_2"
+   ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 1,
+   "unique_context_roots": 2,
+   "unique_action_events": 56,
+   "unique_chunks": 69,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 1,
      "seed_entities": 1,
-     "unmatched_mentions": 0,
-     "graph_chunks": 6,
+     "context_roots": 2,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 76,
+     "graph_chunks": 69,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
-     "final_chunks": 5,
-     "citations": 0
+     "final_chunks": 16,
+     "citations": 4
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3534,
-     "output_tokens": 393,
-     "total_tokens": 3927,
-     "latency_total_ms": 3986.87
+     "input_tokens": 9444,
+     "output_tokens": 809,
+     "total_tokens": 10253,
+     "latency_total_ms": 13670.26
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 3370.25,
-      "avg_ms": 3370.25
+      "total_ms": 5715.9,
+      "avg_ms": 5715.9
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1367.64,
-      "avg_ms": 1367.64
+      "total_ms": 5770.02,
+      "avg_ms": 5770.02
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 654.02,
-      "avg_ms": 654.02
+      "total_ms": 388.23,
+      "avg_ms": 388.23
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 2611.2,
-      "avg_ms": 2611.2
+      "total_ms": 23956.87,
+      "avg_ms": 23956.87
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 2987.61,
+      "avg_ms": 2987.61
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 28992.64,
+      "avg_ms": 28992.64
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 3993.7,
-      "avg_ms": 3993.7
+      "total_ms": 7970.43,
+      "avg_ms": 7970.43
      }
     }
    }
@@ -3052,60 +3965,82 @@
    "qid": "eval-048",
    "question": "According to the provided corpus, how many cycling events at the 2012 Summer Olympics had more than 30 competitors?",
    "qtype": "aggregation",
-   "predicted": "The provided corpus does not contain information about cycling events or their competitor counts, so this cannot be determined from the given documents.",
+   "predicted": "The provided corpus does not state the number of competitors for cycling events; it does not contain enough information to determine how many cycling events had more than 30 competitors.",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
    "evidence_sufficient": false,
-   "confidence": 0.05,
-   "n_seeds": 2,
-   "n_graph_chunks": 29,
+   "confidence": 0.66,
+   "n_seeds": 1,
+   "n_graph_chunks": 71,
    "n_dense_topup": 0,
-   "n_final_chunks": 5,
-   "cited_chunk_ids": [],
+   "n_final_chunks": 16,
+   "cited_chunk_ids": [
+    "Q2718015_chunk_2"
+   ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 1,
+   "unique_context_roots": 2,
+   "unique_action_events": 59,
+   "unique_chunks": 71,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
-     "query_entities": 2,
-     "seed_entities": 2,
-     "unmatched_mentions": 0,
-     "graph_chunks": 29,
+     "query_entities": 1,
+     "seed_entities": 1,
+     "context_roots": 2,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 80,
+     "graph_chunks": 71,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
-     "final_chunks": 5,
-     "citations": 0
+     "final_chunks": 16,
+     "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3285,
-     "output_tokens": 559,
-     "total_tokens": 3844,
-     "latency_total_ms": 5221.06
+     "input_tokens": 8692,
+     "output_tokens": 973,
+     "total_tokens": 9665,
+     "latency_total_ms": 13773.94
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 4401.29,
-      "avg_ms": 4401.29
+      "total_ms": 7310.1,
+      "avg_ms": 7310.1
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1446.53,
-      "avg_ms": 1446.53
+      "total_ms": 6463.59,
+      "avg_ms": 6463.59
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 1217.58,
-      "avg_ms": 1217.58
+      "total_ms": 408.04,
+      "avg_ms": 408.04
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 12319.87,
-      "avg_ms": 12319.87
+      "total_ms": 27797.15,
+      "avg_ms": 27797.15
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 3133.98,
+      "avg_ms": 3133.98
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 28641.27,
+      "avg_ms": 28641.27
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 5228.77,
-      "avg_ms": 5228.77
+      "total_ms": 6483.0,
+      "avg_ms": 6483.0
      }
     }
    }
@@ -3114,64 +4049,82 @@
    "qid": "eval-049",
    "question": "According to the provided corpus, which shooting event at the 1988 Summer Olympics had the highest number of competitors?",
    "qtype": "superlative",
-   "predicted": "The provided documents do not contain any information about shooting events at the 1988 Summer Olympics, so the question cannot be answered from this corpus.",
+   "predicted": "Men's 50 metre rifle prone (55 competitors)",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
-   "evidence_sufficient": false,
-   "confidence": 0.08,
+   "evidence_sufficient": true,
+   "confidence": 0.88,
    "n_seeds": 1,
-   "n_graph_chunks": 3,
+   "n_graph_chunks": 93,
    "n_dense_topup": 0,
-   "n_final_chunks": 3,
+   "n_final_chunks": 16,
    "cited_chunk_ids": [
-    "Q9663_chunk_0",
-    "Q901754_chunk_0",
-    "Q9663_chunk_2"
+    "Q7500747_chunk_0"
    ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 1,
+   "unique_context_roots": 4,
+   "unique_action_events": 82,
+   "unique_chunks": 93,
+   "duplicate_chunk_count": 0,
    "metrics": {
     "counters": {
      "query_entities": 1,
      "seed_entities": 1,
-     "unmatched_mentions": 0,
-     "graph_chunks": 3,
+     "context_roots": 4,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 115,
+     "graph_chunks": 93,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
-     "final_chunks": 3,
-     "citations": 3
+     "final_chunks": 16,
+     "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 2456,
-     "output_tokens": 561,
-     "total_tokens": 3017,
-     "latency_total_ms": 5945.06
+     "input_tokens": 8422,
+     "output_tokens": 604,
+     "total_tokens": 9026,
+     "latency_total_ms": 11358.85
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 4458.58,
-      "avg_ms": 4458.58
+      "total_ms": 4633.63,
+      "avg_ms": 4633.63
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1463.21,
-      "avg_ms": 1463.21
+      "total_ms": 5920.85,
+      "avg_ms": 5920.85
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 621.63,
-      "avg_ms": 621.63
+      "total_ms": 339.72,
+      "avg_ms": 339.72
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 1119.17,
-      "avg_ms": 1119.17
+      "total_ms": 30426.15,
+      "avg_ms": 30426.15
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 3168.26,
+      "avg_ms": 3168.26
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 39475.69,
+      "avg_ms": 39475.69
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 5951.6,
-      "avg_ms": 5951.6
+      "total_ms": 6738.12,
+      "avg_ms": 6738.12
      }
     }
    }
@@ -3180,62 +4133,81 @@
    "qid": "eval-050",
    "question": "Who won the gold medal in the event held at Olympic Stadium on 6–9 August at the 2012 Summer Olympics?",
    "qtype": "multi_hop",
-   "predicted": "The provided documents do not contain information identifying the event held at the Olympic Stadium on 6–9 August or its gold medallist.",
+   "predicted": "David Rudisha",
    "gold": [],
    "answer_match": false,
    "gold_doc_coverage": null,
-   "evidence_sufficient": false,
-   "confidence": 0.8,
-   "n_seeds": 2,
-   "n_graph_chunks": 29,
+   "evidence_sufficient": true,
+   "confidence": 0.86,
+   "n_seeds": 3,
+   "n_graph_chunks": 293,
    "n_dense_topup": 0,
    "n_final_chunks": 5,
    "cited_chunk_ids": [
-    "Q2001009_chunk_0"
+    "Q1049551_chunk_0"
    ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 3,
+   "unique_context_roots": 1,
+   "unique_action_events": 192,
+   "unique_chunks": 293,
+   "duplicate_chunk_count": 5,
    "metrics": {
     "counters": {
-     "query_entities": 2,
-     "seed_entities": 2,
-     "unmatched_mentions": 0,
-     "graph_chunks": 29,
+     "query_entities": 3,
+     "seed_entities": 3,
+     "context_roots": 1,
+     "unmatched_context_phrases": 2,
+     "retrieval_mode": "local",
+     "graph_chunks": 293,
      "dense_topup_chunks": 0,
-     "rank_gate": "sufficient",
      "final_chunks": 5,
      "citations": 1
     },
     "llm": {
      "calls": 2,
-     "input_tokens": 3020,
-     "output_tokens": 580,
-     "total_tokens": 3600,
-     "latency_total_ms": 6791.47
+     "input_tokens": 3775,
+     "output_tokens": 1093,
+     "total_tokens": 4868,
+     "latency_total_ms": 13394.13
     },
     "timings": {
-     "stage1_query_entities": {
+     "stage1_query_analysis": {
       "count": 1,
-      "total_ms": 4811.98,
-      "avg_ms": 4811.98
+      "total_ms": 9100.82,
+      "avg_ms": 9100.82
      },
      "stage2_entity_matching": {
       "count": 1,
-      "total_ms": 1412.9,
-      "avg_ms": 1412.9
+      "total_ms": 6208.29,
+      "avg_ms": 6208.29
      },
-     "stage3_traverse": {
+     "stage3_context_resolution": {
       "count": 1,
-      "total_ms": 1293.49,
-      "avg_ms": 1293.49
+      "total_ms": 366.92,
+      "avg_ms": 366.92
      },
-     "stage45_rank": {
+     "stage4_traverse": {
       "count": 1,
-      "total_ms": 12570.29,
-      "avg_ms": 12570.29
+      "total_ms": 91141.27,
+      "avg_ms": 91141.27
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 1588.32,
+      "avg_ms": 1588.32
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 113141.0,
+      "avg_ms": 113141.0
      },
      "stage6_answer": {
       "count": 1,
-      "total_ms": 6799.13,
-      "avg_ms": 6799.13
+      "total_ms": 4305.63,
+      "avg_ms": 4305.63
      }
     }
    }

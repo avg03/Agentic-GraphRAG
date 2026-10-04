@@ -1,15 +1,18 @@
-"""Retrieval tools (doc §7/§8 + lightweight §6 community proxy).
+"""Retrieval tools (v2 §10.2 + lightweight community proxy).
 
 Each tool reuses an existing engine and returns a structured dict; no
 retrieval logic lives here.
 
-    graph_search(subquery)      — Pipeline 2 engine (entity match → traverse →
-                                  relationship paths → chunk lookup)
+    graph_search(subquery)      — Pipeline 2 engine, v2 mode dispatch
+                                  (entity match -> context resolution ->
+                                  local/scope traversal -> ranked chunks)
+    scope_search(subquery, …)   — Mode B sibling traversal driven by explicit
+                                  context roots (the GRAPH_SCOPE action)
     vector_search(subquery)     — Pipeline 1 engine (BM25 + dense + rerank)
     community_search(subquery)  — lightweight doc-level lookup over Chroma
 """
 
-__all__ = ["graph_search", "vector_search", "community_search"]
+__all__ = ["graph_search", "scope_search", "vector_search", "community_search"]
 
 _conn = None
 _vector_cache: dict = {}
@@ -24,49 +27,95 @@ def _get_conn():
     return _conn
 
 
-def graph_search(subquery: str, max_paths: int = 20) -> dict:
-    """Investigate relationships via the existing TigerGraph engine."""
-    from graphrag.entity_index import load_entity_index, match_entities
-    from graphrag.traverse import traverse, collect_relationships
-    from graphrag.chunk_lookup import fetch_chunks
-
-    conn = _get_conn()
-    index = load_entity_index(conn)
-
-    extraction = _extract_query_entities(subquery)
-    mentions = [e.model_dump() for e in extraction.entities]
-    # The subquery itself is also a match candidate: canonical event names
-    # live in vertex names, and planner mentions are sometimes too coarse
-    # ("Canoeing") to reach the specific event vertex ("Canoeing at the ...
-    # - Men's K-2 1000 metres").
-    mentions.append({"name": subquery[:220], "type": None})
-    matching = match_entities(mentions, index)
-    seeds = matching["seeds"]
-
-    result = {
-        "tool": "graph_search",
-        "entities": [s[2] for s in seeds],
+def _tool_base(tool: str) -> dict:
+    return {
+        "tool": tool,
+        "entities": [],
         "paths": [],
         "relationships": [],
         "chunks": [],
-        "unmatched": matching["unmatched"],
-        "status": "success" if seeds else "no_entity",
+        "unmatched": [],
+        "retrieval_mode": "",
+        "scope_roots": [],
+        "question_type": "",
+        "status": "success",
     }
-    if not seeds:
-        return result
 
-    supports = traverse(conn, seeds)
-    relationships = collect_relationships(conn, seeds, max_paths=max_paths)
-    chunks = fetch_chunks(list(supports.keys()))
-    for c in chunks:
-        c["support"] = supports[c["id"]]["support"]
-        c["source"] = "graph"
-    chunks.sort(key=lambda c: -c["support"])
 
-    result["paths"] = relationships
-    result["relationships"] = relationships
-    result["chunks"] = chunks
-    return result
+def graph_search(subquery: str, max_paths: int = 20) -> dict:
+    """Investigate via the existing TigerGraph engine (v2 mode dispatch).
+
+    The v2 orchestrator (graphrag.retrieve.graph_search) handles query
+    analysis, entity matching, context resolution, local/scope traversal,
+    and scope-aware ranking in one call — this wrapper only adapts the
+    result to the tool dict shape.
+    """
+    from graphrag.retrieve import graph_search as _graph_search
+
+    result = _graph_search(subquery, mode="auto", max_paths=max_paths)
+    out = _tool_base("graph_search")
+    out.update(
+        {
+            "entities": [s[2] for s in result["seeds"]],
+            "paths": result["relationships"],
+            "relationships": result["relationships"],
+            "chunks": result["chunks"],
+            "unmatched": result["matching"].get("unmatched", []),
+            "retrieval_mode": result["retrieval_mode"],
+            "scope_roots": result["scope_roots"],
+            "question_type": result["question_type"],
+            "status": "success" if result["seeds"] or result["scope_roots"] else "no_entity",
+        }
+    )
+    return out
+
+
+def scope_search(
+    subquery: str,
+    context_keys: list[str] | None = None,
+    max_paths: int = 20,
+) -> dict:
+    """GRAPH_SCOPE tool (v2 §10.2/§12): investigate siblings of a context root.
+
+    Resolves context roots from the context index (deterministically) and
+    traverses the candidate sibling ActionEvents (Mode B). Explicit entity
+    seeds from the subquery are still honored and merged.
+    """
+    from graphrag.context_index import load_context_index, match_contexts
+    from graphrag.scope import resolve_scope
+    from graphrag.retrieve import graph_search as _graph_search
+
+    keys = list(context_keys or [])
+    if not keys:
+        # fall back to the subquery text as a scope phrase
+        keys = [subquery[:120]]
+
+    index = load_context_index()
+    matched = match_contexts(keys, index)
+    roots = resolve_scope(matched["matches"])
+    resolved_keys = [r["key"] for r in roots]
+
+    result = _graph_search(
+        subquery,
+        context_keys=resolved_keys,
+        mode="scope",
+        max_paths=max_paths,
+    )
+    out = _tool_base("scope_search")
+    out.update(
+        {
+            "entities": [s[2] for s in result["seeds"]],
+            "paths": result["relationships"],
+            "relationships": result["relationships"],
+            "chunks": result["chunks"],
+            "unmatched": result["matching"].get("unmatched", []),
+            "retrieval_mode": result["retrieval_mode"],
+            "scope_roots": result["scope_roots"],
+            "question_type": result["question_type"],
+            "status": "success" if result["scope_roots"] else "no_scope",
+        }
+    )
+    return out
 
 
 def _extract_query_entities(subquery: str):
@@ -83,11 +132,16 @@ def _extract_query_entities(subquery: str):
     return parsed
 
 
-def vector_search(subquery: str, top_k: int = 6, collection=None) -> dict:
-    """Reuse the existing Pipeline 1 stack (BM25 + dense + dedupe + rerank)."""
+def vector_search(subquery: str, top_k: int = 6, collection=None, filters: dict | None = None) -> dict:
+    """Reuse the existing Pipeline 1 stack (BM25 + dense + dedupe + rerank).
+
+    `filters` passes a Chroma `where` filter through (v2 §16:
+    vector_search(query, filters=None, top_k=...)), e.g. to constrain a
+    fallback to a scope's documents.
+    """
     from retrieval.main_pipeline import run_pipeline
 
-    hits = run_pipeline(subquery, collection=collection)
+    hits = run_pipeline(subquery, collection=collection, where=filters)
     for h in hits:
         h["source"] = "vector"
         h["support"] = 0

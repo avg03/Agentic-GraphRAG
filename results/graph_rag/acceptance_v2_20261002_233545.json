@@ -1,0 +1,158 @@
+{
+ "run_id": "graph_rag/acceptance_v2/20261002_233545",
+ "pipeline": "graph_rag",
+ "eval_set": "acceptance_v2",
+ "saved_at": "2026-10-02T23:35:45.709400",
+ "config": {
+  "llm_provider": "azure",
+  "model": "gpt-5-mini",
+  "eval_file": "D:\\TigerGraph\\Data\\eval_v2_classes.jsonl"
+ },
+ "summary": {
+  "n_questions": 17,
+  "answer_accuracy": 0.0,
+  "by_class": {
+   "A": {
+    "n": 2,
+    "correct": 0,
+    "accuracy": 0.0
+   },
+   "B": {
+    "n": 2,
+    "correct": 0,
+    "accuracy": 0.0
+   },
+   "C": {
+    "n": 3,
+    "correct": 0,
+    "accuracy": 0.0
+   },
+   "D": {
+    "n": 3,
+    "correct": 0,
+    "accuracy": 0.0
+   },
+   "E": {
+    "n": 3,
+    "correct": 0,
+    "accuracy": 0.0
+   },
+   "F": {
+    "n": 2,
+    "correct": 0,
+    "accuracy": 0.0
+   },
+   "G": {
+    "n": 2,
+    "correct": 0,
+    "accuracy": 0.0
+   }
+  },
+  "wall_time_s": 1175.3,
+  "pipeline": "graph_rag"
+ },
+ "records": [
+  {
+   "qid": "pub-006",
+   "error": "generate_answer() takes from 2 to 3 positional arguments but 4 were given",
+   "answer_match": false,
+   "v2_class": "A"
+  },
+  {
+   "qid": "pub-009",
+   "error": "generate_answer() takes from 2 to 3 positional arguments but 4 were given",
+   "answer_match": false,
+   "v2_class": "A"
+  },
+  {
+   "qid": "pub-005",
+   "error": "generate_answer() takes from 2 to 3 positional arguments but 4 were given",
+   "answer_match": false,
+   "v2_class": "B"
+  },
+  {
+   "qid": "pub-011",
+   "error": "generate_answer() takes from 2 to 3 positional arguments but 4 were given",
+   "answer_match": false,
+   "v2_class": "B"
+  },
+  {
+   "qid": "pub-001",
+   "error": "generate_answer() takes from 2 to 3 positional arguments but 4 were given",
+   "answer_match": false,
+   "v2_class": "C"
+  },
+  {
+   "qid": "pub-003",
+   "error": "generate_answer() takes from 2 to 3 positional arguments but 4 were given",
+   "answer_match": false,
+   "v2_class": "C"
+  },
+  {
+   "qid": "pub-045",
+   "error": "generate_answer() takes from 2 to 3 positional arguments but 4 were given",
+   "answer_match": false,
+   "v2_class": "C"
+  },
+  {
+   "qid": "pub-051",
+   "error": "generate_answer() takes from 2 to 3 positional arguments but 4 were given",
+   "answer_match": false,
+   "v2_class": "D"
+  },
+  {
+   "qid": "pub-027",
+   "error": "generate_answer() takes from 2 to 3 positional arguments but 4 were given",
+   "answer_match": false,
+   "v2_class": "D"
+  },
+  {
+   "qid": "pub-070",
+   "error": "generate_answer() takes from 2 to 3 positional arguments but 4 were given",
+   "answer_match": false,
+   "v2_class": "D"
+  },
+  {
+   "qid": "pub-025",
+   "error": "generate_answer() takes from 2 to 3 positional arguments but 4 were given",
+   "answer_match": false,
+   "v2_class": "E"
+  },
+  {
+   "qid": "pub-029",
+   "error": "generate_answer() takes from 2 to 3 positional arguments but 4 were given",
+   "answer_match": false,
+   "v2_class": "E"
+  },
+  {
+   "qid": "pub-042",
+   "error": "generate_answer() takes from 2 to 3 positional arguments but 4 were given",
+   "answer_match": false,
+   "v2_class": "E"
+  },
+  {
+   "qid": "pub-046",
+   "error": "generate_answer() takes from 2 to 3 positional arguments but 4 were given",
+   "answer_match": false,
+   "v2_class": "F"
+  },
+  {
+   "qid": "pub-054",
+   "error": "generate_answer() takes from 2 to 3 positional arguments but 4 were given",
+   "answer_match": false,
+   "v2_class": "F"
+  },
+  {
+   "qid": "pub-043",
+   "error": "generate_answer() takes from 2 to 3 positional arguments but 4 were given",
+   "answer_match": false,
+   "v2_class": "G"
+  },
+  {
+   "qid": "pub-022",
+   "error": "generate_answer() takes from 2 to 3 positional arguments but 4 were given",
+   "answer_match": false,
+   "v2_class": "G"
+  }
+ ]
+}

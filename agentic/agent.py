@@ -59,6 +59,9 @@ def run_agentic(question: str) -> RAGResult:
     llm_latency_ms = llm.get("latency_total_ms", 0)
     tokens_per_op = round(llm.get("total_tokens", 0) / max(llm.get("calls", 1), 1), 1)
 
+    # v2 agentic metrics (architecture §18)
+    steps = final.get("step_count", 0)
+    context_count = len(final.get("candidate_contexts", []))
     return RAGResult(
         pipeline="agentic_graphrag",
         question=question,
@@ -75,7 +78,7 @@ def run_agentic(question: str) -> RAGResult:
         evidence_sufficient=answer.get("evidence_sufficient"),
         confidence=answer.get("confidence"),
         metadata={
-            "steps": final.get("step_count", 0),
+            "steps": steps,
             "tools_used": tools_used,
             "actions": actions,
             "nodes_invoked": nodes_invoked,
@@ -85,6 +88,20 @@ def run_agentic(question: str) -> RAGResult:
             "time_per_tool": time_per_tool,
             "tokens_per_op": tokens_per_op,
             "duplicate_chunks_dropped": final.get("duplicate_chunks_dropped", 0),
+            # v2 extras
+            "question_type": final.get("question_type", ""),
+            "candidate_contexts": final.get("candidate_contexts", []),
+            "contexts_investigated": final.get("investigated_contexts", []),
+            "context_roots_available": context_count,
+            "scope_coverage": final.get("scope_coverage", ""),
+            "evidence_stats": final.get("evidence_stats", {}),
+            "vector_fallback_count": final.get("vector_calls", 0),
+            "reformulation_count": sum(
+                1 for a in actions if a == "REFORMULATE"
+            ),
+            "new_evidence_per_step": round(
+                final.get("evidence_stats", {}).get("new_chunks_last_step", 0) / max(steps, 1), 2
+            ),
             "trace": final.get("trace", []),
             "metrics": summary,
         },

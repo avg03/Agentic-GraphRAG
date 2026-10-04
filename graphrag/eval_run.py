@@ -27,6 +27,33 @@ from graphrag.retrieval_pipeline import answer_question
 __all__ = ["normalize_answer", "score_question", "run_eval"]
 
 RESULTS_PATH = Path(__file__).resolve().parent / "eval_results.json"
+_CHECKPOINT_DIR = Path("results/checkpoints")
+
+
+def _checkpoint_file(pipeline: str, eval_set: str) -> Path:
+    return _CHECKPOINT_DIR / f"{pipeline}_{eval_set}.jsonl"
+
+
+def _load_checkpoint(path: Path) -> dict[str, dict]:
+    """qid -> scored record, from the append-only checkpoint (crash-safe resume)."""
+    if not path.exists():
+        return {}
+    records: dict[str, dict] = {}
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if line.strip():
+            try:
+                rec = json.loads(line)
+            except ValueError:
+                continue
+            if rec.get("qid"):
+                records[rec["qid"]] = rec
+    return records
+
+
+def _append_checkpoint(path: Path, record: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "a", encoding="utf-8") as f:
+        f.write(json.dumps(record, ensure_ascii=False) + "\n")
 
 
 def normalize_answer(text: str) -> str:
@@ -62,6 +89,7 @@ def score_question(result: dict, gold: dict) -> dict:
 
     metrics_obj = result.get("metrics")
     metrics_summary = metrics_obj.summary() if hasattr(metrics_obj, "summary") else metrics_obj
+    rank_info = result.get("rank_info", {}) if isinstance(result.get("rank_info"), dict) else {}
 
     return {
         "qid": gold["qid"],
@@ -74,10 +102,19 @@ def score_question(result: dict, gold: dict) -> dict:
         "evidence_sufficient": answer.evidence_sufficient,
         "confidence": answer.confidence,
         "n_seeds": len(result.get("seeds", []) or []),
-        "n_graph_chunks": result.get("rank_info", {}).get("graph_chunks", 0) if isinstance(result.get("rank_info"), dict) else 0,
-        "n_dense_topup": result.get("rank_info", {}).get("dense_topup", 0) if isinstance(result.get("rank_info"), dict) else 0,
+        "n_graph_chunks": rank_info.get("graph_chunks", 0),
+        "n_dense_topup": rank_info.get("dense_topup", 0),
         "n_final_chunks": len(result["chunks"]),
         "cited_chunk_ids": answer.cited_chunk_ids,
+        # v2 metrics (architecture v2 §18) — additive
+        "question_type": result.get("question_type", ""),
+        "retrieval_mode": rank_info.get("retrieval_mode", result.get("retrieval_mode", "")),
+        "scope_coverage": rank_info.get("scope_coverage", ""),
+        "unique_seed_vertices": len(result.get("seeds", []) or []),
+        "unique_context_roots": len(result.get("scope_roots", []) or []),
+        "unique_action_events": rank_info.get("distinct_events", 0),
+        "unique_chunks": rank_info.get("graph_chunks", 0),
+        "duplicate_chunk_count": rank_info.get("duplicate_chunk_count", 0),
         "metrics": metrics_summary,
     }
 
@@ -87,7 +124,16 @@ def run_eval(
     pilot_only: bool = False,
     output: Path = RESULTS_PATH,
     eval_set: str = "public",
+    fresh: bool = False,
 ) -> dict:
+    # Hang watchdog: TG REST / LLM calls without an explicit timeout raise
+    # after 3 min instead of blocking forever (the per-question retry turns
+    # a transient stall into a retry, and a persistent one into an error
+    # record rather than a dead run).
+    import socket
+
+    socket.setdefaulttimeout(180)
+
     from ingestion.preprocessing import load_corpus
 
     questions = []
@@ -105,16 +151,35 @@ def run_eval(
     if limit:
         questions = questions[:limit]
 
-    records = []
+    # crash-safe resume: scored records are appended to a checkpoint after
+    # each question; a restart skips the qids already answered
+    checkpoint = _checkpoint_file("graph_rag", eval_set)
+    done = {} if fresh else _load_checkpoint(checkpoint)
+    pending = [q for q in questions if q["qid"] not in done]
+    if done:
+        print(f"resume: {len(done)} checkpointed, {len(pending)} remaining")
+    records_by_qid = dict(done)
+
     start = time.perf_counter()
-    for gold in tqdm(questions, desc="eval"):
+    for gold in tqdm(pending, desc="eval"):
         try:
-            result = answer_question(gold["question"])
-            records.append(score_question(result, gold))
+            try:
+                result = answer_question(gold["question"])
+                record = score_question(result, gold)
+            except Exception as exc:
+                # transient hiccup — one retry. TG Cloud hibernation raises a
+                # token/500 error and auto-wakes after ~1-2 min, so wait it out
+                wait = 90 if ("500" in str(exc) or "token" in str(exc).lower()) else 20
+                time.sleep(wait)
+                result = answer_question(gold["question"])
+                record = score_question(result, gold)
         except Exception as exc:
-            records.append(
-                {"qid": gold["qid"], "error": str(exc)[:300], "answer_match": False}
-            )
+            record = {"qid": gold["qid"], "error": str(exc)[:300], "answer_match": False}
+        records_by_qid[gold["qid"]] = record
+        _append_checkpoint(checkpoint, record)
+
+    # original eval-file order, all records (checkpointed + fresh)
+    records = [records_by_qid[q["qid"]] for q in questions if q["qid"] in records_by_qid]
     wall = time.perf_counter() - start
 
     matched = sum(1 for r in records if r.get("answer_match"))
@@ -145,6 +210,7 @@ def run_eval(
         json.dumps({"summary": summary, "records": records}, indent=1, ensure_ascii=False),
         encoding="utf-8",
     )
+    checkpoint.unlink(missing_ok=True)  # run complete; the saved run is authoritative
     print(json.dumps(summary, indent=1))
     print(f"results -> {output}")
     return summary
@@ -155,8 +221,9 @@ def main() -> None:
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--pilot", action="store_true", help="Only questions touching pilot docs")
     parser.add_argument("--eval-set", default="public", choices=["public", "hidden"])
+    parser.add_argument("--fresh", action="store_true", help="Ignore any checkpoint and start over")
     args = parser.parse_args()
-    run_eval(limit=args.limit, pilot_only=args.pilot, eval_set=args.eval_set)
+    run_eval(limit=args.limit, pilot_only=args.pilot, eval_set=args.eval_set, fresh=args.fresh)
 
 
 if __name__ == "__main__":

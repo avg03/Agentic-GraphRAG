@@ -1,4 +1,4 @@
-"""Node 1 — Planner: query understanding + decomposition into answer slots."""
+"""Node 1 — Planner (v2 §10.2): query understanding + slots + scope hypotheses."""
 
 from shared.llm_client import generate_structured
 from shared.models import PlanOutput
@@ -8,7 +8,12 @@ __all__ = ["plan_question"]
 
 
 def plan_question(question: str, metrics=None) -> tuple[PlanOutput, dict]:
-    """Understand the question; returns (PlanOutput, usage_dict)."""
+    """Understand the question; returns (PlanOutput, usage_dict).
+
+    One LLM call produces BOTH the answer-slot decomposition and the scope
+    analysis (question_type / scope_root / candidate_context_keys, v2 §10.2
+    step 1) — the context resolver node then resolves the keys offline.
+    """
     plan, usage = generate_structured(
         prompt=build_planner_prompt(question),
         response_schema=PlanOutput,

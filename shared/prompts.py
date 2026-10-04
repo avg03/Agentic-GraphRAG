@@ -17,6 +17,8 @@ __all__ = [
     "build_extraction_prompt",
     "QUERY_ENTITY_SYSTEM_PROMPT",
     "build_query_entity_prompt",
+    "QUERY_ANALYSIS_SYSTEM_PROMPT",
+    "build_query_analysis_prompt",
     "ANSWER_SYSTEM_PROMPT",
     "build_answer_prompt",
 ]
@@ -84,6 +86,34 @@ def build_query_entity_prompt(question: str) -> str:
 
 
 # ---------------------------------------------------------------------------
+# Stage 1 (v2): query entity + SCOPE extraction in one structured call
+# ---------------------------------------------------------------------------
+
+QUERY_ANALYSIS_SYSTEM_PROMPT = """You analyze a user question for a knowledge-graph retrieval system. Extract its entity references AND its retrieval scope.
+
+Entity rules (unchanged from entity extraction):
+1. Extract the concrete things the question is about: people, countries, organizations, teams, sports, venues, locations, events, awards/outcomes.
+2. Use the entity's most likely canonical name; when it references a specific competition/event, construct its FULL canonical Wikipedia-style name (e.g. "men's K-2 1000 metres canoeing at the 2012 Summer Olympics" -> "Canoeing at the 2012 Summer Olympics – Men's K-2 1000 metres"). Long event names are correct and expected.
+3. Extract 1-6 entities maximum - only what the answer actually depends on.
+
+Scope rules (v2):
+4. question_type: "local_fact" (one fact about one event/entity), "multi_hop" (a relationship chain), "collection_aggregation" (count/list across MANY sibling events of one scope: how many, who were all the winners, list every...), "overview" (broad summary).
+5. scope.root: the collection the question ranges over, in canonical form ("2008 Summer Olympics", "Canoeing at the 2012 Summer Olympics"). Empty string for local_fact/multi_hop.
+6. scope.breadth: "single_event" (one event), "sport" (one sport within one games), "edition" (a whole Olympic games), "all_events" (everything). Use "single_event" unless the question demands multiple sibling events.
+7. scope.target: what should be collected from each sibling event ("winner", "gold medal", "time", "number of competitors"). Empty when not a collection question.
+8. candidate_context_keys: 1-4 structured keys the question implies, formatted "olympics:2008", "sport:canoeing", "event:mens_k2_1000_metres", "year:2008" (lowercase, underscores for spaces). Only keys the question text actually supports - never invent facts.
+9. Do NOT answer the question. Do NOT invent events, results, or scope the question does not state."""
+
+
+def build_query_analysis_prompt(question: str) -> str:
+    return (
+        f"Question:\n\"\"\"\n{question}\n\"\"\"\n\n"
+        "Extract the entity references, question type, scope, and candidate "
+        "context keys as JSON matching the requested schema."
+    )
+
+
+# ---------------------------------------------------------------------------
 # Final answer generation: grounded, anti-hallucination
 # ---------------------------------------------------------------------------
 
@@ -106,7 +136,15 @@ def build_answer_prompt(question: str, ranked_chunks: list[dict]) -> str:
     for i, chunk in enumerate(ranked_chunks, 1):
         title = chunk.get("metadata", {}).get("title", "")
         source_tag = chunk.get("source", "graph")
-        blocks.append(f"[{i}] chunk_id={chunk['id']} (source: {source_tag}, title: {title})\n{chunk.get('document', '')}")
+        # scope lineage (v2 §7): why this chunk surfaced, e.g. via the
+        # 2008 Olympics scope rather than a direct entity match
+        lineage = ""
+        ck = chunk.get("context_keys") or []
+        if ck:
+            lineage = f", scope: {', '.join(ck[:3])}"
+        blocks.append(
+            f"[{i}] chunk_id={chunk['id']} (source: {source_tag}, title: {title}{lineage})\n{chunk.get('document', '')}"
+        )
     context = "\n\n".join(blocks)
     return (
         f"Question: {question}\n\n"
@@ -120,14 +158,20 @@ def build_answer_prompt(question: str, ranked_chunks: list[dict]) -> str:
 # Agentic layer prompts (Pipeline 3)
 # ---------------------------------------------------------------------------
 
-PLANNER_SYSTEM_PROMPT = """You decompose a user question into independently answerable "answer slots" for a retrieval investigation.
+PLANNER_SYSTEM_PROMPT = """You decompose a user question into independently answerable "answer slots" AND identify its retrieval scope for a graph investigation.
 
-Rules:
+Decomposition rules:
 1. Decompose ONLY when the question contains multiple independently answerable requirements (e.g. winners AND venue AND times). Otherwise return exactly ONE slot with the whole question.
 2. Each slot's question must be self-contained enough to be answered by a retrieval system on its own (resolve pronouns into explicit entity names).
 3. slot_type: "relational" (who/where/which relationship), "exact_fact" (a specific number/time/date/name), "aggregation" (count/list over many documents), "overview" (broad summary).
 4. Maximum 4 slots. Order them so relationship-finding slots come before exact-fact slots.
-5. Never invent entities; keep names exactly as the question gives them."""
+5. Never invent entities; keep names exactly as the question gives them.
+
+Scope rules (v2):
+6. question_type: "local_fact" (one fact about one event/entity), "multi_hop" (a relationship chain), "collection_aggregation" (count/list across MANY sibling events of one scope: how many, who were all the winners, list every...), "overview" (broad summary).
+7. scope_root: the collection the question ranges over, in canonical form ("2008 Summer Olympics", "Canoeing at the 2012 Summer Olympics"). Empty string for local_fact/multi_hop questions.
+8. candidate_context_keys: 1-4 structured keys the question implies, formatted "olympics:2008", "sport:canoeing", "event:mens_k2_1000_metres", "year:2008" (lowercase, underscores for spaces). Only keys the question text actually supports.
+9. Do NOT answer the question. Do NOT invent scope the question does not state."""
 
 EVALUATOR_SYSTEM_PROMPT = """You evaluate whether collected evidence actually answers each answer slot of an investigation.
 
@@ -141,27 +185,38 @@ Rules:
 6. ambiguity=true when a key entity could refer to multiple graph nodes/chunks.
 7. overall_status: "sufficient" only if EVERY slot is supported; "partial" if some; "insufficient" if none.
 8. missing: list the concrete missing facts (e.g. "exact medal time").
-9. recommended_action: which tool would best fill the biggest gap (VECTOR_SEARCH for exact textual/numeric details in result tables, GRAPH_SEARCH for relationships, COMMUNITY_SEARCH for broad overviews, STOP if nothing more can help)."""
+9. recommended_action: which tool would best fill the biggest gap (VECTOR_SEARCH for exact textual/numeric details in result tables, GRAPH_SEARCH for relationships, GRAPH_SCOPE for discovering more sibling events of the requested scope, COMMUNITY_SEARCH for broad overviews, STOP if nothing more can help).
+
+Collection-question rules (v2): when the question is a collection_aggregation, also judge SCOPE COVERAGE:
+10. scope_coverage: "none" (evidence covers no sibling branches of the scope), "partial" (a few branches), "substantial" (many branches but not clearly all), "high" (evidence spans most of the requested scope). A few chunks from ONE event is at most "partial".
+11. marginal_gain: "increasing" when the latest retrieval step added new events/facts, "flat" when it mostly repeated known evidence, "diminishing" when new evidence is trickling off.
+12. Do not claim completeness unless the evidence itself establishes the full scope; report scope_coverage honestly instead."""
 
 SUPERVISOR_SYSTEM_PROMPT = """You are the supervisor of a retrieval investigation. You decide the single next action.
 
 Allowed actions:
 - GRAPH_SEARCH: relationship/multi-hop questions (who did what, where, connected entities). Requires the subquery to name concrete entities.
-- VECTOR_SEARCH: exact textual/numeric details, result-table values, descriptions.
+- GRAPH_SCOPE: discover MORE SIBLING EVENTS of a scope (all winners of a games, every event of a sport). Set target_context to the context root to investigate next, chosen from the candidate contexts listed (e.g. "olympics:2008"). Never re-pick an already-investigated context root.
+- VECTOR_SEARCH: exact textual/numeric details, result-table values, descriptions, or when graph evidence is missing/sparse (a graph miss does not mean the fact is absent).
 - COMMUNITY_SEARCH: broad corpus-level overviews when you don't know which documents matter.
 - REFORMULATE: rewrite the subquery (e.g. after entity-not-found or weak results) and retry with the SAME action implied by the next round; put the new wording in subquery.
-- STOP: all slots supported, or the budget is exhausted, or more retrieval clearly cannot help.
+- STOP: all slots supported, or retrieval clearly cannot help further. reason_code MUST be one of: sufficient_evidence, diminishing_returns, budget_exhausted, no_useful_path.
 
 Rules:
-1. Prefer GRAPH_SEARCH for relational slots and VECTOR_SEARCH for exact_fact/aggregation slots. Do not call a tool for a slot that is already supported.
-2. Never repeat an identical (action, subquery) pair that already ran and failed - REFORMULATE or switch tools instead.
+1. Prefer GRAPH_SEARCH for relational slots, GRAPH_SCOPE for collection_aggregation questions whose scope has sibling branches left, VECTOR_SEARCH for exact_fact/aggregation slots and sparse graph evidence.
+2. Never repeat an identical (action, subquery) pair that already ran and failed - REFORMULATE or switch tools instead. Never re-investigate an already-investigated context root: choose another candidate, or STOP with diminishing_returns when nothing new remains.
 3. If the supervisor budget note says budget is exhausted, you MUST choose STOP with reason_code budget_exhausted.
-4. reason_code must be one of: initial_routing, missing_required_fact, wrong_relation_semantics, entity_not_found, contradiction, duplicate_retrieval, budget_exhausted, all_slots_supported, evidence_insufficient.
-5. subquery must be a self-contained retrieval query (explicit entities, no pronouns)."""
+4. When marginal gain is flat/diminishing AND the main slots are supported, STOP with diminishing_returns rather than fetching more.
+5. reason_code must be one of: sufficient_evidence, diminishing_returns, budget_exhausted, no_useful_path, initial_routing, missing_required_fact, wrong_relation_semantics, entity_not_found, contradiction, duplicate_retrieval, scope_incomplete, evidence_insufficient.
+6. subquery must be a self-contained retrieval query (explicit entities, no pronouns)."""
 
 
 def build_planner_prompt(question: str) -> str:
-    return f"Question:\n\"\"\"\n{question}\n\"\"\"\n\nDecompose into answer slots as JSON."
+    return (
+        f"Question:\n\"\"\"\n{question}\n\"\"\"\n\n"
+        "Decompose into answer slots and identify the question type, scope "
+        "root, and candidate context keys as JSON."
+    )
 
 
 def build_evaluator_prompt(
@@ -170,6 +225,9 @@ def build_evaluator_prompt(
     graph_paths: list,
     chunks: list,
     unmatched: list,
+    question_type: str = "",
+    scope_roots: list | None = None,
+    evidence_stats: dict | None = None,
 ) -> str:
     slot_lines = "\n".join(f"- {s['id']} ({s.get('slot_type', 'relational')}): {s['question']}" for s in slots)
     path_lines = "\n".join(f"  {p}" for p in graph_paths[:20]) or "  (none)"
@@ -179,8 +237,24 @@ def build_evaluator_prompt(
         chunk_lines.append(f"  [{c['id']}] ({c.get('source', 'graph')}, support={c.get('support', 0)}) {text}")
     chunk_block = "\n".join(chunk_lines) or "  (none)"
     unmatched_line = ", ".join(unmatched) if unmatched else "none"
+    qtype_line = f"Question type: {question_type}\n" if question_type else ""
+    scope_line = ""
+    if scope_roots:
+        scope_line = (
+            "Scope roots investigated: "
+            + ", ".join(r.get("key", str(r)) for r in scope_roots[:4])
+            + "\n"
+        )
+    stats_line = ""
+    if evidence_stats:
+        stats_line = (
+            f"Evidence stats: {evidence_stats.get('total_chunks', 0)} chunks from "
+            f"{evidence_stats.get('distinct_events', 0)} distinct events; last step added "
+            f"{evidence_stats.get('new_chunks_last_step', 0)} new chunks\n"
+        )
     return (
         f"Original question: {question}\n\n"
+        f"{qtype_line}{scope_line}{stats_line}"
         f"Answer slots:\n{slot_lines}\n\n"
         f"Graph relationship paths:\n{path_lines}\n\n"
         f"Retrieved chunks:\n{chunk_block}\n\n"
@@ -195,6 +269,10 @@ def build_supervisor_prompt(
     slot_statuses: list,
     history: list,
     budget: dict,
+    question_type: str = "",
+    candidate_contexts: list | None = None,
+    investigated_contexts: list | None = None,
+    evidence_stats: dict | None = None,
 ) -> str:
     slot_lines = "\n".join(f"- {s['id']}: {s['question']}" for s in slots)
     status_lines = "\n".join(
@@ -210,14 +288,40 @@ def build_supervisor_prompt(
     budget_line = (
         f"steps used {budget['steps']}/{budget['max_steps']}, "
         f"graph calls {budget['graph_calls']}/{budget['max_graph']}, "
+        f"scope calls {budget.get('scope_calls', 0)}/{budget.get('max_scope', 0)}, "
         f"vector calls {budget['vector_calls']}/{budget['max_vector']}, "
         f"community calls {budget['community_calls']}/{budget['max_community']}"
     )
+    context_lines = ""
+    if candidate_contexts:
+        investigated = set(investigated_contexts or [])
+        ctx_rows = []
+        for c in candidate_contexts:
+            mark = " (investigated)" if c.get("key") in investigated else ""
+            ctx_rows.append(f"  {c.get('key')} [{c.get('level')}] ~{c.get('n_events', '?')} events{mark}")
+        context_lines = (
+            "Candidate context roots (for GRAPH_SCOPE target_context):\n"
+            + "\n".join(ctx_rows)
+            + "\n\n"
+        )
+    stats_lines = ""
+    if evidence_stats:
+        stats_lines = (
+            f"Evidence stats: {evidence_stats.get('total_chunks', 0)} chunks from "
+            f"{evidence_stats.get('distinct_events', 0)} distinct events; "
+            f"last step added {evidence_stats.get('new_chunks_last_step', 0)} new chunks "
+            f"(marginal gain {evidence_stats.get('marginal_gain', 'unknown')}); "
+            f"coverage {evidence_stats.get('scope_coverage', 'unknown')}\n\n"
+        )
+    qtype_line = f"Question type: {question_type}\n\n" if question_type else ""
     return (
         f"Original question: {question}\n\n"
+        f"{qtype_line}"
         f"Answer slots:\n{slot_lines}\n\n"
         f"Current slot statuses:\n{status_lines}\n\n"
         f"Investigation history (most recent last):\n{hist_lines}\n\n"
+        f"{context_lines}"
+        f"{stats_lines}"
         f"Budget: {budget_line}\n\n"
         "Decide the single next action as JSON."
     )

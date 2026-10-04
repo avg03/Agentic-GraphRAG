@@ -1,0 +1,1538 @@
+{
+ "run_id": "graph_rag/acceptance_v2/20261003_000521",
+ "pipeline": "graph_rag",
+ "eval_set": "acceptance_v2",
+ "saved_at": "2026-10-03T00:05:21.299472",
+ "config": {
+  "llm_provider": "azure",
+  "model": "gpt-5-mini",
+  "eval_file": "D:\\TigerGraph\\Data\\eval_v2_classes.jsonl"
+ },
+ "summary": {
+  "n_questions": 17,
+  "answer_accuracy": 0.4118,
+  "by_class": {
+   "A": {
+    "n": 2,
+    "correct": 1,
+    "accuracy": 0.5
+   },
+   "B": {
+    "n": 2,
+    "correct": 2,
+    "accuracy": 1.0
+   },
+   "C": {
+    "n": 3,
+    "correct": 0,
+    "accuracy": 0.0
+   },
+   "D": {
+    "n": 3,
+    "correct": 0,
+    "accuracy": 0.0
+   },
+   "E": {
+    "n": 3,
+    "correct": 1,
+    "accuracy": 0.3333
+   },
+   "F": {
+    "n": 2,
+    "correct": 1,
+    "accuracy": 0.5
+   },
+   "G": {
+    "n": 2,
+    "correct": 2,
+    "accuracy": 1.0
+   }
+  },
+  "wall_time_s": 1116.3,
+  "pipeline": "graph_rag"
+ },
+ "records": [
+  {
+   "qid": "pub-006",
+   "question": "Who won the gold medal in the women's 57 kg judo event at the Summer Olympics held immediately before 2020?",
+   "qtype": "temporal",
+   "predicted": "The provided documents do not state who won the gold medal in the women's 57 kg judo event at the 2016 Summer Olympics.",
+   "gold": [
+    "Rafaela Silva"
+   ],
+   "answer_match": false,
+   "gold_doc_coverage": 0.5,
+   "evidence_sufficient": false,
+   "confidence": 0.9,
+   "n_seeds": 2,
+   "n_graph_chunks": 5,
+   "n_dense_topup": 0,
+   "n_final_chunks": 5,
+   "cited_chunk_ids": [
+    "Q65235550_chunk_0"
+   ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 4,
+   "unique_action_events": 1,
+   "unique_chunks": 5,
+   "duplicate_chunk_count": 0,
+   "metrics": {
+    "counters": {
+     "query_entities": 1,
+     "seed_entities": 2,
+     "context_roots": 4,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "local",
+     "graph_chunks": 5,
+     "dense_topup_chunks": 0,
+     "final_chunks": 5,
+     "citations": 1
+    },
+    "llm": {
+     "calls": 2,
+     "input_tokens": 3607,
+     "output_tokens": 905,
+     "total_tokens": 4512,
+     "latency_total_ms": 14092.47
+    },
+    "timings": {
+     "stage1_query_analysis": {
+      "count": 1,
+      "total_ms": 7901.08,
+      "avg_ms": 7901.08
+     },
+     "stage2_entity_matching": {
+      "count": 1,
+      "total_ms": 41769.79,
+      "avg_ms": 41769.79
+     },
+     "stage3_context_resolution": {
+      "count": 1,
+      "total_ms": 462.39,
+      "avg_ms": 462.39
+     },
+     "stage4_traverse": {
+      "count": 1,
+      "total_ms": 1316.62,
+      "avg_ms": 1316.62
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 544.0,
+      "avg_ms": 544.0
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 11139.11,
+      "avg_ms": 11139.11
+     },
+     "stage6_answer": {
+      "count": 1,
+      "total_ms": 6405.92,
+      "avg_ms": 6405.92
+     }
+    }
+   },
+   "v2_class": "A"
+  },
+  {
+   "qid": "pub-009",
+   "question": "How many nations competed in Sailing at the 2016 Summer Olympics – Women's RS:X?",
+   "qtype": "lookup",
+   "predicted": "26",
+   "gold": [
+    "26"
+   ],
+   "answer_match": true,
+   "gold_doc_coverage": 1.0,
+   "evidence_sufficient": true,
+   "confidence": 0.9,
+   "n_seeds": 1,
+   "n_graph_chunks": 5,
+   "n_dense_topup": 0,
+   "n_final_chunks": 5,
+   "cited_chunk_ids": [
+    "Q26254891_chunk_0"
+   ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 1,
+   "unique_context_roots": 3,
+   "unique_action_events": 0,
+   "unique_chunks": 5,
+   "duplicate_chunk_count": 0,
+   "metrics": {
+    "counters": {
+     "query_entities": 1,
+     "seed_entities": 1,
+     "context_roots": 3,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "local",
+     "graph_chunks": 5,
+     "dense_topup_chunks": 0,
+     "final_chunks": 5,
+     "citations": 1
+    },
+    "llm": {
+     "calls": 2,
+     "input_tokens": 3785,
+     "output_tokens": 593,
+     "total_tokens": 4378,
+     "latency_total_ms": 9956.2
+    },
+    "timings": {
+     "stage1_query_analysis": {
+      "count": 1,
+      "total_ms": 5903.26,
+      "avg_ms": 5903.26
+     },
+     "stage2_entity_matching": {
+      "count": 1,
+      "total_ms": 7301.33,
+      "avg_ms": 7301.33
+     },
+     "stage3_context_resolution": {
+      "count": 1,
+      "total_ms": 597.55,
+      "avg_ms": 597.55
+     },
+     "stage4_traverse": {
+      "count": 1,
+      "total_ms": 627.16,
+      "avg_ms": 627.16
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 349.34,
+      "avg_ms": 349.34
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 1874.92,
+      "avg_ms": 1874.92
+     },
+     "stage6_answer": {
+      "count": 1,
+      "total_ms": 4064.7,
+      "avg_ms": 4064.7
+     }
+    }
+   },
+   "v2_class": "A"
+  },
+  {
+   "qid": "pub-005",
+   "question": "Who won the gold medal in the event held at Olympic Weightlifting Gymnasium on 20 September 1988?",
+   "qtype": "multi_hop",
+   "predicted": "Naim Süleymanoğlu",
+   "gold": [
+    "Naim Süleymanoğlu"
+   ],
+   "answer_match": true,
+   "gold_doc_coverage": 1.0,
+   "evidence_sufficient": true,
+   "confidence": 0.9,
+   "n_seeds": 1,
+   "n_graph_chunks": 5,
+   "n_dense_topup": 0,
+   "n_final_chunks": 5,
+   "cited_chunk_ids": [
+    "Q25239316_chunk_0"
+   ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 1,
+   "unique_context_roots": 1,
+   "unique_action_events": 5,
+   "unique_chunks": 5,
+   "duplicate_chunk_count": 0,
+   "metrics": {
+    "counters": {
+     "query_entities": 1,
+     "seed_entities": 1,
+     "context_roots": 1,
+     "unmatched_context_phrases": 1,
+     "retrieval_mode": "local",
+     "graph_chunks": 5,
+     "dense_topup_chunks": 0,
+     "final_chunks": 5,
+     "citations": 1
+    },
+    "llm": {
+     "calls": 2,
+     "input_tokens": 3085,
+     "output_tokens": 733,
+     "total_tokens": 3818,
+     "latency_total_ms": 10344.83
+    },
+    "timings": {
+     "stage1_query_analysis": {
+      "count": 1,
+      "total_ms": 6282.83,
+      "avg_ms": 6282.83
+     },
+     "stage2_entity_matching": {
+      "count": 1,
+      "total_ms": 6723.68,
+      "avg_ms": 6723.68
+     },
+     "stage3_context_resolution": {
+      "count": 1,
+      "total_ms": 473.46,
+      "avg_ms": 473.46
+     },
+     "stage4_traverse": {
+      "count": 1,
+      "total_ms": 2528.58,
+      "avg_ms": 2528.58
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 514.03,
+      "avg_ms": 514.03
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 1156.87,
+      "avg_ms": 1156.87
+     },
+     "stage6_answer": {
+      "count": 1,
+      "total_ms": 4073.09,
+      "avg_ms": 4073.09
+     }
+    }
+   },
+   "v2_class": "B"
+  },
+  {
+   "qid": "pub-011",
+   "question": "Who won the gold medal in the event held at Richmond Olympic Oval on 14 February 2010?",
+   "qtype": "multi_hop",
+   "predicted": "Martina Sáblíková",
+   "gold": [
+    "Martina Sáblíková"
+   ],
+   "answer_match": true,
+   "gold_doc_coverage": 1.0,
+   "evidence_sufficient": true,
+   "confidence": 0.9,
+   "n_seeds": 3,
+   "n_graph_chunks": 301,
+   "n_dense_topup": 0,
+   "n_final_chunks": 5,
+   "cited_chunk_ids": [
+    "Q580481_chunk_0"
+   ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 3,
+   "unique_context_roots": 1,
+   "unique_action_events": 197,
+   "unique_chunks": 301,
+   "duplicate_chunk_count": 5,
+   "metrics": {
+    "counters": {
+     "query_entities": 3,
+     "seed_entities": 3,
+     "context_roots": 1,
+     "unmatched_context_phrases": 2,
+     "retrieval_mode": "local",
+     "graph_chunks": 301,
+     "dense_topup_chunks": 0,
+     "final_chunks": 5,
+     "citations": 1
+    },
+    "llm": {
+     "calls": 2,
+     "input_tokens": 3079,
+     "output_tokens": 706,
+     "total_tokens": 3785,
+     "latency_total_ms": 9938.95
+    },
+    "timings": {
+     "stage1_query_analysis": {
+      "count": 1,
+      "total_ms": 6344.43,
+      "avg_ms": 6344.43
+     },
+     "stage2_entity_matching": {
+      "count": 1,
+      "total_ms": 5627.0,
+      "avg_ms": 5627.0
+     },
+     "stage3_context_resolution": {
+      "count": 1,
+      "total_ms": 403.44,
+      "avg_ms": 403.44
+     },
+     "stage4_traverse": {
+      "count": 1,
+      "total_ms": 59805.1,
+      "avg_ms": 59805.1
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 1017.28,
+      "avg_ms": 1017.28
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 118234.44,
+      "avg_ms": 118234.44
+     },
+     "stage6_answer": {
+      "count": 1,
+      "total_ms": 3606.24,
+      "avg_ms": 3606.24
+     }
+    }
+   },
+   "v2_class": "B"
+  },
+  {
+   "qid": "pub-001",
+   "question": "According to the provided corpus, how many biathlon events at the 2018 Winter Olympics had more than 73 competitors?",
+   "qtype": "aggregation",
+   "predicted": "The provided corpus contains no information about biathlon events at the 2018 Winter Olympics; the number cannot be determined from these documents.",
+   "gold": [
+    "5"
+   ],
+   "answer_match": false,
+   "gold_doc_coverage": 0.0,
+   "evidence_sufficient": false,
+   "confidence": 0.78,
+   "n_seeds": 1,
+   "n_graph_chunks": 61,
+   "n_dense_topup": 0,
+   "n_final_chunks": 12,
+   "cited_chunk_ids": [
+    "Q225969_chunk_1",
+    "Q905659_chunk_2",
+    "Q1004924_chunk_2",
+    "Q1004926_chunk_4"
+   ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 1,
+   "unique_context_roots": 2,
+   "unique_action_events": 48,
+   "unique_chunks": 61,
+   "duplicate_chunk_count": 0,
+   "metrics": {
+    "counters": {
+     "query_entities": 1,
+     "seed_entities": 1,
+     "context_roots": 2,
+     "unmatched_context_phrases": 1,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 80,
+     "graph_chunks": 61,
+     "dense_topup_chunks": 0,
+     "final_chunks": 12,
+     "citations": 4
+    },
+    "llm": {
+     "calls": 2,
+     "input_tokens": 7303,
+     "output_tokens": 1035,
+     "total_tokens": 8338,
+     "latency_total_ms": 15258.7
+    },
+    "timings": {
+     "stage1_query_analysis": {
+      "count": 1,
+      "total_ms": 7408.83,
+      "avg_ms": 7408.83
+     },
+     "stage2_entity_matching": {
+      "count": 1,
+      "total_ms": 7116.88,
+      "avg_ms": 7116.88
+     },
+     "stage3_context_resolution": {
+      "count": 1,
+      "total_ms": 534.79,
+      "avg_ms": 534.79
+     },
+     "stage4_traverse": {
+      "count": 1,
+      "total_ms": 17971.72,
+      "avg_ms": 17971.72
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 3264.76,
+      "avg_ms": 3264.76
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 25831.68,
+      "avg_ms": 25831.68
+     },
+     "stage6_answer": {
+      "count": 1,
+      "total_ms": 7865.99,
+      "avg_ms": 7865.99
+     }
+    }
+   },
+   "v2_class": "C"
+  },
+  {
+   "qid": "pub-003",
+   "question": "According to the provided corpus, how many shooting events at the 2004 Summer Olympics had more than 37 competitors?",
+   "qtype": "aggregation",
+   "predicted": "The provided corpus does not contain enough competitor counts to determine this. Only Women's double trap is listed with 15 competitors; other shooting events in the corpus do not show total competitor counts.",
+   "gold": [
+    "8"
+   ],
+   "answer_match": false,
+   "gold_doc_coverage": 0.29411764705882354,
+   "evidence_sufficient": false,
+   "confidence": 0.46,
+   "n_seeds": 2,
+   "n_graph_chunks": 90,
+   "n_dense_topup": 0,
+   "n_final_chunks": 12,
+   "cited_chunk_ids": [
+    "Q7500842_chunk_0"
+   ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 2,
+   "unique_action_events": 54,
+   "unique_chunks": 90,
+   "duplicate_chunk_count": 0,
+   "metrics": {
+    "counters": {
+     "query_entities": 2,
+     "seed_entities": 2,
+     "context_roots": 2,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 78,
+     "graph_chunks": 90,
+     "dense_topup_chunks": 0,
+     "final_chunks": 12,
+     "citations": 1
+    },
+    "llm": {
+     "calls": 2,
+     "input_tokens": 6954,
+     "output_tokens": 1017,
+     "total_tokens": 7971,
+     "latency_total_ms": 15315.14
+    },
+    "timings": {
+     "stage1_query_analysis": {
+      "count": 1,
+      "total_ms": 7849.97,
+      "avg_ms": 7849.97
+     },
+     "stage2_entity_matching": {
+      "count": 1,
+      "total_ms": 5953.69,
+      "avg_ms": 5953.69
+     },
+     "stage3_context_resolution": {
+      "count": 1,
+      "total_ms": 473.52,
+      "avg_ms": 473.52
+     },
+     "stage4_traverse": {
+      "count": 1,
+      "total_ms": 23890.85,
+      "avg_ms": 23890.85
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 2742.77,
+      "avg_ms": 2742.77
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 39105.44,
+      "avg_ms": 39105.44
+     },
+     "stage6_answer": {
+      "count": 1,
+      "total_ms": 7481.24,
+      "avg_ms": 7481.24
+     }
+    }
+   },
+   "v2_class": "C"
+  },
+  {
+   "qid": "pub-045",
+   "question": "According to the provided corpus, how many athletics events at the 2004 Summer Olympics had more than 41 competitors?",
+   "qtype": "aggregation",
+   "predicted": "1",
+   "gold": [
+    "20"
+   ],
+   "answer_match": false,
+   "gold_doc_coverage": 0.06976744186046512,
+   "evidence_sufficient": true,
+   "confidence": 0.8,
+   "n_seeds": 1,
+   "n_graph_chunks": 61,
+   "n_dense_topup": 0,
+   "n_final_chunks": 12,
+   "cited_chunk_ids": [
+    "Q220855_chunk_0"
+   ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 1,
+   "unique_context_roots": 2,
+   "unique_action_events": 47,
+   "unique_chunks": 61,
+   "duplicate_chunk_count": 0,
+   "metrics": {
+    "counters": {
+     "query_entities": 1,
+     "seed_entities": 1,
+     "context_roots": 2,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 80,
+     "graph_chunks": 61,
+     "dense_topup_chunks": 0,
+     "final_chunks": 12,
+     "citations": 1
+    },
+    "llm": {
+     "calls": 2,
+     "input_tokens": 7280,
+     "output_tokens": 741,
+     "total_tokens": 8021,
+     "latency_total_ms": 14000.02
+    },
+    "timings": {
+     "stage1_query_analysis": {
+      "count": 1,
+      "total_ms": 7525.52,
+      "avg_ms": 7525.52
+     },
+     "stage2_entity_matching": {
+      "count": 1,
+      "total_ms": 6019.11,
+      "avg_ms": 6019.11
+     },
+     "stage3_context_resolution": {
+      "count": 1,
+      "total_ms": 445.2,
+      "avg_ms": 445.2
+     },
+     "stage4_traverse": {
+      "count": 1,
+      "total_ms": 17424.68,
+      "avg_ms": 17424.68
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 2988.94,
+      "avg_ms": 2988.94
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 26256.17,
+      "avg_ms": 26256.17
+     },
+     "stage6_answer": {
+      "count": 1,
+      "total_ms": 6491.28,
+      "avg_ms": 6491.28
+     }
+    }
+   },
+   "v2_class": "C"
+  },
+  {
+   "qid": "pub-051",
+   "question": "According to the provided corpus, how many canoeing events at the 2012 Summer Olympics had more than 25 competitors?",
+   "qtype": "aggregation",
+   "predicted": "2",
+   "gold": [
+    "6"
+   ],
+   "answer_match": false,
+   "gold_doc_coverage": 0.625,
+   "evidence_sufficient": true,
+   "confidence": 0.75,
+   "n_seeds": 1,
+   "n_graph_chunks": 63,
+   "n_dense_topup": 0,
+   "n_final_chunks": 12,
+   "cited_chunk_ids": [
+    "Q2352927_chunk_0",
+    "Q919261_chunk_0"
+   ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 1,
+   "unique_context_roots": 2,
+   "unique_action_events": 55,
+   "unique_chunks": 63,
+   "duplicate_chunk_count": 0,
+   "metrics": {
+    "counters": {
+     "query_entities": 1,
+     "seed_entities": 1,
+     "context_roots": 2,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 78,
+     "graph_chunks": 63,
+     "dense_topup_chunks": 0,
+     "final_chunks": 12,
+     "citations": 2
+    },
+    "llm": {
+     "calls": 2,
+     "input_tokens": 7049,
+     "output_tokens": 915,
+     "total_tokens": 7964,
+     "latency_total_ms": 14996.37
+    },
+    "timings": {
+     "stage1_query_analysis": {
+      "count": 1,
+      "total_ms": 8036.87,
+      "avg_ms": 8036.87
+     },
+     "stage2_entity_matching": {
+      "count": 1,
+      "total_ms": 7737.15,
+      "avg_ms": 7737.15
+     },
+     "stage3_context_resolution": {
+      "count": 1,
+      "total_ms": 1051.1,
+      "avg_ms": 1051.1
+     },
+     "stage4_traverse": {
+      "count": 1,
+      "total_ms": 30599.48,
+      "avg_ms": 30599.48
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 3796.94,
+      "avg_ms": 3796.94
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 26647.72,
+      "avg_ms": 26647.72
+     },
+     "stage6_answer": {
+      "count": 1,
+      "total_ms": 6973.85,
+      "avg_ms": 6973.85
+     }
+    }
+   },
+   "v2_class": "D"
+  },
+  {
+   "qid": "pub-027",
+   "question": "According to the provided corpus, how many fencing events at the 2008 Summer Olympics had more than 32 competitors?",
+   "qtype": "aggregation",
+   "predicted": "2",
+   "gold": [
+    "4"
+   ],
+   "answer_match": false,
+   "gold_doc_coverage": 0.5,
+   "evidence_sufficient": true,
+   "confidence": 0.86,
+   "n_seeds": 1,
+   "n_graph_chunks": 61,
+   "n_dense_topup": 0,
+   "n_final_chunks": 12,
+   "cited_chunk_ids": [
+    "Q2570052_chunk_1",
+    "Q2570149_chunk_0"
+   ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 1,
+   "unique_context_roots": 2,
+   "unique_action_events": 53,
+   "unique_chunks": 61,
+   "duplicate_chunk_count": 0,
+   "metrics": {
+    "counters": {
+     "query_entities": 1,
+     "seed_entities": 1,
+     "context_roots": 2,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 77,
+     "graph_chunks": 61,
+     "dense_topup_chunks": 0,
+     "final_chunks": 12,
+     "citations": 2
+    },
+    "llm": {
+     "calls": 2,
+     "input_tokens": 7088,
+     "output_tokens": 843,
+     "total_tokens": 7931,
+     "latency_total_ms": 11585.91
+    },
+    "timings": {
+     "stage1_query_analysis": {
+      "count": 1,
+      "total_ms": 6428.53,
+      "avg_ms": 6428.53
+     },
+     "stage2_entity_matching": {
+      "count": 1,
+      "total_ms": 6217.12,
+      "avg_ms": 6217.12
+     },
+     "stage3_context_resolution": {
+      "count": 1,
+      "total_ms": 364.28,
+      "avg_ms": 364.28
+     },
+     "stage4_traverse": {
+      "count": 1,
+      "total_ms": 17561.9,
+      "avg_ms": 17561.9
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 3267.57,
+      "avg_ms": 3267.57
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 26292.14,
+      "avg_ms": 26292.14
+     },
+     "stage6_answer": {
+      "count": 1,
+      "total_ms": 5175.09,
+      "avg_ms": 5175.09
+     }
+    }
+   },
+   "v2_class": "D"
+  },
+  {
+   "qid": "pub-070",
+   "question": "According to the provided corpus, how many speed skating events at the 2010 Winter Olympics had more than 36 competitors?",
+   "qtype": "aggregation",
+   "predicted": "1",
+   "gold": [
+    "3"
+   ],
+   "answer_match": false,
+   "gold_doc_coverage": 0.6,
+   "evidence_sufficient": true,
+   "confidence": 0.9,
+   "n_seeds": 2,
+   "n_graph_chunks": 86,
+   "n_dense_topup": 0,
+   "n_final_chunks": 12,
+   "cited_chunk_ids": [
+    "Q848666_chunk_0",
+    "Q782429_chunk_0",
+    "Q580481_chunk_0"
+   ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "scope",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 3,
+   "unique_action_events": 54,
+   "unique_chunks": 86,
+   "duplicate_chunk_count": 0,
+   "metrics": {
+    "counters": {
+     "query_entities": 2,
+     "seed_entities": 2,
+     "context_roots": 3,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "scope",
+     "scope_candidate_events": 80,
+     "graph_chunks": 86,
+     "dense_topup_chunks": 0,
+     "final_chunks": 12,
+     "citations": 3
+    },
+    "llm": {
+     "calls": 2,
+     "input_tokens": 6170,
+     "output_tokens": 861,
+     "total_tokens": 7031,
+     "latency_total_ms": 13383.51
+    },
+    "timings": {
+     "stage1_query_analysis": {
+      "count": 1,
+      "total_ms": 7879.69,
+      "avg_ms": 7879.69
+     },
+     "stage2_entity_matching": {
+      "count": 1,
+      "total_ms": 8796.93,
+      "avg_ms": 8796.93
+     },
+     "stage3_context_resolution": {
+      "count": 1,
+      "total_ms": 394.62,
+      "avg_ms": 394.62
+     },
+     "stage4_traverse": {
+      "count": 1,
+      "total_ms": 21073.42,
+      "avg_ms": 21073.42
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 6855.83,
+      "avg_ms": 6855.83
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 37382.73,
+      "avg_ms": 37382.73
+     },
+     "stage6_answer": {
+      "count": 1,
+      "total_ms": 5515.12,
+      "avg_ms": 5515.12
+     }
+    }
+   },
+   "v2_class": "D"
+  },
+  {
+   "qid": "pub-025",
+   "question": "How many nations competed in Judo at the 2016 Summer Olympics – Women's 57 kg?",
+   "qtype": "lookup",
+   "predicted": "The provided documents do not contain information about the 2016 Women's 57 kg judo event and therefore do not state how many nations competed in that event.",
+   "gold": [
+    "23"
+   ],
+   "answer_match": false,
+   "gold_doc_coverage": 0.0,
+   "evidence_sufficient": false,
+   "confidence": 0.9,
+   "n_seeds": 2,
+   "n_graph_chunks": 5,
+   "n_dense_topup": 0,
+   "n_final_chunks": 5,
+   "cited_chunk_ids": [
+    "Q1193963_chunk_0",
+    "Q4160923_chunk_0",
+    "Q3811005_chunk_0",
+    "Q7674791_chunk_0",
+    "Q7674782_chunk_0"
+   ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 3,
+   "unique_action_events": 0,
+   "unique_chunks": 5,
+   "duplicate_chunk_count": 0,
+   "metrics": {
+    "counters": {
+     "query_entities": 1,
+     "seed_entities": 2,
+     "context_roots": 3,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "local",
+     "graph_chunks": 5,
+     "dense_topup_chunks": 0,
+     "final_chunks": 5,
+     "citations": 5
+    },
+    "llm": {
+     "calls": 2,
+     "input_tokens": 3821,
+     "output_tokens": 750,
+     "total_tokens": 4571,
+     "latency_total_ms": 11015.82
+    },
+    "timings": {
+     "stage1_query_analysis": {
+      "count": 1,
+      "total_ms": 6032.82,
+      "avg_ms": 6032.82
+     },
+     "stage2_entity_matching": {
+      "count": 1,
+      "total_ms": 5280.55,
+      "avg_ms": 5280.55
+     },
+     "stage3_context_resolution": {
+      "count": 1,
+      "total_ms": 366.67,
+      "avg_ms": 366.67
+     },
+     "stage4_traverse": {
+      "count": 1,
+      "total_ms": 1071.36,
+      "avg_ms": 1071.36
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 771.9,
+      "avg_ms": 771.9
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 2353.99,
+      "avg_ms": 2353.99
+     },
+     "stage6_answer": {
+      "count": 1,
+      "total_ms": 4994.51,
+      "avg_ms": 4994.51
+     }
+    }
+   },
+   "v2_class": "E"
+  },
+  {
+   "qid": "pub-029",
+   "question": "How many nations competed in Shooting at the 2012 Summer Olympics – Men's 50 metre rifle three positions?",
+   "qtype": "lookup",
+   "predicted": "28",
+   "gold": [
+    "28"
+   ],
+   "answer_match": true,
+   "gold_doc_coverage": 1.0,
+   "evidence_sufficient": true,
+   "confidence": 0.88,
+   "n_seeds": 1,
+   "n_graph_chunks": 1,
+   "n_dense_topup": 2,
+   "n_final_chunks": 3,
+   "cited_chunk_ids": [
+    "Q334901_chunk_0"
+   ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "partial",
+   "unique_seed_vertices": 1,
+   "unique_context_roots": 4,
+   "unique_action_events": 0,
+   "unique_chunks": 1,
+   "duplicate_chunk_count": 0,
+   "metrics": {
+    "counters": {
+     "query_entities": 1,
+     "seed_entities": 1,
+     "context_roots": 4,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "local",
+     "graph_chunks": 1,
+     "dense_topup_chunks": 2,
+     "final_chunks": 3,
+     "citations": 1
+    },
+    "llm": {
+     "calls": 2,
+     "input_tokens": 2876,
+     "output_tokens": 598,
+     "total_tokens": 3474,
+     "latency_total_ms": 9965.91
+    },
+    "timings": {
+     "stage1_query_analysis": {
+      "count": 1,
+      "total_ms": 5763.68,
+      "avg_ms": 5763.68
+     },
+     "stage2_entity_matching": {
+      "count": 1,
+      "total_ms": 5349.03,
+      "avg_ms": 5349.03
+     },
+     "stage3_context_resolution": {
+      "count": 1,
+      "total_ms": 333.74,
+      "avg_ms": 333.74
+     },
+     "stage4_traverse": {
+      "count": 1,
+      "total_ms": 758.49,
+      "avg_ms": 758.49
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 450.91,
+      "avg_ms": 450.91
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 5038.72,
+      "avg_ms": 5038.72
+     },
+     "stage6_answer": {
+      "count": 1,
+      "total_ms": 4212.78,
+      "avg_ms": 4212.78
+     }
+    }
+   },
+   "v2_class": "E"
+  },
+  {
+   "qid": "pub-042",
+   "question": "How many nations competed in Alpine skiing at the 1992 Winter Olympics – Men's giant slalom?",
+   "qtype": "lookup",
+   "predicted": "The provided documents do not state how many nations competed in the Men's giant slalom at the 1992 Winter Olympics.",
+   "gold": [
+    "47"
+   ],
+   "answer_match": false,
+   "gold_doc_coverage": 0.0,
+   "evidence_sufficient": false,
+   "confidence": 0.75,
+   "n_seeds": 2,
+   "n_graph_chunks": 3,
+   "n_dense_topup": 0,
+   "n_final_chunks": 3,
+   "cited_chunk_ids": [
+    "Q1005641_chunk_4",
+    "Q670039_chunk_2",
+    "Q1005801_chunk_2"
+   ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 3,
+   "unique_action_events": 1,
+   "unique_chunks": 3,
+   "duplicate_chunk_count": 0,
+   "metrics": {
+    "counters": {
+     "query_entities": 1,
+     "seed_entities": 2,
+     "context_roots": 3,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "local",
+     "graph_chunks": 3,
+     "dense_topup_chunks": 0,
+     "final_chunks": 3,
+     "citations": 3
+    },
+    "llm": {
+     "calls": 2,
+     "input_tokens": 3181,
+     "output_tokens": 995,
+     "total_tokens": 4176,
+     "latency_total_ms": 13011.44
+    },
+    "timings": {
+     "stage1_query_analysis": {
+      "count": 1,
+      "total_ms": 5872.28,
+      "avg_ms": 5872.28
+     },
+     "stage2_entity_matching": {
+      "count": 1,
+      "total_ms": 8000.74,
+      "avg_ms": 8000.74
+     },
+     "stage3_context_resolution": {
+      "count": 1,
+      "total_ms": 514.02,
+      "avg_ms": 514.02
+     },
+     "stage4_traverse": {
+      "count": 1,
+      "total_ms": 1621.46,
+      "avg_ms": 1621.46
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 1052.35,
+      "avg_ms": 1052.35
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 1286.84,
+      "avg_ms": 1286.84
+     },
+     "stage6_answer": {
+      "count": 1,
+      "total_ms": 7149.67,
+      "avg_ms": 7149.67
+     }
+    }
+   },
+   "v2_class": "E"
+  },
+  {
+   "qid": "pub-046",
+   "question": "How many nations competed in Cross-country skiing at the 2010 Winter Olympics – Men's 15 kilometre freestyle?",
+   "qtype": "lookup",
+   "predicted": "The provided documents do not state how many nations competed in this event.",
+   "gold": [
+    "50"
+   ],
+   "answer_match": false,
+   "gold_doc_coverage": 1.0,
+   "evidence_sufficient": false,
+   "confidence": 0.56,
+   "n_seeds": 2,
+   "n_graph_chunks": 4,
+   "n_dense_topup": 0,
+   "n_final_chunks": 4,
+   "cited_chunk_ids": [
+    "Q384953_chunk_1",
+    "Q384953_chunk_3"
+   ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 3,
+   "unique_action_events": 0,
+   "unique_chunks": 4,
+   "duplicate_chunk_count": 0,
+   "metrics": {
+    "counters": {
+     "query_entities": 1,
+     "seed_entities": 2,
+     "context_roots": 3,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "local",
+     "graph_chunks": 4,
+     "dense_topup_chunks": 0,
+     "final_chunks": 4,
+     "citations": 2
+    },
+    "llm": {
+     "calls": 2,
+     "input_tokens": 3424,
+     "output_tokens": 767,
+     "total_tokens": 4191,
+     "latency_total_ms": 14126.16
+    },
+    "timings": {
+     "stage1_query_analysis": {
+      "count": 1,
+      "total_ms": 6983.37,
+      "avg_ms": 6983.37
+     },
+     "stage2_entity_matching": {
+      "count": 1,
+      "total_ms": 7331.93,
+      "avg_ms": 7331.93
+     },
+     "stage3_context_resolution": {
+      "count": 1,
+      "total_ms": 455.56,
+      "avg_ms": 455.56
+     },
+     "stage4_traverse": {
+      "count": 1,
+      "total_ms": 1706.6,
+      "avg_ms": 1706.6
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 809.97,
+      "avg_ms": 809.97
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 1917.86,
+      "avg_ms": 1917.86
+     },
+     "stage6_answer": {
+      "count": 1,
+      "total_ms": 7154.87,
+      "avg_ms": 7154.87
+     }
+    }
+   },
+   "v2_class": "F"
+  },
+  {
+   "qid": "pub-054",
+   "question": "How many nations competed in Marathon swimming at the 2016 Summer Olympics – Women's 10 kilometre?",
+   "qtype": "lookup",
+   "predicted": "24",
+   "gold": [
+    "24"
+   ],
+   "answer_match": true,
+   "gold_doc_coverage": 1.0,
+   "evidence_sufficient": true,
+   "confidence": 0.9,
+   "n_seeds": 1,
+   "n_graph_chunks": 1,
+   "n_dense_topup": 2,
+   "n_final_chunks": 3,
+   "cited_chunk_ids": [
+    "Q25991470_chunk_0"
+   ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "partial",
+   "unique_seed_vertices": 1,
+   "unique_context_roots": 3,
+   "unique_action_events": 1,
+   "unique_chunks": 1,
+   "duplicate_chunk_count": 0,
+   "metrics": {
+    "counters": {
+     "query_entities": 1,
+     "seed_entities": 1,
+     "context_roots": 3,
+     "unmatched_context_phrases": 0,
+     "retrieval_mode": "local",
+     "graph_chunks": 1,
+     "dense_topup_chunks": 2,
+     "final_chunks": 3,
+     "citations": 1
+    },
+    "llm": {
+     "calls": 2,
+     "input_tokens": 3086,
+     "output_tokens": 529,
+     "total_tokens": 3615,
+     "latency_total_ms": 11452.9
+    },
+    "timings": {
+     "stage1_query_analysis": {
+      "count": 1,
+      "total_ms": 7414.17,
+      "avg_ms": 7414.17
+     },
+     "stage2_entity_matching": {
+      "count": 1,
+      "total_ms": 5315.14,
+      "avg_ms": 5315.14
+     },
+     "stage3_context_resolution": {
+      "count": 1,
+      "total_ms": 337.26,
+      "avg_ms": 337.26
+     },
+     "stage4_traverse": {
+      "count": 1,
+      "total_ms": 836.51,
+      "avg_ms": 836.51
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 270.31,
+      "avg_ms": 270.31
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 4526.53,
+      "avg_ms": 4526.53
+     },
+     "stage6_answer": {
+      "count": 1,
+      "total_ms": 4052.16,
+      "avg_ms": 4052.16
+     }
+    }
+   },
+   "v2_class": "F"
+  },
+  {
+   "qid": "pub-043",
+   "question": "Who won the gold medal in the event held at Val-d'Isère on 16 February 1992?",
+   "qtype": "multi_hop",
+   "predicted": "Kjetil André Aamodt",
+   "gold": [
+    "Kjetil André Aamodt"
+   ],
+   "answer_match": true,
+   "gold_doc_coverage": 1.0,
+   "evidence_sufficient": true,
+   "confidence": 0.93,
+   "n_seeds": 1,
+   "n_graph_chunks": 6,
+   "n_dense_topup": 0,
+   "n_final_chunks": 5,
+   "cited_chunk_ids": [
+    "Q1534918_chunk_0"
+   ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 1,
+   "unique_context_roots": 1,
+   "unique_action_events": 3,
+   "unique_chunks": 6,
+   "duplicate_chunk_count": 0,
+   "metrics": {
+    "counters": {
+     "query_entities": 1,
+     "seed_entities": 1,
+     "context_roots": 1,
+     "unmatched_context_phrases": 1,
+     "retrieval_mode": "local",
+     "graph_chunks": 6,
+     "dense_topup_chunks": 0,
+     "final_chunks": 5,
+     "citations": 1
+    },
+    "llm": {
+     "calls": 2,
+     "input_tokens": 3185,
+     "output_tokens": 660,
+     "total_tokens": 3845,
+     "latency_total_ms": 21451.91
+    },
+    "timings": {
+     "stage1_query_analysis": {
+      "count": 1,
+      "total_ms": 17112.97,
+      "avg_ms": 17112.97
+     },
+     "stage2_entity_matching": {
+      "count": 1,
+      "total_ms": 7545.77,
+      "avg_ms": 7545.77
+     },
+     "stage3_context_resolution": {
+      "count": 1,
+      "total_ms": 358.74,
+      "avg_ms": 358.74
+     },
+     "stage4_traverse": {
+      "count": 1,
+      "total_ms": 1675.24,
+      "avg_ms": 1675.24
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 522.51,
+      "avg_ms": 522.51
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 2607.36,
+      "avg_ms": 2607.36
+     },
+     "stage6_answer": {
+      "count": 1,
+      "total_ms": 4351.19,
+      "avg_ms": 4351.19
+     }
+    }
+   },
+   "v2_class": "G"
+  },
+  {
+   "qid": "pub-022",
+   "question": "Who won the gold medal in the event held at Beijing Science and TechnologyUniversity Gymnasium on August 12, 2008?",
+   "qtype": "multi_hop",
+   "predicted": "Ayumi Tanimoto",
+   "gold": [
+    "Ayumi Tanimoto"
+   ],
+   "answer_match": true,
+   "gold_doc_coverage": 1.0,
+   "evidence_sufficient": true,
+   "confidence": 0.87,
+   "n_seeds": 2,
+   "n_graph_chunks": 290,
+   "n_dense_topup": 0,
+   "n_final_chunks": 5,
+   "cited_chunk_ids": [
+    "Q1193975_chunk_0"
+   ],
+   "question_type": "local_fact",
+   "retrieval_mode": "local",
+   "scope_coverage": "high",
+   "unique_seed_vertices": 2,
+   "unique_context_roots": 3,
+   "unique_action_events": 204,
+   "unique_chunks": 290,
+   "duplicate_chunk_count": 5,
+   "metrics": {
+    "counters": {
+     "query_entities": 2,
+     "seed_entities": 2,
+     "context_roots": 3,
+     "unmatched_context_phrases": 1,
+     "retrieval_mode": "local",
+     "graph_chunks": 290,
+     "dense_topup_chunks": 0,
+     "final_chunks": 5,
+     "citations": 1
+    },
+    "llm": {
+     "calls": 2,
+     "input_tokens": 3874,
+     "output_tokens": 964,
+     "total_tokens": 4838,
+     "latency_total_ms": 13444.2
+    },
+    "timings": {
+     "stage1_query_analysis": {
+      "count": 1,
+      "total_ms": 9085.03,
+      "avg_ms": 9085.03
+     },
+     "stage2_entity_matching": {
+      "count": 1,
+      "total_ms": 5626.47,
+      "avg_ms": 5626.47
+     },
+     "stage3_context_resolution": {
+      "count": 1,
+      "total_ms": 407.89,
+      "avg_ms": 407.89
+     },
+     "stage4_traverse": {
+      "count": 1,
+      "total_ms": 58436.16,
+      "avg_ms": 58436.16
+     },
+     "stage4b_relationships": {
+      "count": 1,
+      "total_ms": 729.67,
+      "avg_ms": 729.67
+     },
+     "stage5_rank": {
+      "count": 1,
+      "total_ms": 115656.36,
+      "avg_ms": 115656.36
+     },
+     "stage6_answer": {
+      "count": 1,
+      "total_ms": 4424.15,
+      "avg_ms": 4424.15
+     }
+    }
+   },
+   "v2_class": "G"
+  }
+ ]
+}

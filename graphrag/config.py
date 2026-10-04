@@ -115,6 +115,36 @@ EDGE_ATTRIBUTES: dict[str, dict[str, str]] = {
 ALL_VERTEX_TYPES = [EVENT_VERTEX, *ENTITY_TYPES, "Chunk"]
 ALL_EDGE_TYPES = [*EVENT_EDGES.keys(), "MENTIONED_IN"]
 
+# ---------------------------------------------------------------------------
+# Context metadata (architecture v2 §3.2/§5.2) — hierarchy-aware retrieval
+# ---------------------------------------------------------------------------
+
+CONTEXT_LEVELS = ["edition", "sport", "event"]
+
+# String vertex attributes carrying structured scope info on ActionEvents.
+CONTEXT_ATTRS: dict[str, str] = {
+    "root_context": "STRING",
+    "context_level": "STRING",
+    "context_path": "STRING",   # JSON-encoded list (display/provenance)
+    "context_keys": "STRING",   # JSON-encoded list (retrieval primitive)
+}
+
+# TigerGraph rejects unknown attributes on upsert, so context attrs are
+# stripped at load time until the graph schema declares them (Phase 5
+# backfill flips this on).
+CONTEXT_ATTRS_IN_GRAPH = os.getenv("CONTEXT_ATTRS_IN_GRAPH", "false").strip().lower() in (
+    "1", "true", "yes"
+)
+
+# Scope/sibling traversal caps (v2 §15.3 hub-explosion guards)
+SCOPE_MAX_CONTEXT_ROOTS = int(os.getenv("SCOPE_MAX_CONTEXT_ROOTS", "4"))
+SCOPE_MAX_EVENTS_PER_ROOT = int(os.getenv("SCOPE_MAX_EVENTS_PER_ROOT", "40"))
+# 2 chunks/event keeps the pool event-diverse (infobox-first ordering makes
+# the first chunk each event's summary table) while the total cap bounds REST
+# calls and the rerank pool
+SCOPE_MAX_CHUNKS_PER_EVENT = int(os.getenv("SCOPE_MAX_CHUNKS_PER_EVENT", "2"))
+SCOPE_MAX_TOTAL_CHUNKS = int(os.getenv("SCOPE_MAX_TOTAL_CHUNKS", "90"))
+
 
 def validate_extraction_against_ontology(extraction: dict) -> tuple[dict, int]:
     """Drop extraction items violating the ontology; return (clean, dropped_count).

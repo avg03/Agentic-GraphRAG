@@ -1,0 +1,550 @@
+{
+ "run_id": "agentic_graphrag/acceptance_v2/20261003_170452",
+ "pipeline": "agentic_graphrag",
+ "eval_set": "acceptance_v2",
+ "saved_at": "2026-10-03T17:04:52.642260",
+ "config": {
+  "llm_provider": "azure",
+  "model": "gpt-5-mini",
+  "eval_file": "D:\\TigerGraph\\Data\\eval_v2_classes.jsonl"
+ },
+ "summary": {
+  "n_questions": 6,
+  "answer_accuracy": 0.0,
+  "by_class": {
+   "C": {
+    "n": 3,
+    "correct": 0,
+    "accuracy": 0.0
+   },
+   "D": {
+    "n": 3,
+    "correct": 0,
+    "accuracy": 0.0
+   }
+  },
+  "wall_time_s": 2248.5,
+  "pipeline": "agentic_graphrag"
+ },
+ "records": [
+  {
+   "qid": "pub-001",
+   "question": "According to the provided corpus, how many biathlon events at the 2018 Winter Olympics had more than 73 competitors?",
+   "qtype": "aggregation",
+   "predicted": "3",
+   "gold": [
+    "5"
+   ],
+   "answer_match": false,
+   "gold_doc_coverage": 0.8181818181818182,
+   "evidence_sufficient": null,
+   "confidence": null,
+   "n_seeds": 0,
+   "n_graph_chunks": 0,
+   "n_dense_topup": 0,
+   "n_final_chunks": 16,
+   "cited_chunk_ids": [
+    "Q47155555_chunk_0",
+    "Q47105341_chunk_0",
+    "Q47155408_chunk_0"
+   ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "",
+   "scope_coverage": "partial",
+   "unique_seed_vertices": 0,
+   "unique_context_roots": 0,
+   "unique_action_events": 0,
+   "unique_chunks": 0,
+   "duplicate_chunk_count": 0,
+   "metrics": {
+    "counters": {
+     "chunks_graph_scope": 32,
+     "new_evidence_chunks_total": 30,
+     "chunks_vector_search": 10,
+     "chunks_graph_search": 16
+    },
+    "llm": {
+     "calls": 12,
+     "input_tokens": 42779,
+     "output_tokens": 5395,
+     "total_tokens": 48174,
+     "latency_total_ms": 73861.96
+    },
+    "timings": {
+     "tool_graph_scope": {
+      "count": 2,
+      "total_ms": 160578.28,
+      "avg_ms": 80289.14
+     },
+     "tool_vector_search": {
+      "count": 2,
+      "total_ms": 29887.93,
+      "avg_ms": 14943.96
+     },
+     "tool_graph_search": {
+      "count": 1,
+      "total_ms": 84778.81,
+      "avg_ms": 84778.81
+     }
+    }
+   },
+   "agent_steps": 5,
+   "agent_tools": [
+    "GRAPH_SCOPE",
+    "GRAPH_SCOPE",
+    "VECTOR_SEARCH",
+    "VECTOR_SEARCH",
+    "GRAPH_SEARCH"
+   ],
+   "strategy_changed": true,
+   "stop_reason": "answered",
+   "contexts_investigated": [
+    "olympics:2018",
+    "sport:biathlon"
+   ],
+   "context_roots_available": 3,
+   "vector_fallback_count": 2,
+   "reformulation_count": 0,
+   "new_evidence_per_step": 1.0,
+   "evidence_stats": {
+    "total_chunks": 58,
+    "distinct_events": 12,
+    "new_chunks_last_step": 5,
+    "marginal_gain": "increasing"
+   },
+   "v2_class": "C"
+  },
+  {
+   "qid": "pub-003",
+   "question": "According to the provided corpus, how many shooting events at the 2004 Summer Olympics had more than 37 competitors?",
+   "qtype": "aggregation",
+   "predicted": "0",
+   "gold": [
+    "8"
+   ],
+   "answer_match": false,
+   "gold_doc_coverage": 0.29411764705882354,
+   "evidence_sufficient": null,
+   "confidence": null,
+   "n_seeds": 0,
+   "n_graph_chunks": 0,
+   "n_dense_topup": 0,
+   "n_final_chunks": 16,
+   "cited_chunk_ids": [
+    "Q7500842_chunk_0"
+   ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "",
+   "scope_coverage": "partial",
+   "unique_seed_vertices": 0,
+   "unique_context_roots": 0,
+   "unique_action_events": 0,
+   "unique_chunks": 0,
+   "duplicate_chunk_count": 0,
+   "metrics": {
+    "counters": {
+     "chunks_graph_scope": 32,
+     "new_evidence_chunks_total": 35,
+     "chunks_vector_search": 10,
+     "chunks_graph_search": 16
+    },
+    "llm": {
+     "calls": 12,
+     "input_tokens": 36441,
+     "output_tokens": 4189,
+     "total_tokens": 40630,
+     "latency_total_ms": 74416.99
+    },
+    "timings": {
+     "tool_graph_scope": {
+      "count": 2,
+      "total_ms": 138834.45,
+      "avg_ms": 69417.23
+     },
+     "tool_vector_search": {
+      "count": 2,
+      "total_ms": 32142.93,
+      "avg_ms": 16071.47
+     },
+     "tool_graph_search": {
+      "count": 1,
+      "total_ms": 81382.71,
+      "avg_ms": 81382.71
+     }
+    }
+   },
+   "agent_steps": 5,
+   "agent_tools": [
+    "GRAPH_SCOPE",
+    "GRAPH_SCOPE",
+    "VECTOR_SEARCH",
+    "VECTOR_SEARCH",
+    "GRAPH_SEARCH"
+   ],
+   "strategy_changed": true,
+   "stop_reason": "answered",
+   "contexts_investigated": [
+    "olympics:2004",
+    "sport:shooting"
+   ],
+   "context_roots_available": 3,
+   "vector_fallback_count": 2,
+   "reformulation_count": 0,
+   "new_evidence_per_step": 0.6,
+   "evidence_stats": {
+    "total_chunks": 58,
+    "distinct_events": 21,
+    "new_chunks_last_step": 3,
+    "marginal_gain": "increasing"
+   },
+   "v2_class": "C"
+  },
+  {
+   "qid": "pub-045",
+   "question": "According to the provided corpus, how many athletics events at the 2004 Summer Olympics had more than 41 competitors?",
+   "qtype": "aggregation",
+   "predicted": "1",
+   "gold": [
+    "20"
+   ],
+   "answer_match": false,
+   "gold_doc_coverage": 0.13953488372093023,
+   "evidence_sufficient": null,
+   "confidence": null,
+   "n_seeds": 0,
+   "n_graph_chunks": 0,
+   "n_dense_topup": 0,
+   "n_final_chunks": 16,
+   "cited_chunk_ids": [
+    "Q220855_chunk_0"
+   ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "",
+   "scope_coverage": "partial",
+   "unique_seed_vertices": 0,
+   "unique_context_roots": 0,
+   "unique_action_events": 0,
+   "unique_chunks": 0,
+   "duplicate_chunk_count": 0,
+   "metrics": {
+    "counters": {
+     "chunks_graph_scope": 32,
+     "new_evidence_chunks_total": 30,
+     "chunks_vector_search": 10,
+     "chunks_graph_search": 16
+    },
+    "llm": {
+     "calls": 12,
+     "input_tokens": 37571,
+     "output_tokens": 4684,
+     "total_tokens": 42255,
+     "latency_total_ms": 63569.06
+    },
+    "timings": {
+     "tool_graph_scope": {
+      "count": 2,
+      "total_ms": 147194.34,
+      "avg_ms": 73597.17
+     },
+     "tool_vector_search": {
+      "count": 2,
+      "total_ms": 30102.0,
+      "avg_ms": 15051.0
+     },
+     "tool_graph_search": {
+      "count": 1,
+      "total_ms": 73416.36,
+      "avg_ms": 73416.36
+     }
+    }
+   },
+   "agent_steps": 5,
+   "agent_tools": [
+    "GRAPH_SCOPE",
+    "GRAPH_SCOPE",
+    "VECTOR_SEARCH",
+    "VECTOR_SEARCH",
+    "GRAPH_SEARCH"
+   ],
+   "strategy_changed": true,
+   "stop_reason": "answered",
+   "contexts_investigated": [
+    "olympics:2004",
+    "sport:athletics"
+   ],
+   "context_roots_available": 2,
+   "vector_fallback_count": 2,
+   "reformulation_count": 0,
+   "new_evidence_per_step": 0.8,
+   "evidence_stats": {
+    "total_chunks": 58,
+    "distinct_events": 18,
+    "new_chunks_last_step": 4,
+    "marginal_gain": "increasing"
+   },
+   "v2_class": "C"
+  },
+  {
+   "qid": "pub-051",
+   "question": "According to the provided corpus, how many canoeing events at the 2012 Summer Olympics had more than 25 competitors?",
+   "qtype": "aggregation",
+   "predicted": "0",
+   "gold": [
+    "6"
+   ],
+   "answer_match": false,
+   "gold_doc_coverage": 0.6875,
+   "evidence_sufficient": null,
+   "confidence": null,
+   "n_seeds": 0,
+   "n_graph_chunks": 0,
+   "n_dense_topup": 0,
+   "n_final_chunks": 16,
+   "cited_chunk_ids": [
+    "Q2390636_chunk_0",
+    "Q303623_chunk_0",
+    "Q526367_chunk_0",
+    "Q2353351_chunk_0",
+    "Q2071238_chunk_0"
+   ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "",
+   "scope_coverage": "partial",
+   "unique_seed_vertices": 0,
+   "unique_context_roots": 0,
+   "unique_action_events": 0,
+   "unique_chunks": 0,
+   "duplicate_chunk_count": 0,
+   "metrics": {
+    "counters": {
+     "chunks_graph_scope": 32,
+     "new_evidence_chunks_total": 26,
+     "chunks_vector_search": 10,
+     "chunks_graph_search": 16
+    },
+    "llm": {
+     "calls": 12,
+     "input_tokens": 39923,
+     "output_tokens": 4978,
+     "total_tokens": 44901,
+     "latency_total_ms": 76270.86
+    },
+    "timings": {
+     "tool_graph_scope": {
+      "count": 2,
+      "total_ms": 204590.27,
+      "avg_ms": 102295.14
+     },
+     "tool_vector_search": {
+      "count": 2,
+      "total_ms": 27822.09,
+      "avg_ms": 13911.05
+     },
+     "tool_graph_search": {
+      "count": 1,
+      "total_ms": 86426.03,
+      "avg_ms": 86426.03
+     }
+    }
+   },
+   "agent_steps": 5,
+   "agent_tools": [
+    "GRAPH_SCOPE",
+    "VECTOR_SEARCH",
+    "GRAPH_SCOPE",
+    "VECTOR_SEARCH",
+    "GRAPH_SEARCH"
+   ],
+   "strategy_changed": true,
+   "stop_reason": "answered",
+   "contexts_investigated": [
+    "olympics:2012",
+    "sport:canoeing"
+   ],
+   "context_roots_available": 3,
+   "vector_fallback_count": 2,
+   "reformulation_count": 0,
+   "new_evidence_per_step": 0.0,
+   "evidence_stats": {
+    "total_chunks": 58,
+    "distinct_events": 24,
+    "new_chunks_last_step": 0,
+    "marginal_gain": "diminishing"
+   },
+   "v2_class": "D"
+  },
+  {
+   "qid": "pub-027",
+   "question": "According to the provided corpus, how many fencing events at the 2008 Summer Olympics had more than 32 competitors?",
+   "qtype": "aggregation",
+   "predicted": "3",
+   "gold": [
+    "4"
+   ],
+   "answer_match": false,
+   "gold_doc_coverage": 0.6,
+   "evidence_sufficient": null,
+   "confidence": null,
+   "n_seeds": 0,
+   "n_graph_chunks": 0,
+   "n_dense_topup": 0,
+   "n_final_chunks": 16,
+   "cited_chunk_ids": [
+    "Q2570149_chunk_0",
+    "Q2570052_chunk_0",
+    "Q2570068_chunk_0"
+   ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "",
+   "scope_coverage": "partial",
+   "unique_seed_vertices": 0,
+   "unique_context_roots": 0,
+   "unique_action_events": 0,
+   "unique_chunks": 0,
+   "duplicate_chunk_count": 0,
+   "metrics": {
+    "counters": {
+     "chunks_graph_scope": 32,
+     "new_evidence_chunks_total": 18,
+     "chunks_vector_search": 10,
+     "chunks_graph_search": 16
+    },
+    "llm": {
+     "calls": 12,
+     "input_tokens": 33770,
+     "output_tokens": 5422,
+     "total_tokens": 39192,
+     "latency_total_ms": 85521.37
+    },
+    "timings": {
+     "tool_graph_scope": {
+      "count": 2,
+      "total_ms": 249652.89,
+      "avg_ms": 124826.44
+     },
+     "tool_vector_search": {
+      "count": 2,
+      "total_ms": 38569.84,
+      "avg_ms": 19284.92
+     },
+     "tool_graph_search": {
+      "count": 1,
+      "total_ms": 91221.76,
+      "avg_ms": 91221.76
+     }
+    }
+   },
+   "agent_steps": 5,
+   "agent_tools": [
+    "GRAPH_SCOPE",
+    "GRAPH_SCOPE",
+    "VECTOR_SEARCH",
+    "VECTOR_SEARCH",
+    "GRAPH_SEARCH"
+   ],
+   "strategy_changed": true,
+   "stop_reason": "answered",
+   "contexts_investigated": [
+    "olympics:2008",
+    "sport:fencing"
+   ],
+   "context_roots_available": 3,
+   "vector_fallback_count": 2,
+   "reformulation_count": 0,
+   "new_evidence_per_step": 0.0,
+   "evidence_stats": {
+    "total_chunks": 58,
+    "distinct_events": 11,
+    "new_chunks_last_step": 0,
+    "marginal_gain": "diminishing"
+   },
+   "v2_class": "D"
+  },
+  {
+   "qid": "pub-070",
+   "question": "According to the provided corpus, how many speed skating events at the 2010 Winter Olympics had more than 36 competitors?",
+   "qtype": "aggregation",
+   "predicted": "1",
+   "gold": [
+    "3"
+   ],
+   "answer_match": false,
+   "gold_doc_coverage": 0.6,
+   "evidence_sufficient": null,
+   "confidence": null,
+   "n_seeds": 0,
+   "n_graph_chunks": 0,
+   "n_dense_topup": 0,
+   "n_final_chunks": 16,
+   "cited_chunk_ids": [
+    "Q782429_chunk_0",
+    "Q782429_chunk_2"
+   ],
+   "question_type": "collection_aggregation",
+   "retrieval_mode": "",
+   "scope_coverage": "partial",
+   "unique_seed_vertices": 0,
+   "unique_context_roots": 0,
+   "unique_action_events": 0,
+   "unique_chunks": 0,
+   "duplicate_chunk_count": 0,
+   "metrics": {
+    "counters": {
+     "chunks_graph_scope": 32,
+     "new_evidence_chunks_total": 32,
+     "chunks_vector_search": 10,
+     "chunks_graph_search": 16
+    },
+    "llm": {
+     "calls": 12,
+     "input_tokens": 39689,
+     "output_tokens": 5043,
+     "total_tokens": 44732,
+     "latency_total_ms": 62245.9
+    },
+    "timings": {
+     "tool_graph_scope": {
+      "count": 2,
+      "total_ms": 181891.55,
+      "avg_ms": 90945.77
+     },
+     "tool_vector_search": {
+      "count": 2,
+      "total_ms": 38163.45,
+      "avg_ms": 19081.73
+     },
+     "tool_graph_search": {
+      "count": 1,
+      "total_ms": 85675.65,
+      "avg_ms": 85675.65
+     }
+    }
+   },
+   "agent_steps": 5,
+   "agent_tools": [
+    "GRAPH_SCOPE",
+    "GRAPH_SCOPE",
+    "VECTOR_SEARCH",
+    "VECTOR_SEARCH",
+    "GRAPH_SEARCH"
+   ],
+   "strategy_changed": true,
+   "stop_reason": "answered",
+   "contexts_investigated": [
+    "olympics:2010",
+    "sport:speed_skating"
+   ],
+   "context_roots_available": 4,
+   "vector_fallback_count": 2,
+   "reformulation_count": 0,
+   "new_evidence_per_step": 1.6,
+   "evidence_stats": {
+    "total_chunks": 58,
+    "distinct_events": 14,
+    "new_chunks_last_step": 8,
+    "marginal_gain": "increasing"
+   },
+   "v2_class": "D"
+  }
+ ]
+}

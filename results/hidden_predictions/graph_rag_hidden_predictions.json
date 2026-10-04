@@ -1,0 +1,1339 @@
+{
+  "pipeline": "graph_rag",
+  "run_id": "graph_rag/hidden/20261003_211419",
+  "model": "gpt-5-mini",
+  "n_questions": 50,
+  "source_file": "results/graph_rag/hidden_20261003_211419.json",
+  "predictions": [
+    {
+      "qid": "eval-001",
+      "question": "Who won the gold medal in the event held at Olympic Tennis Centre on 15 to 22 August 2004?",
+      "predicted_answer": "Nicolás Massú",
+      "cited_chunk_ids": [
+        "Q734997_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.87,
+      "total_tokens": 4592,
+      "input_tokens": 3803,
+      "output_tokens": 789,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 7378.1,
+        "stage2_entity_matching": 35827.02,
+        "stage3_context_resolution": 374.06,
+        "stage4_traverse": 3144.73,
+        "stage4b_relationships": 955.15,
+        "stage5_rank": 14834.26,
+        "stage6_answer": 4471.23
+      }
+    },
+    {
+      "qid": "eval-002",
+      "question": "How many nations competed in Fencing at the 1988 Summer Olympics – Men's foil?",
+      "predicted_answer": "29",
+      "cited_chunk_ids": [
+        "Q5443136_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.92,
+      "total_tokens": 4681,
+      "input_tokens": 4024,
+      "output_tokens": 657,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 5398.63,
+        "stage2_entity_matching": 7620.63,
+        "stage3_context_resolution": 555.67,
+        "stage4_traverse": 1383.16,
+        "stage4b_relationships": 587.71,
+        "stage5_rank": 5306.54,
+        "stage6_answer": 4896.44
+      }
+    },
+    {
+      "qid": "eval-003",
+      "question": "According to the provided corpus, how many cycling events at the 2008 Summer Olympics had more than 30 competitors?",
+      "predicted_answer": "The provided corpus does not state the number of competitors for any cycling events at the 2008 Summer Olympics, so this question cannot be answered from the given documents.",
+      "cited_chunk_ids": [
+        "Q1005363_chunk_3",
+        "Q1005363_chunk_2"
+      ],
+      "evidence_sufficient": false,
+      "confidence": 0.9,
+      "total_tokens": 9411,
+      "input_tokens": 8529,
+      "output_tokens": 882,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 7202.98,
+        "stage2_entity_matching": 6914.66,
+        "stage3_context_resolution": 366.37,
+        "stage4_traverse": 32191.28,
+        "stage4b_relationships": 2758.12,
+        "stage5_rank": 29592.68,
+        "stage6_answer": 8903.52
+      }
+    },
+    {
+      "qid": "eval-004",
+      "question": "Who won the gold medal in the event held at Sydney International Shooting Centre on 22 September 2000?",
+      "predicted_answer": "Multiple shooting events at the Sydney International Shooting Centre occurred on 22 September 2000:\n- Men's skeet: Mykola Milchev\n- Men's 10 metre running target (fast runs on 22 Sept): Yang Ling\n- Women's 25 metre pistol: Mariya Grozdeva",
+      "cited_chunk_ids": [
+        "Q7500816_chunk_0",
+        "Q7500807_chunk_0",
+        "Q7500817_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.9,
+      "total_tokens": 4394,
+      "input_tokens": 3478,
+      "output_tokens": 916,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 7080.36,
+        "stage2_entity_matching": 22554.86,
+        "stage3_context_resolution": 402.97,
+        "stage4_traverse": 36050.25,
+        "stage4b_relationships": 2255.78,
+        "stage5_rank": 8494.75,
+        "stage6_answer": 8351.31
+      }
+    },
+    {
+      "qid": "eval-005",
+      "question": "According to the provided corpus, which sailing event at the 2016 Summer Olympics had the highest number of competitors?",
+      "predicted_answer": "The provided corpus includes only the Women's RS:X sailing event, which had 26 competitors; the documents do not include competitor counts for other sailing events so it is impossible to determine which sailing event had the highest number of competitors.",
+      "cited_chunk_ids": [
+        "Q26254891_chunk_0"
+      ],
+      "evidence_sufficient": false,
+      "confidence": 0.78,
+      "total_tokens": 9667,
+      "input_tokens": 8927,
+      "output_tokens": 740,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 10052.69,
+        "stage2_entity_matching": 11604.33,
+        "stage3_context_resolution": 367.04,
+        "stage4_traverse": 41597.81,
+        "stage4b_relationships": 7993.31,
+        "stage5_rank": 36182.32,
+        "stage6_answer": 26189.49
+      }
+    },
+    {
+      "qid": "eval-006",
+      "question": "According to the provided corpus, how many cross-country skiing events at the 2010 Winter Olympics had more than 62 competitors?",
+      "predicted_answer": "The provided corpus does not include information on cross-country skiing events at the 2010 Winter Olympics, so the number cannot be determined from these documents.",
+      "cited_chunk_ids": [
+        "Q221335_chunk_0",
+        "Q824803_chunk_0",
+        "Q825731_chunk_0",
+        "Q478542_chunk_0"
+      ],
+      "evidence_sufficient": false,
+      "confidence": 0.9,
+      "total_tokens": 10431,
+      "input_tokens": 9207,
+      "output_tokens": 1224,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 11894.62,
+        "stage2_entity_matching": 19311.27,
+        "stage3_context_resolution": 458.19,
+        "stage4_traverse": 22098.16,
+        "stage4b_relationships": 11231.74,
+        "stage5_rank": 16976.9,
+        "stage6_answer": 30044.42
+      }
+    },
+    {
+      "qid": "eval-007",
+      "question": "Who won the gold medal in the men's heavyweight boxing event at the Summer Olympics held immediately before 2016?",
+      "predicted_answer": "Oleksandr Usyk",
+      "cited_chunk_ids": [
+        "Q326384_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.9,
+      "total_tokens": 4082,
+      "input_tokens": 3481,
+      "output_tokens": 601,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 16967.22,
+        "stage2_entity_matching": 18110.28,
+        "stage3_context_resolution": 364.7,
+        "stage4_traverse": 3348.96,
+        "stage4b_relationships": 1091.69,
+        "stage5_rank": 3783.8,
+        "stage6_answer": 8274.34
+      }
+    },
+    {
+      "qid": "eval-008",
+      "question": "According to the provided corpus, how many sailing events at the 1996 Summer Olympics had more than 46 competitors?",
+      "predicted_answer": "2",
+      "cited_chunk_ids": [
+        "Q7400322_chunk_0",
+        "Q7400318_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.87,
+      "total_tokens": 9379,
+      "input_tokens": 8285,
+      "output_tokens": 1094,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 9264.52,
+        "stage2_entity_matching": 6465.9,
+        "stage3_context_resolution": 412.89,
+        "stage4_traverse": 28163.34,
+        "stage4b_relationships": 3357.58,
+        "stage5_rank": 33741.69,
+        "stage6_answer": 5982.95
+      }
+    },
+    {
+      "qid": "eval-009",
+      "question": "According to the provided corpus, which sailing event at the 2004 Summer Olympics had the highest number of competitors?",
+      "predicted_answer": "Woman's Yngling (48 competitors)",
+      "cited_chunk_ids": [
+        "Q7400350_chunk_0",
+        "Q10609400_chunk_0",
+        "Q7400339_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.88,
+      "total_tokens": 9111,
+      "input_tokens": 8497,
+      "output_tokens": 614,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 6510.65,
+        "stage2_entity_matching": 5705.64,
+        "stage3_context_resolution": 391.08,
+        "stage4_traverse": 31191.97,
+        "stage4b_relationships": 4951.48,
+        "stage5_rank": 41789.34,
+        "stage6_answer": 4784.77
+      }
+    },
+    {
+      "qid": "eval-010",
+      "question": "How many nations competed in Boxing at the 1996 Summer Olympics – Flyweight?",
+      "predicted_answer": "32",
+      "cited_chunk_ids": [
+        "Q10497009_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.86,
+      "total_tokens": 3656,
+      "input_tokens": 3112,
+      "output_tokens": 544,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 4860.08,
+        "stage2_entity_matching": 5994.66,
+        "stage3_context_resolution": 465.28,
+        "stage4_traverse": 1810.08,
+        "stage4b_relationships": 750.45,
+        "stage5_rank": 3614.64,
+        "stage6_answer": 3229.96
+      }
+    },
+    {
+      "qid": "eval-011",
+      "question": "According to the provided corpus, how many weightlifting events at the 1992 Summer Olympics had more than 24 competitors?",
+      "predicted_answer": "3",
+      "cited_chunk_ids": [
+        "Q7979973_chunk_0",
+        "Q7979968_chunk_0",
+        "Q7979977_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.92,
+      "total_tokens": 8711,
+      "input_tokens": 7725,
+      "output_tokens": 986,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 7127.91,
+        "stage2_entity_matching": 11285.61,
+        "stage3_context_resolution": 370.75,
+        "stage4_traverse": 23986.04,
+        "stage4b_relationships": 2469.33,
+        "stage5_rank": 31846.9,
+        "stage6_answer": 6352.57
+      }
+    },
+    {
+      "qid": "eval-012",
+      "question": "How many nations competed in Swimming at the 2016 Summer Olympics – Men's 100 metre butterfly?",
+      "predicted_answer": "32",
+      "cited_chunk_ids": [
+        "Q25991452_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.86,
+      "total_tokens": 4314,
+      "input_tokens": 3776,
+      "output_tokens": 538,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 6793.5,
+        "stage2_entity_matching": 7401.84,
+        "stage3_context_resolution": 342.65,
+        "stage4_traverse": 592.4,
+        "stage4b_relationships": 408.88,
+        "stage5_rank": 4803.51,
+        "stage6_answer": 3587.5
+      }
+    },
+    {
+      "qid": "eval-013",
+      "question": "According to the provided corpus, how many cycling events at the 2016 Summer Olympics had more than 27 competitors?",
+      "predicted_answer": "2",
+      "cited_chunk_ids": [
+        "Q24761058_chunk_0",
+        "Q25476845_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.87,
+      "total_tokens": 9678,
+      "input_tokens": 8973,
+      "output_tokens": 705,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 7974.23,
+        "stage2_entity_matching": 9502.77,
+        "stage3_context_resolution": 373.57,
+        "stage4_traverse": 30009.33,
+        "stage4b_relationships": 3452.49,
+        "stage5_rank": 26975.44,
+        "stage6_answer": 4929.85
+      }
+    },
+    {
+      "qid": "eval-014",
+      "question": "Who won the gold medal in the event held at San Sicario on February 15, 2006?",
+      "predicted_answer": "Michaela Dorfmeister",
+      "cited_chunk_ids": [
+        "Q771123_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.96,
+      "total_tokens": 4443,
+      "input_tokens": 3821,
+      "output_tokens": 622,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 7968.78,
+        "stage2_entity_matching": 5946.81,
+        "stage3_context_resolution": 389.21,
+        "stage4_traverse": 3325.34,
+        "stage4b_relationships": 1289.63,
+        "stage5_rank": 7788.5,
+        "stage6_answer": 5422.17
+      }
+    },
+    {
+      "qid": "eval-015",
+      "question": "How many nations competed in Athletics at the 2016 Summer Olympics – Men's 400 metres?",
+      "predicted_answer": "35",
+      "cited_chunk_ids": [
+        "Q26219858_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.86,
+      "total_tokens": 4456,
+      "input_tokens": 3861,
+      "output_tokens": 595,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 5897.43,
+        "stage2_entity_matching": 5902.52,
+        "stage3_context_resolution": 362.49,
+        "stage4_traverse": 1414.44,
+        "stage4b_relationships": 748.96,
+        "stage5_rank": 5332.7,
+        "stage6_answer": 5228.1
+      }
+    },
+    {
+      "qid": "eval-016",
+      "question": "How many nations competed in Athletics at the 2008 Summer Olympics – Women's shot put?",
+      "predicted_answer": "22",
+      "cited_chunk_ids": [
+        "Q848278_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.86,
+      "total_tokens": 4514,
+      "input_tokens": 4036,
+      "output_tokens": 478,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 4909.56,
+        "stage2_entity_matching": 10528.55,
+        "stage3_context_resolution": 328.8,
+        "stage4_traverse": 3533.85,
+        "stage4b_relationships": 1108.89,
+        "stage5_rank": 5339.82,
+        "stage6_answer": 5734.95
+      }
+    },
+    {
+      "qid": "eval-017",
+      "question": "Who won the gold medal in the event held at Eton Dorney on 28 July – 4 August 2012?",
+      "predicted_answer": "Miroslava Knapková",
+      "cited_chunk_ids": [
+        "Q1222270_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.86,
+      "total_tokens": 4653,
+      "input_tokens": 3880,
+      "output_tokens": 773,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 7907.43,
+        "stage2_entity_matching": 6488.39,
+        "stage3_context_resolution": 367.57,
+        "stage4_traverse": 13552.28,
+        "stage4b_relationships": 1179.03,
+        "stage5_rank": 14802.86,
+        "stage6_answer": 4789.02
+      }
+    },
+    {
+      "qid": "eval-018",
+      "question": "Who won the gold medal in the event held at Olympic Stadium on 16–18 August 2016?",
+      "predicted_answer": "Usain Bolt",
+      "cited_chunk_ids": [
+        "Q26219856_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.86,
+      "total_tokens": 4787,
+      "input_tokens": 3881,
+      "output_tokens": 906,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 8314.3,
+        "stage2_entity_matching": 5242.81,
+        "stage3_context_resolution": 345.81,
+        "stage4_traverse": 5187.51,
+        "stage4b_relationships": 816.16,
+        "stage5_rank": 11335.03,
+        "stage6_answer": 4783.23
+      }
+    },
+    {
+      "qid": "eval-019",
+      "question": "According to the provided corpus, how many alpine skiing events at the 1998 Winter Olympics had more than 45 competitors?",
+      "predicted_answer": "0 (based on the provided alpine skiing event blocks: Men's super-G had 45 competitors, Women's super-G had 43; no other alpine events are included in the corpus)",
+      "cited_chunk_ids": [
+        "Q1005749_chunk_0",
+        "Q1222646_chunk_0"
+      ],
+      "evidence_sufficient": false,
+      "confidence": 0.6,
+      "total_tokens": 9313,
+      "input_tokens": 8278,
+      "output_tokens": 1035,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 8150.76,
+        "stage2_entity_matching": 6724.35,
+        "stage3_context_resolution": 339.42,
+        "stage4_traverse": 33549.5,
+        "stage4b_relationships": 3456.62,
+        "stage5_rank": 33671.53,
+        "stage6_answer": 10114.44
+      }
+    },
+    {
+      "qid": "eval-020",
+      "question": "Who won the gold medal in the event held at Royal Artillery Barracks on 5 August 2012?",
+      "predicted_answer": "Jin Jong-oh",
+      "cited_chunk_ids": [
+        "Q2353475_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.86,
+      "total_tokens": 5036,
+      "input_tokens": 3903,
+      "output_tokens": 1133,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 10368.76,
+        "stage2_entity_matching": 17232.75,
+        "stage3_context_resolution": 351.35,
+        "stage4_traverse": 10779.04,
+        "stage4b_relationships": 1209.22,
+        "stage5_rank": 14807.01,
+        "stage6_answer": 8362.59
+      }
+    },
+    {
+      "qid": "eval-021",
+      "question": "Who won the gold medal in the men's 200 metre backstroke swimming event at the Summer Olympics held immediately before 2016?",
+      "predicted_answer": "Tyler Clary",
+      "cited_chunk_ids": [
+        "Q2071160_chunk_3"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.88,
+      "total_tokens": 4170,
+      "input_tokens": 3485,
+      "output_tokens": 685,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 5181.98,
+        "stage2_entity_matching": 6294.99,
+        "stage3_context_resolution": 342.27,
+        "stage4_traverse": 2691.53,
+        "stage4b_relationships": 694.69,
+        "stage5_rank": 5205.88,
+        "stage6_answer": 5981.67
+      }
+    },
+    {
+      "qid": "eval-022",
+      "question": "How many nations competed in Cross-country skiing at the 2014 Winter Olympics – Men's sprint?",
+      "predicted_answer": "40",
+      "cited_chunk_ids": [
+        "Q15055036_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.86,
+      "total_tokens": 4282,
+      "input_tokens": 3810,
+      "output_tokens": 472,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 4837.31,
+        "stage2_entity_matching": 8947.55,
+        "stage3_context_resolution": 376.52,
+        "stage4_traverse": 691.17,
+        "stage4b_relationships": 348.13,
+        "stage5_rank": 4235.67,
+        "stage6_answer": 7497.28
+      }
+    },
+    {
+      "qid": "eval-023",
+      "question": "According to the provided corpus, how many shooting events at the 2000 Summer Olympics had more than 42 competitors?",
+      "predicted_answer": "1",
+      "cited_chunk_ids": [
+        "Q4443765_chunk_0",
+        "Q7500810_chunk_1",
+        "Q7500807_chunk_1"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.7,
+      "total_tokens": 9989,
+      "input_tokens": 9019,
+      "output_tokens": 970,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 7983.07,
+        "stage2_entity_matching": 9321.7,
+        "stage3_context_resolution": 412.02,
+        "stage4_traverse": 83229.97,
+        "stage4b_relationships": 12786.44,
+        "stage5_rank": 34143.29,
+        "stage6_answer": 10776.98
+      }
+    },
+    {
+      "qid": "eval-024",
+      "question": "According to the provided corpus, which cross-country skiing event at the 1998 Winter Olympics had the highest number of competitors?",
+      "predicted_answer": "Men's 10 kilometre classical (competitors: 97)",
+      "cited_chunk_ids": [
+        "Q1004937_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.95,
+      "total_tokens": 8891,
+      "input_tokens": 8187,
+      "output_tokens": 704,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 5173.37,
+        "stage2_entity_matching": 7810.87,
+        "stage3_context_resolution": 378.77,
+        "stage4_traverse": 35424.92,
+        "stage4b_relationships": 3454.42,
+        "stage5_rank": 38940.07,
+        "stage6_answer": 9927.57
+      }
+    },
+    {
+      "qid": "eval-025",
+      "question": "According to the provided corpus, which rowing event at the 2016 Summer Olympics had the highest number of competitors?",
+      "predicted_answer": "The provided corpus does not include any rowing event data for the 2016 Summer Olympics, so the event with the highest number of rowing competitors cannot be determined from these documents.",
+      "cited_chunk_ids": [],
+      "evidence_sufficient": false,
+      "confidence": 0.44,
+      "total_tokens": 9756,
+      "input_tokens": 9088,
+      "output_tokens": 668,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 7087.32,
+        "stage2_entity_matching": 6137.58,
+        "stage3_context_resolution": 364.59,
+        "stage4_traverse": 70315.57,
+        "stage4b_relationships": 5281.42,
+        "stage5_rank": 35184.3,
+        "stage6_answer": 23680.8
+      }
+    },
+    {
+      "qid": "eval-026",
+      "question": "How many nations competed in Fencing at the 2000 Summer Olympics – Men's foil?",
+      "predicted_answer": "22",
+      "cited_chunk_ids": [
+        "Q632472_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.91,
+      "total_tokens": 4234,
+      "input_tokens": 3638,
+      "output_tokens": 596,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 6500.15,
+        "stage2_entity_matching": 5344.19,
+        "stage3_context_resolution": 359.48,
+        "stage4_traverse": 1433.4,
+        "stage4b_relationships": 523.8,
+        "stage5_rank": 4296.43,
+        "stage6_answer": 3774.69
+      }
+    },
+    {
+      "qid": "eval-027",
+      "question": "According to the provided corpus, which cycling event at the 2012 Summer Olympics had the highest number of competitors?",
+      "predicted_answer": "The provided corpus does not contain the competitor counts needed to determine which cycling event had the most competitors. The only cycling-related block is about the Men's sprint (Q2718015_chunk_2) but it does not list a competitors field or number.",
+      "cited_chunk_ids": [
+        "Q2718015_chunk_2"
+      ],
+      "evidence_sufficient": false,
+      "confidence": 0.2,
+      "total_tokens": 9487,
+      "input_tokens": 8624,
+      "output_tokens": 863,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 7080.92,
+        "stage2_entity_matching": 5707.8,
+        "stage3_context_resolution": 338.21,
+        "stage4_traverse": 24069.11,
+        "stage4b_relationships": 3180.4,
+        "stage5_rank": 29802.14,
+        "stage6_answer": 7108.14
+      }
+    },
+    {
+      "qid": "eval-028",
+      "question": "According to the provided corpus, how many wrestling events at the 2012 Summer Olympics had more than 19 competitors?",
+      "predicted_answer": "The provided corpus contains no wrestling event pages or competitor counts for wrestling at the 2012 Summer Olympics, so this cannot be determined from the given documents.",
+      "cited_chunk_ids": [],
+      "evidence_sufficient": false,
+      "confidence": 0.0,
+      "total_tokens": 9465,
+      "input_tokens": 8843,
+      "output_tokens": 622,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 5819.97,
+        "stage2_entity_matching": 6353.74,
+        "stage3_context_resolution": 316.87,
+        "stage4_traverse": 25786.1,
+        "stage4b_relationships": 2990.8,
+        "stage5_rank": 28463.91,
+        "stage6_answer": 5337.39
+      }
+    },
+    {
+      "qid": "eval-029",
+      "question": "According to the provided corpus, how many boxing events at the 2012 Summer Olympics had more than 26 competitors?",
+      "predicted_answer": "1",
+      "cited_chunk_ids": [
+        "Q332673_chunk_0",
+        "Q2000524_chunk_0",
+        "Q348720_chunk_0",
+        "Q326384_chunk_0",
+        "Q2070048_chunk_0",
+        "Q31844_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.95,
+      "total_tokens": 9618,
+      "input_tokens": 8575,
+      "output_tokens": 1043,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 8050.57,
+        "stage2_entity_matching": 6192.08,
+        "stage3_context_resolution": 360.45,
+        "stage4_traverse": 26509.0,
+        "stage4b_relationships": 3326.87,
+        "stage5_rank": 42668.81,
+        "stage6_answer": 6268.81
+      }
+    },
+    {
+      "qid": "eval-030",
+      "question": "According to the provided corpus, which alpine skiing event at the 1994 Winter Olympics had the highest number of competitors?",
+      "predicted_answer": "Men's slalom (57 competitors)",
+      "cited_chunk_ids": [
+        "Q1005640_chunk_0",
+        "Q1222715_chunk_0",
+        "Q1222212_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.9,
+      "total_tokens": 9785,
+      "input_tokens": 8966,
+      "output_tokens": 819,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 6130.72,
+        "stage2_entity_matching": 6103.7,
+        "stage3_context_resolution": 365.82,
+        "stage4_traverse": 50202.84,
+        "stage4b_relationships": 3222.9,
+        "stage5_rank": 38936.61,
+        "stage6_answer": 5826.43
+      }
+    },
+    {
+      "qid": "eval-031",
+      "question": "Who won the gold medal in the men's 62 kg weightlifting event at the Summer Olympics held immediately before 2016?",
+      "predicted_answer": "The provided documents do not state who won the gold medal in the men's 62 kg weightlifting event at the 2012 Summer Olympics.",
+      "cited_chunk_ids": [
+        "Q26212149_chunk_0"
+      ],
+      "evidence_sufficient": false,
+      "confidence": 0.3,
+      "total_tokens": 6052,
+      "input_tokens": 3648,
+      "output_tokens": 2404,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 17413.98,
+        "stage2_entity_matching": 6371.76,
+        "stage3_context_resolution": 333.53,
+        "stage4_traverse": 1368.72,
+        "stage4b_relationships": 590.94,
+        "stage5_rank": 2675.83,
+        "stage6_answer": 5509.58
+      }
+    },
+    {
+      "qid": "eval-032",
+      "question": "Who won the gold medal in the event held at Pacific Coliseum on February 20, 2010?",
+      "predicted_answer": "Men's 1000 metres — Lee Jung-su; Women's 1500 metres — Zhou Yang.",
+      "cited_chunk_ids": [
+        "Q938791_chunk_0",
+        "Q916747_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.76,
+      "total_tokens": 4600,
+      "input_tokens": 3619,
+      "output_tokens": 981,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 7062.58,
+        "stage2_entity_matching": 10840.95,
+        "stage3_context_resolution": 344.91,
+        "stage4_traverse": 79176.9,
+        "stage4b_relationships": 1398.58,
+        "stage5_rank": 111340.28,
+        "stage6_answer": 7287.04
+      }
+    },
+    {
+      "qid": "eval-033",
+      "question": "According to the provided corpus, how many alpine skiing events at the 1988 Winter Olympics had more than 57 competitors?",
+      "predicted_answer": "2",
+      "cited_chunk_ids": [
+        "Q1005744_chunk_0",
+        "Q1005804_chunk_5"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.9,
+      "total_tokens": 9784,
+      "input_tokens": 8575,
+      "output_tokens": 1209,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 8159.66,
+        "stage2_entity_matching": 5871.04,
+        "stage3_context_resolution": 342.8,
+        "stage4_traverse": 37208.13,
+        "stage4b_relationships": 3764.36,
+        "stage5_rank": 48647.07,
+        "stage6_answer": 7867.06
+      }
+    },
+    {
+      "qid": "eval-034",
+      "question": "Who won the gold medal in the men's freestyle 120 kg wrestling event at the Summer Olympics held immediately before 2012?",
+      "predicted_answer": "Bakhtiyar Akhmedov",
+      "cited_chunk_ids": [
+        "Q581364_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.9,
+      "total_tokens": 4385,
+      "input_tokens": 3758,
+      "output_tokens": 627,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 4706.53,
+        "stage2_entity_matching": 6116.97,
+        "stage3_context_resolution": 470.37,
+        "stage4_traverse": 1115.65,
+        "stage4b_relationships": 513.86,
+        "stage5_rank": 4216.12,
+        "stage6_answer": 5188.33
+      }
+    },
+    {
+      "qid": "eval-035",
+      "question": "According to the provided corpus, which rowing event at the 2012 Summer Olympics had the highest number of competitors?",
+      "predicted_answer": "The provided corpus does not include any rowing event blocks, so it does not state which rowing event had the highest number of competitors.",
+      "cited_chunk_ids": [],
+      "evidence_sufficient": false,
+      "confidence": 0.12,
+      "total_tokens": 9768,
+      "input_tokens": 8921,
+      "output_tokens": 847,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 6190.31,
+        "stage2_entity_matching": 6464.0,
+        "stage3_context_resolution": 464.2,
+        "stage4_traverse": 28458.97,
+        "stage4b_relationships": 2655.06,
+        "stage5_rank": 41165.44,
+        "stage6_answer": 6249.81
+      }
+    },
+    {
+      "qid": "eval-036",
+      "question": "According to the provided corpus, how many short-track speed skating events at the 2018 Winter Olympics had more than 34 competitors?",
+      "predicted_answer": "2",
+      "cited_chunk_ids": [
+        "Q47309958_chunk_0",
+        "Q47309900_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.9,
+      "total_tokens": 9250,
+      "input_tokens": 8279,
+      "output_tokens": 971,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 8523.43,
+        "stage2_entity_matching": 6042.6,
+        "stage3_context_resolution": 493.17,
+        "stage4_traverse": 26785.41,
+        "stage4b_relationships": 3014.15,
+        "stage5_rank": 40166.97,
+        "stage6_answer": 6602.47
+      }
+    },
+    {
+      "qid": "eval-037",
+      "question": "According to the provided corpus, which sailing event at the 1996 Summer Olympics had the highest number of competitors?",
+      "predicted_answer": "Soling (66 competitors)",
+      "cited_chunk_ids": [
+        "Q7400322_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.88,
+      "total_tokens": 8785,
+      "input_tokens": 8188,
+      "output_tokens": 597,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 6168.47,
+        "stage2_entity_matching": 6207.27,
+        "stage3_context_resolution": 381.02,
+        "stage4_traverse": 24994.08,
+        "stage4b_relationships": 2819.2,
+        "stage5_rank": 29776.76,
+        "stage6_answer": 4837.78
+      }
+    },
+    {
+      "qid": "eval-038",
+      "question": "According to the provided corpus, how many athletics events at the 2008 Summer Olympics had more than 40 competitors?",
+      "predicted_answer": "0",
+      "cited_chunk_ids": [
+        "Q656634_chunk_0",
+        "Q544177_chunk_0",
+        "Q917323_chunk_0",
+        "Q899312_chunk_0",
+        "Q848278_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.76,
+      "total_tokens": 9442,
+      "input_tokens": 8570,
+      "output_tokens": 872,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 4620.35,
+        "stage2_entity_matching": 5826.06,
+        "stage3_context_resolution": 343.65,
+        "stage4_traverse": 26850.11,
+        "stage4b_relationships": 3812.64,
+        "stage5_rank": 41569.6,
+        "stage6_answer": 6745.41
+      }
+    },
+    {
+      "qid": "eval-039",
+      "question": "According to the provided corpus, how many boxing events at the 1992 Summer Olympics had more than 30 competitors?",
+      "predicted_answer": "2",
+      "cited_chunk_ids": [
+        "Q10426127_chunk_0",
+        "Q10497008_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.86,
+      "total_tokens": 7547,
+      "input_tokens": 6845,
+      "output_tokens": 702,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 7109.92,
+        "stage2_entity_matching": 7881.04,
+        "stage3_context_resolution": 471.55,
+        "stage4_traverse": 31708.81,
+        "stage4b_relationships": 2970.78,
+        "stage5_rank": 35578.01,
+        "stage6_answer": 4071.59
+      }
+    },
+    {
+      "qid": "eval-040",
+      "question": "Who won the gold medal in the event held at Stadium Australia on 27 September 2000 (heats)29 September 2000 (semi-finals)30 September 2000 (final)?",
+      "predicted_answer": "Nouria Mérah-Benida",
+      "cited_chunk_ids": [
+        "Q3628760_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.86,
+      "total_tokens": 4298,
+      "input_tokens": 3531,
+      "output_tokens": 767,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 6094.31,
+        "stage2_entity_matching": 5419.44,
+        "stage3_context_resolution": 373.72,
+        "stage4_traverse": 23103.68,
+        "stage4b_relationships": 1159.28,
+        "stage5_rank": 32940.22,
+        "stage6_answer": 4793.32
+      }
+    },
+    {
+      "qid": "eval-041",
+      "question": "According to the provided corpus, how many alpine skiing events at the 2006 Winter Olympics had more than 63 competitors?",
+      "predicted_answer": "0",
+      "cited_chunk_ids": [
+        "Q917747_chunk_0",
+        "Q917752_chunk_0",
+        "Q917760_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.9,
+      "total_tokens": 10097,
+      "input_tokens": 9231,
+      "output_tokens": 866,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 7395.67,
+        "stage2_entity_matching": 5810.64,
+        "stage3_context_resolution": 357.58,
+        "stage4_traverse": 25195.15,
+        "stage4b_relationships": 3022.96,
+        "stage5_rank": 40743.4,
+        "stage6_answer": 6723.1
+      }
+    },
+    {
+      "qid": "eval-042",
+      "question": "Who won the gold medal in the mixed trap shooting event at the Summer Olympics held immediately before 1992?",
+      "predicted_answer": "Dmitry Monakov",
+      "cited_chunk_ids": [
+        "Q7500750_chunk_2"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.86,
+      "total_tokens": 3912,
+      "input_tokens": 3305,
+      "output_tokens": 607,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 5614.24,
+        "stage2_entity_matching": 6017.25,
+        "stage3_context_resolution": 319.94,
+        "stage4_traverse": 1411.4,
+        "stage4b_relationships": 651.95,
+        "stage5_rank": 5259.37,
+        "stage6_answer": 4597.97
+      }
+    },
+    {
+      "qid": "eval-043",
+      "question": "Who won the gold medal in the event held at Carioca Arena 3 on 11 August 2016?",
+      "predicted_answer": "Loredana Dinu; Simona Gherman; Simona Pop; Ana Maria Popescu (team ROM)",
+      "cited_chunk_ids": [
+        "Q25384917_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.86,
+      "total_tokens": 4585,
+      "input_tokens": 3795,
+      "output_tokens": 790,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 6808.04,
+        "stage2_entity_matching": 6717.55,
+        "stage3_context_resolution": 352.41,
+        "stage4_traverse": 10304.39,
+        "stage4b_relationships": 1338.34,
+        "stage5_rank": 17212.03,
+        "stage6_answer": 5675.91
+      }
+    },
+    {
+      "qid": "eval-044",
+      "question": "Who won the gold medal in the women's 75 kg weightlifting event at the Summer Olympics held immediately before 2016?",
+      "predicted_answer": "The provided documents do not state who won the gold medal in the women's 75 kg weightlifting event at the Summer Olympics immediately before 2016 (the 2012 Games).",
+      "cited_chunk_ids": [
+        "Q26212188_chunk_2",
+        "Q1372090_chunk_1"
+      ],
+      "evidence_sufficient": false,
+      "confidence": 0.21,
+      "total_tokens": 4900,
+      "input_tokens": 3423,
+      "output_tokens": 1477,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 10722.33,
+        "stage2_entity_matching": 6225.58,
+        "stage3_context_resolution": 350.74,
+        "stage4_traverse": 1121.32,
+        "stage4b_relationships": 1248.45,
+        "stage5_rank": 2218.38,
+        "stage6_answer": 6360.13
+      }
+    },
+    {
+      "qid": "eval-045",
+      "question": "Who won the gold medal in the women's moguls freestyle skiing event at the Winter Olympics held immediately before 2014?",
+      "predicted_answer": "Hannah Kearney",
+      "cited_chunk_ids": [
+        "Q905561_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.95,
+      "total_tokens": 3962,
+      "input_tokens": 3336,
+      "output_tokens": 626,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 5459.4,
+        "stage2_entity_matching": 7061.96,
+        "stage3_context_resolution": 361.81,
+        "stage4_traverse": 2603.39,
+        "stage4b_relationships": 665.14,
+        "stage5_rank": 2348.8,
+        "stage6_answer": 4505.67
+      }
+    },
+    {
+      "qid": "eval-046",
+      "question": "Who won the gold medal in the light flyweight boxing event at the Summer Olympics held immediately before 2004?",
+      "predicted_answer": "The provided documents do not state who won the light flyweight gold medal at the 2000 Summer Olympics.",
+      "cited_chunk_ids": [
+        "Q3925468_chunk_0"
+      ],
+      "evidence_sufficient": false,
+      "confidence": 0.32,
+      "total_tokens": 4619,
+      "input_tokens": 3788,
+      "output_tokens": 831,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 5438.96,
+        "stage2_entity_matching": 6641.25,
+        "stage3_context_resolution": 375.87,
+        "stage4_traverse": 1500.27,
+        "stage4b_relationships": 1253.5,
+        "stage5_rank": 4616.37,
+        "stage6_answer": 6254.98
+      }
+    },
+    {
+      "qid": "eval-047",
+      "question": "According to the provided corpus, which cycling event at the 2004 Summer Olympics had the highest number of competitors?",
+      "predicted_answer": "Women's individual road race (67 competitors)",
+      "cited_chunk_ids": [
+        "Q2065523_chunk_0",
+        "Q1421727_chunk_0",
+        "Q1421581_chunk_0",
+        "Q1415848_chunk_2"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.9,
+      "total_tokens": 10253,
+      "input_tokens": 9444,
+      "output_tokens": 809,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 5715.9,
+        "stage2_entity_matching": 5770.02,
+        "stage3_context_resolution": 388.23,
+        "stage4_traverse": 23956.87,
+        "stage4b_relationships": 2987.61,
+        "stage5_rank": 28992.64,
+        "stage6_answer": 7970.43
+      }
+    },
+    {
+      "qid": "eval-048",
+      "question": "According to the provided corpus, how many cycling events at the 2012 Summer Olympics had more than 30 competitors?",
+      "predicted_answer": "The provided corpus does not state the number of competitors for cycling events; it does not contain enough information to determine how many cycling events had more than 30 competitors.",
+      "cited_chunk_ids": [
+        "Q2718015_chunk_2"
+      ],
+      "evidence_sufficient": false,
+      "confidence": 0.66,
+      "total_tokens": 9665,
+      "input_tokens": 8692,
+      "output_tokens": 973,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 7310.1,
+        "stage2_entity_matching": 6463.59,
+        "stage3_context_resolution": 408.04,
+        "stage4_traverse": 27797.15,
+        "stage4b_relationships": 3133.98,
+        "stage5_rank": 28641.27,
+        "stage6_answer": 6483.0
+      }
+    },
+    {
+      "qid": "eval-049",
+      "question": "According to the provided corpus, which shooting event at the 1988 Summer Olympics had the highest number of competitors?",
+      "predicted_answer": "Men's 50 metre rifle prone (55 competitors)",
+      "cited_chunk_ids": [
+        "Q7500747_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.88,
+      "total_tokens": 9026,
+      "input_tokens": 8422,
+      "output_tokens": 604,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 4633.63,
+        "stage2_entity_matching": 5920.85,
+        "stage3_context_resolution": 339.72,
+        "stage4_traverse": 30426.15,
+        "stage4b_relationships": 3168.26,
+        "stage5_rank": 39475.69,
+        "stage6_answer": 6738.12
+      }
+    },
+    {
+      "qid": "eval-050",
+      "question": "Who won the gold medal in the event held at Olympic Stadium on 6–9 August at the 2012 Summer Olympics?",
+      "predicted_answer": "David Rudisha",
+      "cited_chunk_ids": [
+        "Q1049551_chunk_0"
+      ],
+      "evidence_sufficient": true,
+      "confidence": 0.86,
+      "total_tokens": 4868,
+      "input_tokens": 3775,
+      "output_tokens": 1093,
+      "agent_steps": null,
+      "agent_tools": [],
+      "stop_reason": null,
+      "trace": [],
+      "stage_timings": {
+        "stage1_query_analysis": 9100.82,
+        "stage2_entity_matching": 6208.29,
+        "stage3_context_resolution": 366.92,
+        "stage4_traverse": 91141.27,
+        "stage4b_relationships": 1588.32,
+        "stage5_rank": 113141.0,
+        "stage6_answer": 4305.63
+      }
+    }
+  ]
+}

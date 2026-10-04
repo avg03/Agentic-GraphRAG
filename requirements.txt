@@ -22,3 +22,9 @@ pypdf>=6.0.0
 
 # Graph Database (TigerGraph)
 pyTigerGraph>=1.8.7
+
+# Agent workflow (Pipeline 3)
+langgraph>=0.2.0
+
+# Tests
+pytest>=8.0.0

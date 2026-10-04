@@ -1,6 +1,16 @@
 """Graph traversal: seed entities -> supporting chunks with support scores.
 
-Primary path: REST `/graph/{g}/edges/{type}/{id}` per seed (returns every
+Two modes (architecture v2 §6):
+
+Mode A — local relational traversal (`traverse`/`traverse_rest`):
+    seed entity -> direct MENTIONED_IN chunks + event-mediated chunks.
+    Preserves v1 behavior.
+
+Mode B — scope/sibling traversal (`traverse_scope`):
+    candidate ActionEvent set (from the context index) -> chunks + outcomes
+    across sibling branches, with per-event and total caps.
+
+Primary path: REST `/graph/{g}/edges/{type}/{id}` per vertex (returns every
 edge touching the vertex in BOTH directions, so all four event edge families
 are traversable). The installed-GSQL path is blocked by missing reverse
 edges for AFFECTED/RESULTED_IN — see graphrag/install_queries.py docstring.
@@ -8,9 +18,11 @@ edges for AFFECTED/RESULTED_IN — see graphrag/install_queries.py docstring.
 Support score for a chunk:
     +1 for each matched seed entity that links to it directly (MENTIONED_IN)
     +1 for each distinct ActionEvent that links both to the chunk and to a
-       matched seed (event-mediated evidence)
+       matched seed (event-mediated evidence; scope mode: distinct sibling
+       events)
 
-Returns: {chunk_id: {"support": int, "via": [explanation strings]}}
+Returns: {chunk_id: {"support": int, "via": [explanation strings],
+                     "event_ids": [ActionEvent ids]}}
 """
 
 import time
@@ -18,9 +30,32 @@ from urllib.parse import quote
 
 from graphrag import config
 
-__all__ = ["traverse", "traverse_rest", "traverse_installed"]
+__all__ = [
+    "traverse",
+    "traverse_rest",
+    "traverse_scope",
+    "traverse_installed",
+    "collect_relationships",
+]
 
 QUERY_NAME = "graphrag_traverse"
+
+
+def _get_edges(conn, vtype: str, vid: str) -> list[dict]:
+    """Every unique edge touching a vertex (both directions), deduped."""
+    url = conn.restppUrl + f"/graph/{conn.graphname}/edges/"
+    try:
+        res = conn._get(url + f"{quote(vtype)}/{quote(vid)}")
+    except Exception:
+        return []
+    edges = res if isinstance(res, list) else res.get("results", [])
+    seen, unique = set(), []
+    for e in edges:
+        key = (e.get("e_type"), e.get("from_id"), e.get("to_id"))
+        if key not in seen:
+            seen.add(key)
+            unique.append(e)
+    return unique
 
 
 def traverse(conn, seeds: list[tuple[str, str, str]]) -> dict:
@@ -31,60 +66,105 @@ def traverse(conn, seeds: list[tuple[str, str, str]]) -> dict:
 
 
 def traverse_rest(conn, seeds: list[tuple[str, str, str]]) -> dict:
-    """REST fallback: per-seed edge queries (verified working endpoint).
+    """Mode A: per-seed edge queries (verified working endpoint).
 
     `/graph/{g}/edges/{type}/{id}` returns every edge touching the vertex
     (both directions), so one call per seed + one per related event suffices.
     """
     chunks: dict[str, dict] = {}
-    url = conn.restppUrl + f"/graph/{conn.graphname}/edges/"
 
-    def _get_edges(vtype: str, vid: str) -> list[dict]:
-        try:
-            res = conn._get(url + f"{quote(vtype)}/{quote(vid)}")
-        except Exception:
-            return []
-        edges = res if isinstance(res, list) else res.get("results", [])
-        seen, unique = set(), []
-        for e in edges:
-            key = (e.get("e_type"), e.get("from_id"), e.get("to_id"))
-            if key not in seen:
-                seen.add(key)
-                unique.append(e)
-        return unique
+    def _entry(cid: str) -> dict:
+        return chunks.setdefault(
+            cid, {"support": 0, "via": [], "event_ids": []}
+        )
 
     for vtype, vid, name in seeds:
         # 1. direct grounding: seed --MENTIONED_IN--> chunk (capped: broad
         #    seeds like 'hungary' can fan out to thousands of chunks and
         #    dilute the final context)
         per_seed = 0
-        for e in _get_edges(vtype, vid):
+        for e in _get_edges(conn, vtype, vid):
             if e.get("e_type") == "MENTIONED_IN":
                 if per_seed >= 25:
                     break
                 cid = e["to_id"]
-                entry = chunks.setdefault(cid, {"support": 0, "via": []})
+                entry = _entry(cid)
                 entry["support"] += 1
                 entry["via"].append(f"direct:{name}")
                 per_seed += 1
 
         # 2. event-mediated: seed <--> ActionEvent --MENTIONED_IN--> chunk
         event_ids = set()
-        for e in _get_edges(vtype, vid):
+        for e in _get_edges(conn, vtype, vid):
             if e.get("to_type") == "ActionEvent":
                 event_ids.add(e["to_id"])
             elif e.get("from_type") == "ActionEvent" and e.get("e_type") != "MENTIONED_IN":
                 event_ids.add(e["from_id"])
         for eid in event_ids:
-            for ce in _get_edges("ActionEvent", eid):
+            for ce in _get_edges(conn, "ActionEvent", eid):
                 if ce.get("e_type") == "MENTIONED_IN":
                     cid = ce["to_id"]
-                    entry = chunks.setdefault(cid, {"support": 0, "via": []})
+                    entry = _entry(cid)
                     entry["support"] += 1
                     entry["via"].append(f"event:{eid[:48]}")
+                    if eid not in entry["event_ids"]:
+                        entry["event_ids"].append(eid)
         time.sleep(0.05)
 
     return chunks
+
+
+def traverse_scope(
+    conn,
+    event_ids: list[str],
+    max_chunks_per_event: int | None = None,
+    max_total_chunks: int | None = None,
+) -> dict:
+    """Mode B (v2 §6.1): candidate sibling ActionEvents -> evidence chunks.
+
+    Chunk support = number of DISTINCT sibling events grounding it, so
+    evidence spread across many sibling branches outranks chunks repeated
+    within one event. Caps prevent hub explosion (v2 §15.3).
+    """
+    if max_chunks_per_event is None:
+        max_chunks_per_event = config.SCOPE_MAX_CHUNKS_PER_EVENT
+    if max_total_chunks is None:
+        max_total_chunks = config.SCOPE_MAX_TOTAL_CHUNKS
+
+    chunks: dict[str, dict] = {}
+    for eid in dict.fromkeys(event_ids):  # stable dedup
+        if len(chunks) >= max_total_chunks:
+            break
+        per_event = 0
+        event_chunks = [
+            e for e in _get_edges(conn, "ActionEvent", eid)
+            if e.get("e_type") == "MENTIONED_IN"
+        ]
+        # infobox-first (v2 §15.7): chunk_0 carries the event's summary table
+        # (competitors, nations, venue) — exact tabular values live there, so
+        # visit chunks in chunk_index order rather than edge-return order
+        event_chunks.sort(key=lambda e: _chunk_sort_key(e["to_id"]))
+        for e in event_chunks:
+            if per_event >= max_chunks_per_event or len(chunks) >= max_total_chunks:
+                break
+            cid = e["to_id"]
+            entry = chunks.setdefault(cid, {"support": 0, "via": [], "event_ids": []})
+            if eid in entry["event_ids"]:
+                continue  # same event already grounded this chunk elsewhere
+            entry["support"] += 1
+            entry["via"].append(f"scope:{eid[:48]}")
+            entry["event_ids"].append(eid)
+            per_event += 1
+    return chunks
+
+
+def _chunk_sort_key(chunk_id: str) -> tuple:
+    """"Q303623_chunk_12" -> (303623-prefix, 12) — infobox chunks first."""
+    try:
+        doc, idx = chunk_id.rsplit("_chunk_", 1)
+        return (doc, int(idx))
+    except ValueError:
+        return (chunk_id, -1)
 
 
 def traverse_installed(conn, seeds: list[tuple[str, str, str]]) -> dict:
