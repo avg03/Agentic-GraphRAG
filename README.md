@@ -41,6 +41,7 @@ flowchart TB
         TOOLS -.-> CHROMA
     end
 ```
+<img width="1536" height="1024" alt="GraphRAG’s Three Retrieval Pipelines" src="https://github.com/user-attachments/assets/3b5f7058-1be9-4284-8ec2-3200286478d0" />
 
 ## Results (gpt-5-mini)
 
