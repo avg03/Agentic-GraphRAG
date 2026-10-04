@@ -1,4 +1,15 @@
-# GraphRAG Hackathon — Three Progressive Retrieval Pipelines
+[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![TigerGraph](https://img.shields.io/badge/TigerGraph-GraphRAG-00A3E0)](https://www.tigergraph.com/)
+[![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector_DB-FF6F61)](https://www.trychroma.com/)
+[![Gemini](https://img.shields.io/badge/Gemini-LLM-4285F4)](https://ai.google.dev/)
+[![LangGraph](https://img.shields.io/badge/LangGraph-Agentic_GraphRAG-1C3C3C)](https://www.langchain.com/langgraph)
+[![Accuracy](https://img.shields.io/badge/Best_Public_Accuracy-66%25-success)](#evaluation)
+[![Pipelines](https://img.shields.io/badge/RAG_Pipelines-3-blue)](#architecture)
+
+**Vector RAG · GraphRAG · Agentic GraphRAG**  
+*Comparing retrieval quality, efficiency, and adaptive investigation on a 2,951-document Olympic knowledge corpus.*
+
+# GraphRAG — Three Progressive Retrieval Pipelines
 
 Three retrieval pipelines built progressively over the same Wikipedia (Olympics) corpus, sharing one LLM funnel (`shared/llm_client.py` — Gemini / Azure / Groq / OpenRouter / NVIDIA NIM), one prompt library, one metrics contract (`shared/result.py`), and one run-persistence store (`shared/run_store.py`):
 
